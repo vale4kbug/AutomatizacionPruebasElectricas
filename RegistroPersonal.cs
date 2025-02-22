@@ -10,28 +10,18 @@ using System.Windows.Forms;
 
 namespace AutomatizacionPruebasElectricas
 {
-    public partial class Menu : Form
+    public partial class RegistroPersonal : Form
     {
-        public Menu()
+        public RegistroPersonal()
         {
             InitializeComponent();
         }
 
-        private void btnRegistroProducto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRegistroPersonal_Click(object sender, EventArgs e)
-        {
-            RegistroPersonal registroPersonal = new RegistroPersonal();
-            this.Hide();
-            registroPersonal.Show();
-        }
-
         private void btnPruebas_Click(object sender, EventArgs e)
         {
-            
+            Menu menuforma = new Menu();
+            this.Hide();
+            menuforma.Show();
         }
     }
 }

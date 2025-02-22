@@ -62,6 +62,7 @@
             this.btnRegistroProducto.UseMnemonic = false;
             this.btnRegistroProducto.UseVisualStyleBackColor = false;
             this.btnRegistroProducto.UseWaitCursor = true;
+            this.btnRegistroProducto.Click += new System.EventHandler(this.btnRegistroProducto_Click);
             // 
             // btnRegistroPersonal
             // 
@@ -80,6 +81,7 @@
             this.btnRegistroPersonal.UseMnemonic = false;
             this.btnRegistroPersonal.UseVisualStyleBackColor = false;
             this.btnRegistroPersonal.UseWaitCursor = true;
+            this.btnRegistroPersonal.Click += new System.EventHandler(this.btnRegistroPersonal_Click);
             // 
             // btnPruebas
             // 
@@ -98,6 +100,7 @@
             this.btnPruebas.UseMnemonic = false;
             this.btnPruebas.UseVisualStyleBackColor = false;
             this.btnPruebas.UseWaitCursor = true;
+            this.btnPruebas.Click += new System.EventHandler(this.btnPruebas_Click);
             // 
             // Menu
             // 

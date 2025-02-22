@@ -43,7 +43,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Info;
             this.textBox1.ForeColor = System.Drawing.Color.Teal;
             this.textBox1.Location = new System.Drawing.Point(273, 177);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(257, 39);
             this.textBox1.TabIndex = 0;
@@ -55,8 +55,8 @@
             this.btnIngresar.FlatAppearance.BorderSize = 2;
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIngresar.ForeColor = System.Drawing.Color.MediumTurquoise;
-            this.btnIngresar.Location = new System.Drawing.Point(334, 359);
-            this.btnIngresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIngresar.Location = new System.Drawing.Point(326, 344);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(125, 55);
             this.btnIngresar.TabIndex = 1;
@@ -64,13 +64,14 @@
             this.btnIngresar.UseMnemonic = false;
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.UseWaitCursor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.Info;
             this.textBox2.ForeColor = System.Drawing.Color.Teal;
             this.textBox2.Location = new System.Drawing.Point(273, 279);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(257, 39);
             this.textBox2.TabIndex = 2;
@@ -109,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(293, 93);
+            this.label4.Location = new System.Drawing.Point(293, 118);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 23);
@@ -134,7 +135,7 @@
             this.btnAbout.UseWaitCursor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,8 +150,8 @@
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "Login";
             this.Text = "Log-In";
             this.ResumeLayout(false);
             this.PerformLayout();
