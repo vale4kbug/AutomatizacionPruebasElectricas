@@ -16,5 +16,16 @@ namespace AutomatizacionPruebasElectricas
         {
             InitializeComponent();
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Proyecto de Automatizacion de Pruebas Electricas v.1.0 \n" +
+                "Para la clase Instrumentación Y Mediciones Eléctricas \n" +
+                "Creado por: \n" +
+                "Chavira Herrera Valeria Esperanza \n" +
+                "Gonzales Rodrigues Roberto \n" +
+                "Valdez Muñoz Bryan Allan \n" +
+                "Zamorano Moreno Roman", "About", MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
     }
 }
