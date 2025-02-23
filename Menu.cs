@@ -33,5 +33,12 @@ namespace AutomatizacionPruebasElectricas
         {
             
         }
+
+        private void btnPersonal_Click(object sender, EventArgs e)
+        {
+            PersonalActual personalActualForma = new PersonalActual();
+            this.Hide();
+            personalActualForma.Show();
+        }
     }
 }

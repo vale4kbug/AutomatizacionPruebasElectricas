@@ -17,13 +17,6 @@ namespace AutomatizacionPruebasElectricas
             InitializeComponent();
         }
 
-        private void btnPruebas_Click(object sender, EventArgs e)
-        {
-            Menu menuforma = new Menu();
-            this.Hide();
-            menuforma.Show();
-        }
-
         private void btnRegistrarPersonal_Click(object sender, EventArgs e)
         {
             if (true)
@@ -68,6 +61,13 @@ namespace AutomatizacionPruebasElectricas
                 MessageBox.Show("Error: No es posible modificar registrar el usuario." +
                 "El usuario no existe. Revisa los datos", "Error XoX", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Menu menuforma = new Menu();
+            this.Hide();
+            menuforma.Show();
         }
     }
 }

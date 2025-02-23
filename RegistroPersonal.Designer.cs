@@ -214,6 +214,7 @@
             this.btnRegresar.UseMnemonic = false;
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.UseWaitCursor = true;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // label7
             // 
