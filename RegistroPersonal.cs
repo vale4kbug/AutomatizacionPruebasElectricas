@@ -38,25 +38,26 @@ namespace AutomatizacionPruebasElectricas
             }
         }
 
-        private void btnEliminarPersonal_Click(object sender, EventArgs e)
-        {
-            if (true)
-            {
 
-            }
-           else if (true)
-            {
-                MessageBox.Show("Error: No es posible eliminar el usuario." +
-                 "El usuario no existe. Revisa los datos", "Error XoX", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Error: No es posible eliminar el usuario." +
-                   "Revisa que todos los campos esten llenos.", "Error XoX", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+             if (true)
+                        {
+
+                        }
+                       else if (true)
+                        {
+                            MessageBox.Show("Error: No es posible eliminar el usuario." +
+                             "El usuario no existe. Revisa los datos", "Error XoX", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: No es posible eliminar el usuario." +
+                               "Revisa que todos los campos esten llenos.", "Error XoX", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
         }
 
-        private void btnModificarPersonal_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             if (true)
             {
