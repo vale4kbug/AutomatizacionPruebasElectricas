@@ -23,7 +23,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 		}
 
 		//Esta funcion devuelve un unico valor de la base de datos, segun el query que mandes
-		public async Task<string> GetUniqueValue(string query)
+		protected async Task<string> GetUniqueValue(string query)
 		{
 			string value = "";
 			cmd.CommandText = query;
