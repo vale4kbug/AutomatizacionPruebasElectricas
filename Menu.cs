@@ -31,7 +31,8 @@ namespace AutomatizacionPruebasElectricas
 
         private void btnPruebas_Click(object sender, EventArgs e)
         {
-            
+            Pruebas pruebas = new Pruebas();
+            pruebas.Show();
         }
 
         private void btnPersonal_Click(object sender, EventArgs e)
