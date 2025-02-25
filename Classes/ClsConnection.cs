@@ -30,6 +30,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 			try
 			{
 				await OpenConnection();
+
 				var obj = await cmd.ExecuteScalarAsync();
 
 				value = obj.ToString();
@@ -38,7 +39,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 			{
 				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-			catch(NullReferenceException)
+			catch (NullReferenceException)
 			{
 				value = null;
 			}

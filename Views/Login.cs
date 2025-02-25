@@ -29,9 +29,19 @@ namespace AutomatizacionPruebasElectricas
 				"Zamorano Moreno Roman", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private async void btnIngresar_Click(object sender, EventArgs e)
+		private async void HabilitarControles(bool estado)
+		{
+			btnIngresar.Enabled = estado;
+			txtUsuarioContrasena.Enabled = estado;
+			txtUsuarioLogin.Enabled = estado;
+		}
+
+		private async void Ingresar()
 		{
 			ClsLogin login = new ClsLogin();
+			HabilitarControles(false);
+			lblMensaje.Text = "Cargando ...";
+			lblMensaje.Visible = true;
 
 			bool acceso = await login.Login(txtUsuarioLogin.Text, txtUsuarioContrasena.Text);
 			if (acceso)
@@ -43,7 +53,24 @@ namespace AutomatizacionPruebasElectricas
 			}
 			else
 			{
-				MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				//MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				HabilitarControles(true);
+				lblMensaje.Text = "El usuario o contraseña son incorrectos, intenta de nuevo";
+				await Task.Delay(3000);
+				lblMensaje.Visible = false;
+			}
+		}
+
+		private void btnIngresar_Click(object sender, EventArgs e)
+		{
+			Ingresar();
+		}
+
+		private void txtUsuarioContrasena_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				Ingresar();
 			}
 		}
 	}

@@ -15,7 +15,7 @@ namespace AutomatizacionPruebasElectricas
 		public Menu(string nombre)
 		{
 			InitializeComponent();
-			Text = "Bienvenido, " + nombre;
+			Text = "Bienvenid@, " + nombre;
 		}
 
 		private void btnRegistroProducto_Click(object sender, EventArgs e)
@@ -41,6 +41,11 @@ namespace AutomatizacionPruebasElectricas
 			PersonalActual personalActualForma = new PersonalActual();
 			this.Hide();
 			personalActualForma.Show();
+		}
+
+		private void Menu_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

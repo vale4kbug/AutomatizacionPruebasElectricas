@@ -36,6 +36,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btnAbout = new System.Windows.Forms.Button();
+			this.lblMensaje = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// txtUsuarioLogin
@@ -55,12 +56,12 @@
 			this.btnIngresar.FlatAppearance.BorderSize = 2;
 			this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnIngresar.ForeColor = System.Drawing.Color.MediumTurquoise;
-			this.btnIngresar.Location = new System.Drawing.Point(326, 344);
+			this.btnIngresar.Location = new System.Drawing.Point(321, 358);
 			this.btnIngresar.Margin = new System.Windows.Forms.Padding(4);
 			this.btnIngresar.Name = "btnIngresar";
 			this.btnIngresar.Size = new System.Drawing.Size(125, 55);
 			this.btnIngresar.TabIndex = 2;
-			this.btnIngresar.Text = "Aceptar";
+			this.btnIngresar.Text = "Iniciar Sesión";
 			this.btnIngresar.UseMnemonic = false;
 			this.btnIngresar.UseVisualStyleBackColor = false;
 			this.btnIngresar.UseWaitCursor = true;
@@ -76,6 +77,7 @@
 			this.txtUsuarioContrasena.Size = new System.Drawing.Size(257, 39);
 			this.txtUsuarioContrasena.TabIndex = 1;
 			this.txtUsuarioContrasena.UseSystemPasswordChar = true;
+			this.txtUsuarioContrasena.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuarioContrasena_KeyDown);
 			// 
 			// label1
 			// 
@@ -136,12 +138,24 @@
 			this.btnAbout.UseWaitCursor = true;
 			this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
 			// 
+			// lblMensaje
+			// 
+			this.lblMensaje.AutoSize = true;
+			this.lblMensaje.Location = new System.Drawing.Point(157, 429);
+			this.lblMensaje.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lblMensaje.Name = "lblMensaje";
+			this.lblMensaje.Size = new System.Drawing.Size(108, 23);
+			this.lblMensaje.TabIndex = 7;
+			this.lblMensaje.Text = "Cargando ...";
+			this.lblMensaje.Visible = false;
+			// 
 			// Login
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleTurquoise;
 			this.ClientSize = new System.Drawing.Size(769, 522);
+			this.Controls.Add(this.lblMensaje);
 			this.Controls.Add(this.btnAbout);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -169,6 +183,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.TextBox txtUsuarioLogin;
-    }
+		private System.Windows.Forms.Label lblMensaje;
+	}
 }
 
