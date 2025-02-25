@@ -59,7 +59,7 @@
 			this.btnIngresar.Margin = new System.Windows.Forms.Padding(4);
 			this.btnIngresar.Name = "btnIngresar";
 			this.btnIngresar.Size = new System.Drawing.Size(125, 55);
-			this.btnIngresar.TabIndex = 1;
+			this.btnIngresar.TabIndex = 2;
 			this.btnIngresar.Text = "Aceptar";
 			this.btnIngresar.UseMnemonic = false;
 			this.btnIngresar.UseVisualStyleBackColor = false;
@@ -74,7 +74,8 @@
 			this.txtUsuarioContrasena.Margin = new System.Windows.Forms.Padding(4);
 			this.txtUsuarioContrasena.Name = "txtUsuarioContrasena";
 			this.txtUsuarioContrasena.Size = new System.Drawing.Size(257, 39);
-			this.txtUsuarioContrasena.TabIndex = 2;
+			this.txtUsuarioContrasena.TabIndex = 1;
+			this.txtUsuarioContrasena.UseSystemPasswordChar = true;
 			// 
 			// label1
 			// 
@@ -129,7 +130,7 @@
 			this.btnAbout.Margin = new System.Windows.Forms.Padding(4);
 			this.btnAbout.Name = "btnAbout";
 			this.btnAbout.Size = new System.Drawing.Size(46, 41);
-			this.btnAbout.TabIndex = 7;
+			this.btnAbout.TabIndex = 3;
 			this.btnAbout.UseMnemonic = false;
 			this.btnAbout.UseVisualStyleBackColor = false;
 			this.btnAbout.UseWaitCursor = true;
