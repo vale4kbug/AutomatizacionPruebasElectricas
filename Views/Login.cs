@@ -30,15 +30,7 @@ namespace AutomatizacionPruebasElectricas
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (true)
-            {
-                Menu menuforma = new Menu();
-                this.Hide();
-                menuforma.Show();
-            }
-            else {
-                MessageBox.Show("Error: Credenciales no validad","Error XoX",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+            
         }
     }
 }
