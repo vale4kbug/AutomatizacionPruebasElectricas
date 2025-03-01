@@ -45,6 +45,8 @@
             this.dateFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.dataGridPersonal = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPersonal)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegistrarPersonal
@@ -205,7 +207,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(613, 285);
+            this.btnRegresar.Location = new System.Drawing.Point(618, 536);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(66, 42);
@@ -274,12 +276,24 @@
             this.btnModificar.UseWaitCursor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // dataGridPersonal
+            // 
+            this.dataGridPersonal.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dataGridPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPersonal.Location = new System.Drawing.Point(17, 335);
+            this.dataGridPersonal.Name = "dataGridPersonal";
+            this.dataGridPersonal.RowHeadersWidth = 51;
+            this.dataGridPersonal.RowTemplate.Height = 24;
+            this.dataGridPersonal.Size = new System.Drawing.Size(527, 244);
+            this.dataGridPersonal.TabIndex = 40;
+            // 
             // RegistroPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.ClientSize = new System.Drawing.Size(692, 341);
+            this.ClientSize = new System.Drawing.Size(692, 591);
+            this.Controls.Add(this.dataGridPersonal);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dateFechaNacimiento);
@@ -299,6 +313,7 @@
             this.Controls.Add(this.btnRegresar);
             this.Name = "RegistroPersonal";
             this.Text = "Registro de Personal";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPersonal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +341,6 @@
         private System.Windows.Forms.DateTimePicker dateFechaNacimiento;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.DataGridView dataGridPersonal;
     }
 }
