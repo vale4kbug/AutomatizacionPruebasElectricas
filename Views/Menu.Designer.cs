@@ -62,7 +62,6 @@
             this.btnRegistroProducto.UseMnemonic = false;
             this.btnRegistroProducto.UseVisualStyleBackColor = false;
             this.btnRegistroProducto.UseWaitCursor = true;
-            this.btnRegistroProducto.Click += new System.EventHandler(this.btnRegistroProducto_Click);
             // 
             // btnRegistroPersonal
             // 

@@ -18,11 +18,6 @@ namespace AutomatizacionPruebasElectricas
 			Text = "Bienvenid@, " + nombre;
 		}
 
-		private void btnRegistroProducto_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void btnRegistroPersonal_Click(object sender, EventArgs e)
 		{
 			RegistroPersonal registroPersonal = new RegistroPersonal();
@@ -34,13 +29,6 @@ namespace AutomatizacionPruebasElectricas
 		{
 			Pruebas pruebas = new Pruebas();
 			pruebas.Show();
-		}
-
-		private void btnPersonal_Click(object sender, EventArgs e)
-		{
-			PersonalActual personalActualForma = new PersonalActual();
-			this.Hide();
-			personalActualForma.Show();
 		}
 
 		private void Menu_FormClosing(object sender, FormClosingEventArgs e)
