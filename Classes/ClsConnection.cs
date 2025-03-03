@@ -11,10 +11,10 @@ namespace AutomatizacionPruebasElectricas.Classes
 {
 	public class ClsConnection
 	{
-		MySqlConnection con;
-		MySqlCommand cmd;
-		MySqlDataAdapter adapter;
-		MySqlDataReader reader;
+		readonly protected MySqlConnection con;
+		readonly protected MySqlCommand cmd;
+		readonly protected MySqlDataAdapter adapter;
+		readonly protected MySqlDataReader reader;
 
 		public ClsConnection()
 		{

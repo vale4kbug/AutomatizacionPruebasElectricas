@@ -18,11 +18,15 @@ namespace AutomatizacionPruebasElectricas
 			Text = "Bienvenid@, " + nombre;
 		}
 
+		private void btnRegistroProducto_Click(object sender, EventArgs e)
+		{
+
+		}
+
 		private void btnRegistroPersonal_Click(object sender, EventArgs e)
 		{
 			RegistroPersonal registroPersonal = new RegistroPersonal();
-			this.Hide();
-			registroPersonal.Show();
+			registroPersonal.ShowDialog();
 		}
 
 		private void btnPruebas_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 
 		//Metodo para verificar el login
 		//Regresa un true si el usuario es correcto, y regresa falso si no coincide el usuario y la contraseña
-		public async Task<bool> Login(string username, string password)
+		public async Task<bool> Log(string username, string password)
 		{
 			string hola = await GetUniqueValue($"select idusuario from usuarios where username='{username}' and contraseña='{password}'");
 
@@ -25,6 +25,8 @@ namespace AutomatizacionPruebasElectricas.Classes
 			return false;
 		}
 
+
+		//Con este metodo se obtiene el nombre del usuario logeado
 		public async Task<string> GetUserFullName()
 		{
 			string nombre = await GetUniqueValue($"select concat(nombre, ' ', apellido) from usuarios where idusuario={idUsuario}");
