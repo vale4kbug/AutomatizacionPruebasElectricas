@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomatizacionPruebasElectricas.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,5 +40,11 @@ namespace AutomatizacionPruebasElectricas
 		{
 			Application.Exit();
 		}
-	}
+
+        private void btnRegistroProducto_Click_1(object sender, EventArgs e)
+        {
+            Productos productos = new Productos();
+            productos.Show();
+        }
+    }
 }
