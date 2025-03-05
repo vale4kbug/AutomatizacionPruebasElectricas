@@ -34,7 +34,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.picFoto = new System.Windows.Forms.PictureBox();
 			this.BtnRuta = new System.Windows.Forms.Button();
 			this.txtUserID = new System.Windows.Forms.TextBox();
 			this.txtNombre = new System.Windows.Forms.TextBox();
@@ -46,10 +46,12 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.chkShowPassword = new System.Windows.Forms.CheckBox();
 			this.OpenImage = new System.Windows.Forms.OpenFileDialog();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
+			this.BtnAddModify = new System.Windows.Forms.Button();
+			this.BtnEliminar = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.BtnClear = new System.Windows.Forms.Button();
+			this.BtnSearch = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -97,15 +99,15 @@
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Usuarios";
 			// 
-			// pictureBox1
+			// picFoto
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(401, 83);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(186, 168);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 5;
-			this.pictureBox1.TabStop = false;
+			this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
+			this.picFoto.Location = new System.Drawing.Point(401, 83);
+			this.picFoto.Name = "picFoto";
+			this.picFoto.Size = new System.Drawing.Size(186, 168);
+			this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.picFoto.TabIndex = 5;
+			this.picFoto.TabStop = false;
 			// 
 			// BtnRuta
 			// 
@@ -115,6 +117,7 @@
 			this.BtnRuta.TabIndex = 6;
 			this.BtnRuta.Text = "Seleccionar foto";
 			this.BtnRuta.UseVisualStyleBackColor = true;
+			this.BtnRuta.Click += new System.EventHandler(this.BtnRuta_Click);
 			// 
 			// txtUserID
 			// 
@@ -194,23 +197,25 @@
 			// 
 			this.OpenImage.FileName = "openFileDialog1";
 			// 
-			// button1
+			// BtnAddModify
 			// 
-			this.button1.Location = new System.Drawing.Point(48, 298);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(142, 29);
-			this.button1.TabIndex = 16;
-			this.button1.Text = "Agregar/Modificar";
-			this.button1.UseVisualStyleBackColor = true;
+			this.BtnAddModify.Location = new System.Drawing.Point(186, 296);
+			this.BtnAddModify.Name = "BtnAddModify";
+			this.BtnAddModify.Size = new System.Drawing.Size(142, 29);
+			this.BtnAddModify.TabIndex = 16;
+			this.BtnAddModify.Text = "Agregar/Modificar";
+			this.BtnAddModify.UseVisualStyleBackColor = true;
+			this.BtnAddModify.Click += new System.EventHandler(this.BtnAddModify_Click);
 			// 
-			// button2
+			// BtnEliminar
 			// 
-			this.button2.Location = new System.Drawing.Point(196, 298);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(142, 29);
-			this.button2.TabIndex = 17;
-			this.button2.Text = "Eliminar";
-			this.button2.UseVisualStyleBackColor = true;
+			this.BtnEliminar.Location = new System.Drawing.Point(482, 296);
+			this.BtnEliminar.Name = "BtnEliminar";
+			this.BtnEliminar.Size = new System.Drawing.Size(142, 29);
+			this.BtnEliminar.TabIndex = 17;
+			this.BtnEliminar.Text = "Eliminar";
+			this.BtnEliminar.UseVisualStyleBackColor = true;
+			this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
 			// 
 			// button3
 			// 
@@ -221,14 +226,35 @@
 			this.button3.Text = "Modulos";
 			this.button3.UseVisualStyleBackColor = true;
 			// 
+			// BtnClear
+			// 
+			this.BtnClear.Location = new System.Drawing.Point(38, 296);
+			this.BtnClear.Name = "BtnClear";
+			this.BtnClear.Size = new System.Drawing.Size(142, 29);
+			this.BtnClear.TabIndex = 19;
+			this.BtnClear.Text = "Limpiar campos";
+			this.BtnClear.UseVisualStyleBackColor = true;
+			this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+			// 
+			// BtnSearch
+			// 
+			this.BtnSearch.Location = new System.Drawing.Point(334, 296);
+			this.BtnSearch.Name = "BtnSearch";
+			this.BtnSearch.Size = new System.Drawing.Size(142, 29);
+			this.BtnSearch.TabIndex = 20;
+			this.BtnSearch.Text = "Buscar";
+			this.BtnSearch.UseVisualStyleBackColor = true;
+			// 
 			// Usuarios
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(624, 427);
+			this.ClientSize = new System.Drawing.Size(647, 427);
+			this.Controls.Add(this.BtnSearch);
+			this.Controls.Add(this.BtnClear);
 			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.BtnEliminar);
+			this.Controls.Add(this.BtnAddModify);
 			this.Controls.Add(this.chkShowPassword);
 			this.Controls.Add(this.txtPassword);
 			this.Controls.Add(this.txtUsername);
@@ -239,7 +265,7 @@
 			this.Controls.Add(this.txtNombre);
 			this.Controls.Add(this.txtUserID);
 			this.Controls.Add(this.BtnRuta);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.picFoto);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -249,7 +275,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Usuarios";
 			this.Load += new System.EventHandler(this.Usuarios_Load);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -262,7 +288,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox picFoto;
 		private System.Windows.Forms.Button BtnRuta;
 		private System.Windows.Forms.TextBox txtUserID;
 		private System.Windows.Forms.TextBox txtNombre;
@@ -274,8 +300,10 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.CheckBox chkShowPassword;
 		private System.Windows.Forms.OpenFileDialog OpenImage;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button BtnAddModify;
+		private System.Windows.Forms.Button BtnEliminar;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button BtnClear;
+		private System.Windows.Forms.Button BtnSearch;
 	}
 }
