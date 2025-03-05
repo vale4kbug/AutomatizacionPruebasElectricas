@@ -134,11 +134,19 @@
     <Compile Include="Views\RegistroPersonal.Designer.cs">
       <DependentUpon>RegistroPersonal.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <Compile Include="Views\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
+=======
+    <Compile Include="Views\Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Ventas.Designer.cs">
+      <DependentUpon>Ventas.cs</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -165,8 +173,13 @@
     <EmbeddedResource Include="Views\RegistroPersonal.resx">
       <DependentUpon>RegistroPersonal.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< Updated upstream
     <EmbeddedResource Include="Views\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Views\Ventas.resx">
+      <DependentUpon>Ventas.cs</DependentUpon>
+>>>>>>> Stashed changes
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
