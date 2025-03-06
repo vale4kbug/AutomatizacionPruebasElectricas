@@ -11,6 +11,13 @@ namespace AutomatizacionPruebasElectricas.Classes
 	{
 		public Action<DataTable> sendDatos;
 
+		public async Task<DataTable> GetUsers(string filtro)
+		{
+			DataTable usuarios = await GetTable($"select idUsuario as ID, nombre as Nombre, apellido as Apellido, username as Usuario from usuarios " +
+				$"where nombre like '%{filtro}%' or apellido='%{filtro}%' or username='%{filtro}%' or IDUsuario like '%{filtro}%'");
+			return usuarios;
+		}
+
 		public async Task GetUser(string id)
 		{
 			DataTable datosUsuario = await GetTable("select Nombre, Apellido, FechaContratacion, FotoRuta, Username, Contraseña " +
@@ -34,9 +41,10 @@ namespace AutomatizacionPruebasElectricas.Classes
 				$"FotoRuta='{fotoRuta}', username='{username}', Contraseña='{password}' where IDUsuario='{id}'");
 		}
 
-		public async Task DeleteUser(string id)
+		//Metodo para eliminar un usuario
+		public async Task<int> DeleteUser(string id)
 		{
-			await PutInDatabase($"delete from usuarios where UsuarioID='{id}'");
+			return await PutInDatabase($"delete from usuarios where IDUsuario='{id}'");
 		}
 	}
 }

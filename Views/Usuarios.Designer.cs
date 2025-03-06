@@ -48,7 +48,7 @@
 			this.OpenImage = new System.Windows.Forms.OpenFileDialog();
 			this.BtnAddModify = new System.Windows.Forms.Button();
 			this.BtnEliminar = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.BtnModulos = new System.Windows.Forms.Button();
 			this.BtnClear = new System.Windows.Forms.Button();
 			this.BtnSearch = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
@@ -66,7 +66,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(95, 114);
+			this.label2.Location = new System.Drawing.Point(95, 127);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 16);
 			this.label2.TabIndex = 1;
@@ -75,7 +75,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(95, 145);
+			this.label3.Location = new System.Drawing.Point(95, 158);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(57, 16);
 			this.label3.TabIndex = 2;
@@ -84,7 +84,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(12, 173);
+			this.label4.Location = new System.Drawing.Point(12, 186);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(140, 16);
 			this.label4.TabIndex = 3;
@@ -102,9 +102,9 @@
 			// picFoto
 			// 
 			this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
-			this.picFoto.Location = new System.Drawing.Point(401, 83);
+			this.picFoto.Location = new System.Drawing.Point(401, 78);
 			this.picFoto.Name = "picFoto";
-			this.picFoto.Size = new System.Drawing.Size(186, 168);
+			this.picFoto.Size = new System.Drawing.Size(186, 173);
 			this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.picFoto.TabIndex = 5;
 			this.picFoto.TabStop = false;
@@ -113,7 +113,7 @@
 			// 
 			this.BtnRuta.Location = new System.Drawing.Point(401, 255);
 			this.BtnRuta.Name = "BtnRuta";
-			this.BtnRuta.Size = new System.Drawing.Size(186, 23);
+			this.BtnRuta.Size = new System.Drawing.Size(186, 35);
 			this.BtnRuta.TabIndex = 6;
 			this.BtnRuta.Text = "Seleccionar foto";
 			this.BtnRuta.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
 			// 
 			// txtUserID
 			// 
-			this.txtUserID.Location = new System.Drawing.Point(157, 83);
+			this.txtUserID.Location = new System.Drawing.Point(163, 83);
 			this.txtUserID.Name = "txtUserID";
 			this.txtUserID.Size = new System.Drawing.Size(129, 22);
 			this.txtUserID.TabIndex = 7;
@@ -129,14 +129,14 @@
 			// 
 			// txtNombre
 			// 
-			this.txtNombre.Location = new System.Drawing.Point(157, 111);
+			this.txtNombre.Location = new System.Drawing.Point(163, 124);
 			this.txtNombre.Name = "txtNombre";
 			this.txtNombre.Size = new System.Drawing.Size(225, 22);
 			this.txtNombre.TabIndex = 8;
 			// 
 			// txtApellido
 			// 
-			this.txtApellido.Location = new System.Drawing.Point(157, 142);
+			this.txtApellido.Location = new System.Drawing.Point(163, 155);
 			this.txtApellido.Name = "txtApellido";
 			this.txtApellido.Size = new System.Drawing.Size(225, 22);
 			this.txtApellido.TabIndex = 9;
@@ -144,14 +144,14 @@
 			// dtFecha
 			// 
 			this.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtFecha.Location = new System.Drawing.Point(157, 170);
+			this.dtFecha.Location = new System.Drawing.Point(163, 183);
 			this.dtFecha.Name = "dtFecha";
 			this.dtFecha.Size = new System.Drawing.Size(134, 22);
 			this.dtFecha.TabIndex = 10;
 			// 
 			// txtPassword
 			// 
-			this.txtPassword.Location = new System.Drawing.Point(157, 229);
+			this.txtPassword.Location = new System.Drawing.Point(163, 242);
 			this.txtPassword.Name = "txtPassword";
 			this.txtPassword.Size = new System.Drawing.Size(225, 22);
 			this.txtPassword.TabIndex = 14;
@@ -159,7 +159,7 @@
 			// 
 			// txtUsername
 			// 
-			this.txtUsername.Location = new System.Drawing.Point(157, 198);
+			this.txtUsername.Location = new System.Drawing.Point(163, 211);
 			this.txtUsername.Name = "txtUsername";
 			this.txtUsername.Size = new System.Drawing.Size(225, 22);
 			this.txtUsername.TabIndex = 13;
@@ -167,7 +167,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(76, 232);
+			this.label6.Location = new System.Drawing.Point(76, 245);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(76, 16);
 			this.label6.TabIndex = 12;
@@ -176,7 +176,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(82, 201);
+			this.label7.Location = new System.Drawing.Point(82, 214);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(70, 16);
 			this.label7.TabIndex = 11;
@@ -185,7 +185,7 @@
 			// chkShowPassword
 			// 
 			this.chkShowPassword.AutoSize = true;
-			this.chkShowPassword.Location = new System.Drawing.Point(238, 257);
+			this.chkShowPassword.Location = new System.Drawing.Point(244, 270);
 			this.chkShowPassword.Name = "chkShowPassword";
 			this.chkShowPassword.Size = new System.Drawing.Size(144, 20);
 			this.chkShowPassword.TabIndex = 15;
@@ -199,60 +199,77 @@
 			// 
 			// BtnAddModify
 			// 
-			this.BtnAddModify.Location = new System.Drawing.Point(186, 296);
+			this.BtnAddModify.BackColor = System.Drawing.Color.Honeydew;
+			this.BtnAddModify.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.BtnAddModify.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
+			this.BtnAddModify.ForeColor = System.Drawing.Color.MediumSeaGreen;
+			this.BtnAddModify.Location = new System.Drawing.Point(172, 301);
 			this.BtnAddModify.Name = "BtnAddModify";
-			this.BtnAddModify.Size = new System.Drawing.Size(142, 29);
+			this.BtnAddModify.Size = new System.Drawing.Size(196, 65);
 			this.BtnAddModify.TabIndex = 16;
 			this.BtnAddModify.Text = "Agregar/Modificar";
-			this.BtnAddModify.UseVisualStyleBackColor = true;
+			this.BtnAddModify.UseVisualStyleBackColor = false;
 			this.BtnAddModify.Click += new System.EventHandler(this.BtnAddModify_Click);
 			// 
 			// BtnEliminar
 			// 
-			this.BtnEliminar.Location = new System.Drawing.Point(482, 296);
+			this.BtnEliminar.BackColor = System.Drawing.Color.MistyRose;
+			this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.BtnEliminar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
+			this.BtnEliminar.ForeColor = System.Drawing.Color.SaddleBrown;
+			this.BtnEliminar.Location = new System.Drawing.Point(522, 301);
 			this.BtnEliminar.Name = "BtnEliminar";
-			this.BtnEliminar.Size = new System.Drawing.Size(142, 29);
+			this.BtnEliminar.Size = new System.Drawing.Size(142, 65);
 			this.BtnEliminar.TabIndex = 17;
 			this.BtnEliminar.Text = "Eliminar";
-			this.BtnEliminar.UseVisualStyleBackColor = true;
+			this.BtnEliminar.UseVisualStyleBackColor = false;
 			this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
 			// 
-			// button3
+			// BtnModulos
 			// 
-			this.button3.Location = new System.Drawing.Point(292, 83);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(90, 22);
-			this.button3.TabIndex = 18;
-			this.button3.Text = "Modulos";
-			this.button3.UseVisualStyleBackColor = true;
+			this.BtnModulos.Location = new System.Drawing.Point(298, 78);
+			this.BtnModulos.Name = "BtnModulos";
+			this.BtnModulos.Size = new System.Drawing.Size(90, 33);
+			this.BtnModulos.TabIndex = 18;
+			this.BtnModulos.Text = "Modulos";
+			this.BtnModulos.UseVisualStyleBackColor = true;
 			// 
 			// BtnClear
 			// 
-			this.BtnClear.Location = new System.Drawing.Point(38, 296);
+			this.BtnClear.BackColor = System.Drawing.Color.Honeydew;
+			this.BtnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.BtnClear.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
+			this.BtnClear.ForeColor = System.Drawing.Color.MediumSpringGreen;
+			this.BtnClear.Location = new System.Drawing.Point(24, 301);
 			this.BtnClear.Name = "BtnClear";
-			this.BtnClear.Size = new System.Drawing.Size(142, 29);
+			this.BtnClear.Size = new System.Drawing.Size(142, 65);
 			this.BtnClear.TabIndex = 19;
 			this.BtnClear.Text = "Limpiar campos";
-			this.BtnClear.UseVisualStyleBackColor = true;
+			this.BtnClear.UseVisualStyleBackColor = false;
 			this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
 			// 
 			// BtnSearch
 			// 
-			this.BtnSearch.Location = new System.Drawing.Point(334, 296);
+			this.BtnSearch.BackColor = System.Drawing.Color.LightCyan;
+			this.BtnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.BtnSearch.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
+			this.BtnSearch.ForeColor = System.Drawing.Color.DarkCyan;
+			this.BtnSearch.Location = new System.Drawing.Point(374, 301);
 			this.BtnSearch.Name = "BtnSearch";
-			this.BtnSearch.Size = new System.Drawing.Size(142, 29);
+			this.BtnSearch.Size = new System.Drawing.Size(142, 65);
 			this.BtnSearch.TabIndex = 20;
 			this.BtnSearch.Text = "Buscar";
-			this.BtnSearch.UseVisualStyleBackColor = true;
+			this.BtnSearch.UseVisualStyleBackColor = false;
+			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
 			// 
 			// Usuarios
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(647, 427);
+			this.ClientSize = new System.Drawing.Size(719, 391);
 			this.Controls.Add(this.BtnSearch);
 			this.Controls.Add(this.BtnClear);
-			this.Controls.Add(this.button3);
+			this.Controls.Add(this.BtnModulos);
 			this.Controls.Add(this.BtnEliminar);
 			this.Controls.Add(this.BtnAddModify);
 			this.Controls.Add(this.chkShowPassword);
@@ -302,7 +319,7 @@
 		private System.Windows.Forms.OpenFileDialog OpenImage;
 		private System.Windows.Forms.Button BtnAddModify;
 		private System.Windows.Forms.Button BtnEliminar;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button BtnModulos;
 		private System.Windows.Forms.Button BtnClear;
 		private System.Windows.Forms.Button BtnSearch;
 	}

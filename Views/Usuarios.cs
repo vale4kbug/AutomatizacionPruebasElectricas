@@ -82,6 +82,7 @@ namespace AutomatizacionPruebasElectricas.Views
 			txtPassword.Text = "";
 			picFoto.Image = null;
 			OpenImage.FileName = documentosPath + "\\default.png";
+			txtUserID.Focus();
 		}
 
 		private void BtnRuta_Click(object sender, EventArgs e)
@@ -113,8 +114,23 @@ namespace AutomatizacionPruebasElectricas.Views
 			if (MessageBox.Show("¿Estas seguro de eliminar este usuario?", "Eliminar usuario",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
 			{
-				await users.DeleteUser(txtUserID.Text);
+				int resultado = await users.DeleteUser(txtUserID.Text);
+				MessageBox.Show($"Se elimino {resultado} usuario", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				BtnClear_Click(sender, e);
 			}
+		}
+
+		private void BtnSearch_Click(object sender, EventArgs e)
+		{
+			BuscarUsuario user = new BuscarUsuario();
+			user.sendId = RecibirId;
+			user.ShowDialog();
+		}
+
+		private async void RecibirId(string obj)
+		{
+			txtUserID.Text = obj;
+			await users.GetUser(txtUserID.Text);
 		}
 	}
 }
