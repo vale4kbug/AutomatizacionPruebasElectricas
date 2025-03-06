@@ -51,6 +51,7 @@
 			this.BtnModulos = new System.Windows.Forms.Button();
 			this.BtnClear = new System.Windows.Forms.Button();
 			this.BtnSearch = new System.Windows.Forms.Button();
+			this.BtnCredencial = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -262,11 +263,22 @@
 			this.BtnSearch.UseVisualStyleBackColor = false;
 			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
 			// 
+			// BtnCredencial
+			// 
+			this.BtnCredencial.Location = new System.Drawing.Point(593, 255);
+			this.BtnCredencial.Name = "BtnCredencial";
+			this.BtnCredencial.Size = new System.Drawing.Size(71, 35);
+			this.BtnCredencial.TabIndex = 21;
+			this.BtnCredencial.Text = "PDF";
+			this.BtnCredencial.UseVisualStyleBackColor = true;
+			this.BtnCredencial.Click += new System.EventHandler(this.BtnCredencial_Click);
+			// 
 			// Usuarios
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(719, 391);
+			this.Controls.Add(this.BtnCredencial);
 			this.Controls.Add(this.BtnSearch);
 			this.Controls.Add(this.BtnClear);
 			this.Controls.Add(this.BtnModulos);
@@ -322,5 +334,6 @@
 		private System.Windows.Forms.Button BtnModulos;
 		private System.Windows.Forms.Button BtnClear;
 		private System.Windows.Forms.Button BtnSearch;
+		private System.Windows.Forms.Button BtnCredencial;
 	}
 }

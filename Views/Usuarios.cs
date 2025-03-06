@@ -132,5 +132,21 @@ namespace AutomatizacionPruebasElectricas.Views
 			txtUserID.Text = obj;
 			await users.GetUser(txtUserID.Text);
 		}
+
+		private async void BtnCredencial_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(txtUserID.Text))
+			{
+				MessageBox.Show("Primero busca un usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			string pdfPath = await users.GenerarCredencial(txtUserID.Text);
+
+			if (!string.IsNullOrEmpty(pdfPath))
+			{
+				System.Diagnostics.Process.Start(pdfPath); // Abre el PDF automáticamente
+			}
+		}
 	}
 }
