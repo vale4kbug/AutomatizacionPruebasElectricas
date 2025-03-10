@@ -68,7 +68,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(545, 395);
+            this.btnRegresar.Location = new System.Drawing.Point(593, 467);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(50, 34);
             this.btnRegresar.TabIndex = 54;
@@ -76,6 +76,7 @@
             this.btnRegresar.UseMnemonic = false;
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.UseWaitCursor = true;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnModificarVentas
             // 
@@ -89,7 +90,7 @@
             this.btnModificarVentas.Name = "btnModificarVentas";
             this.btnModificarVentas.Size = new System.Drawing.Size(127, 44);
             this.btnModificarVentas.TabIndex = 53;
-            this.btnModificarVentas.Text = "Modificar Ventas";
+            this.btnModificarVentas.Text = "Modificar Venta";
             this.btnModificarVentas.UseMnemonic = false;
             this.btnModificarVentas.UseVisualStyleBackColor = false;
             this.btnModificarVentas.UseWaitCursor = true;
@@ -107,7 +108,7 @@
             this.btnEliminarVentas.Name = "btnEliminarVentas";
             this.btnEliminarVentas.Size = new System.Drawing.Size(127, 44);
             this.btnEliminarVentas.TabIndex = 52;
-            this.btnEliminarVentas.Text = "Eliminar Ventas";
+            this.btnEliminarVentas.Text = "Eliminar Venta";
             this.btnEliminarVentas.UseMnemonic = false;
             this.btnEliminarVentas.UseVisualStyleBackColor = false;
             this.btnEliminarVentas.UseWaitCursor = true;
@@ -125,7 +126,7 @@
             this.btnRegistrarVentas.Name = "btnRegistrarVentas";
             this.btnRegistrarVentas.Size = new System.Drawing.Size(127, 44);
             this.btnRegistrarVentas.TabIndex = 51;
-            this.btnRegistrarVentas.Text = "Registrar Ventas";
+            this.btnRegistrarVentas.Text = "Registrar Venta";
             this.btnRegistrarVentas.UseMnemonic = false;
             this.btnRegistrarVentas.UseVisualStyleBackColor = false;
             this.btnRegistrarVentas.UseWaitCursor = true;

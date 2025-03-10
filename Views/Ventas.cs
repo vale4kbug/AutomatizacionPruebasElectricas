@@ -31,5 +31,12 @@ namespace AutomatizacionPruebasElectricas.Views
         {
 
         }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Menu menuforma = new Menu("");
+            this.Hide();
+            menuforma.Show();
+        }
     }
 }

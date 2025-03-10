@@ -52,5 +52,11 @@ namespace AutomatizacionPruebasElectricas
 			Usuarios user = new Usuarios();
 			user.ShowDialog();
 		}
-	}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Ventas ventas = new Ventas();
+			ventas.Show();
+        }
+    }
 }
