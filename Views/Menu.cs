@@ -24,11 +24,7 @@ namespace AutomatizacionPruebasElectricas
 
 		}
 
-		private void btnRegistroPersonal_Click(object sender, EventArgs e)
-		{
-			RegistroPersonal registroPersonal = new RegistroPersonal();
-			registroPersonal.ShowDialog();
-		}
+	
 
 		private void btnPruebas_Click(object sender, EventArgs e)
 		{

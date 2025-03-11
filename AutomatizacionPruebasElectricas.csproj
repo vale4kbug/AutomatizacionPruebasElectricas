@@ -146,12 +146,6 @@
     <Compile Include="Views\Pruebas.Designer.cs">
       <DependentUpon>Pruebas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegistroPersonal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\RegistroPersonal.Designer.cs">
-      <DependentUpon>RegistroPersonal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,9 +182,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Pruebas.resx">
       <DependentUpon>Pruebas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\RegistroPersonal.resx">
-      <DependentUpon>RegistroPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
