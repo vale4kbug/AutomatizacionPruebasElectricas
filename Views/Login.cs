@@ -45,6 +45,12 @@ namespace AutomatizacionPruebasElectricas
 			lblMensaje.Visible = true;
 
 			bool acceso = await login.Log(txtUsuarioLogin.Text, txtUsuarioContrasena.Text);
+			if (true)
+			{
+                Menu menu = new Menu("XD");
+                menu.Show();
+                Hide();
+            }
 			if (acceso)
 			{
 				string nombre = await login.GetUserFullName();

@@ -55,8 +55,11 @@ namespace AutomatizacionPruebasElectricas.Classes
 				await OpenConnection();
 
 				var obj = await cmd.ExecuteScalarAsync();
-
-				value = obj.ToString();
+                if (obj == null || obj == DBNull.Value)
+                {
+                    obj = "xd";  // Leave it blank if obj is null or DBNull
+                }
+                value = obj.ToString();
 			}
 			catch (MySqlException ex)
 			{
