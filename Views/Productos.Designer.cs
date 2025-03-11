@@ -134,6 +134,7 @@
             this.btnBuscarProductos.UseMnemonic = false;
             this.btnBuscarProductos.UseVisualStyleBackColor = false;
             this.btnBuscarProductos.UseWaitCursor = true;
+            this.btnBuscarProductos.Click += new System.EventHandler(this.btnBuscarProductos_Click);
             // 
             // btnEliminarProductos
             // 
@@ -152,6 +153,7 @@
             this.btnEliminarProductos.UseMnemonic = false;
             this.btnEliminarProductos.UseVisualStyleBackColor = false;
             this.btnEliminarProductos.UseWaitCursor = true;
+            this.btnEliminarProductos.Click += new System.EventHandler(this.btnEliminarProductos_Click);
             // 
             // btnRegistrarProductos
             // 
@@ -208,13 +210,14 @@
             this.btnLimpiar.UseMnemonic = false;
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.UseWaitCursor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // listBoxEspecificaciones
             // 
             this.listBoxEspecificaciones.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxEspecificaciones.FormattingEnabled = true;
             this.listBoxEspecificaciones.ItemHeight = 16;
-            this.listBoxEspecificaciones.Location = new System.Drawing.Point(12, 267);
+            this.listBoxEspecificaciones.Location = new System.Drawing.Point(51, 267);
             this.listBoxEspecificaciones.Name = "listBoxEspecificaciones";
             this.listBoxEspecificaciones.Size = new System.Drawing.Size(205, 84);
             this.listBoxEspecificaciones.TabIndex = 47;
@@ -223,7 +226,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(13, 241);
+            this.label4.Location = new System.Drawing.Point(52, 241);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(204, 23);
@@ -239,7 +242,7 @@
             this.btnAgregasEspecificacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregasEspecificacion.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnAgregasEspecificacion.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAgregasEspecificacion.Location = new System.Drawing.Point(224, 267);
+            this.btnAgregasEspecificacion.Location = new System.Drawing.Point(263, 267);
             this.btnAgregasEspecificacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregasEspecificacion.Name = "btnAgregasEspecificacion";
             this.btnAgregasEspecificacion.Size = new System.Drawing.Size(45, 39);
@@ -248,6 +251,7 @@
             this.btnAgregasEspecificacion.UseMnemonic = false;
             this.btnAgregasEspecificacion.UseVisualStyleBackColor = false;
             this.btnAgregasEspecificacion.UseWaitCursor = true;
+            this.btnAgregasEspecificacion.Click += new System.EventHandler(this.btnAgregasEspecificacion_Click);
             // 
             // btnEliminarEspecificaciones
             // 
@@ -257,7 +261,7 @@
             this.btnEliminarEspecificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarEspecificaciones.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEliminarEspecificaciones.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnEliminarEspecificaciones.Location = new System.Drawing.Point(224, 312);
+            this.btnEliminarEspecificaciones.Location = new System.Drawing.Point(263, 312);
             this.btnEliminarEspecificaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarEspecificaciones.Name = "btnEliminarEspecificaciones";
             this.btnEliminarEspecificaciones.Size = new System.Drawing.Size(45, 39);
@@ -266,6 +270,7 @@
             this.btnEliminarEspecificaciones.UseMnemonic = false;
             this.btnEliminarEspecificaciones.UseVisualStyleBackColor = false;
             this.btnEliminarEspecificaciones.UseWaitCursor = true;
+            this.btnEliminarEspecificaciones.Click += new System.EventHandler(this.btnEliminarEspecificaciones_Click);
             // 
             // btnEliminarProcedimientos
             // 
@@ -275,7 +280,7 @@
             this.btnEliminarProcedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarProcedimientos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEliminarProcedimientos.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnEliminarProcedimientos.Location = new System.Drawing.Point(500, 312);
+            this.btnEliminarProcedimientos.Location = new System.Drawing.Point(539, 312);
             this.btnEliminarProcedimientos.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarProcedimientos.Name = "btnEliminarProcedimientos";
             this.btnEliminarProcedimientos.Size = new System.Drawing.Size(45, 39);
@@ -284,6 +289,7 @@
             this.btnEliminarProcedimientos.UseMnemonic = false;
             this.btnEliminarProcedimientos.UseVisualStyleBackColor = false;
             this.btnEliminarProcedimientos.UseWaitCursor = true;
+            this.btnEliminarProcedimientos.Click += new System.EventHandler(this.btnEliminarProcedimientos_Click);
             // 
             // btnAgregarProcedimientos
             // 
@@ -293,7 +299,7 @@
             this.btnAgregarProcedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregarProcedimientos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnAgregarProcedimientos.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAgregarProcedimientos.Location = new System.Drawing.Point(500, 267);
+            this.btnAgregarProcedimientos.Location = new System.Drawing.Point(539, 267);
             this.btnAgregarProcedimientos.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregarProcedimientos.Name = "btnAgregarProcedimientos";
             this.btnAgregarProcedimientos.Size = new System.Drawing.Size(45, 39);
@@ -302,12 +308,13 @@
             this.btnAgregarProcedimientos.UseMnemonic = false;
             this.btnAgregarProcedimientos.UseVisualStyleBackColor = false;
             this.btnAgregarProcedimientos.UseWaitCursor = true;
+            this.btnAgregarProcedimientos.Click += new System.EventHandler(this.btnAgregarProcedimientos_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(289, 241);
+            this.label5.Location = new System.Drawing.Point(328, 241);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(201, 23);
@@ -320,7 +327,7 @@
             this.listBoxProcedimientos.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxProcedimientos.FormattingEnabled = true;
             this.listBoxProcedimientos.ItemHeight = 16;
-            this.listBoxProcedimientos.Location = new System.Drawing.Point(288, 267);
+            this.listBoxProcedimientos.Location = new System.Drawing.Point(327, 267);
             this.listBoxProcedimientos.Name = "listBoxProcedimientos";
             this.listBoxProcedimientos.Size = new System.Drawing.Size(205, 84);
             this.listBoxProcedimientos.TabIndex = 51;

@@ -38,5 +38,47 @@ namespace AutomatizacionPruebasElectricas.Views
 
             }
         }
+
+        private void btnAgregasEspecificacion_Click(object sender, EventArgs e)
+        {
+            Especificaciones especificaciones = new Especificaciones();
+            especificaciones.Show();
+        }
+
+        private void btnEliminarEspecificaciones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregarProcedimientos_Click(object sender, EventArgs e)
+        {
+            Procedimientos procedimientos = new Procedimientos();
+            procedimientos.Show();
+        }
+
+        private void btnEliminarProcedimientos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminarProductos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscarProductos_Click(object sender, EventArgs e)
+        {
+            BuscarProductos buscarproductos = new BuscarProductos();
+            buscarproductos.Show();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNoSerie.Text = "";
+            txtModelo.Text = "";
+            richDescripcion.Text = "";
+            listBoxEspecificaciones.Items.Clear();
+            listBoxProcedimientos.Items.Clear();
+        }
     }
 }

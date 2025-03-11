@@ -21,8 +21,9 @@ namespace AutomatizacionPruebasElectricas
 
 		private void btnRegistroProducto_Click(object sender, EventArgs e)
 		{
-
-		}
+            Productos productos = new Productos();
+            productos.Show();
+        }
 
 	
 
