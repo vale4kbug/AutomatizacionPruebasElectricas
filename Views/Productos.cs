@@ -13,6 +13,8 @@ namespace AutomatizacionPruebasElectricas.Views
 {
     public partial class Productos : Form
     {
+
+        ClsProductos productos;
         public Productos()
         {
             InitializeComponent();
@@ -35,24 +37,29 @@ namespace AutomatizacionPruebasElectricas.Views
             }
             else
             {
-
+              
+               
+                
             }
         }
 
         private void btnAgregasEspecificacion_Click(object sender, EventArgs e)
         {
-            Especificaciones especificaciones = new Especificaciones();
+            BuscarEspecificaciones especificaciones = new BuscarEspecificaciones();
             especificaciones.Show();
         }
 
         private void btnEliminarEspecificaciones_Click(object sender, EventArgs e)
         {
-
+            //if (listBoxEspecificaciones.SelectedItem==true)
+            {
+                //
+            }
         }
 
         private void btnAgregarProcedimientos_Click(object sender, EventArgs e)
         {
-            Procedimientos procedimientos = new Procedimientos();
+            BuscarProcedimientos procedimientos = new BuscarProcedimientos();
             procedimientos.Show();
         }
 
@@ -79,6 +86,8 @@ namespace AutomatizacionPruebasElectricas.Views
             richDescripcion.Text = "";
             listBoxEspecificaciones.Items.Clear();
             listBoxProcedimientos.Items.Clear();
+            txtNoSerie.Focus();
+
         }
     }
 }

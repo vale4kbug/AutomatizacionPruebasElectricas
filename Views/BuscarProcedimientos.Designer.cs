@@ -1,6 +1,6 @@
 ﻿namespace AutomatizacionPruebasElectricas.Views
 {
-    partial class BuscarProductos
+    partial class BuscarProcedimientos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,40 +29,37 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.dgProductos = new System.Windows.Forms.DataGridView();
+            this.dgProcedimientos = new System.Windows.Forms.DataGridView();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgProcedimientos)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(492, 420);
+            this.label2.Location = new System.Drawing.Point(465, 413);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(278, 16);
+            this.label2.Size = new System.Drawing.Size(314, 16);
             this.label2.TabIndex = 7;
-            this.label2.Text = "*Haz doble click para seleccionar el producto";
+            this.label2.Text = "*Haz doble click para seleccionar un procedimiento";
             // 
-            // dgProductos
+            // dgProcedimientos
             // 
-            this.dgProductos.AllowUserToAddRows = false;
-            this.dgProductos.AllowUserToDeleteRows = false;
-            this.dgProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgProductos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgProductos.Location = new System.Drawing.Point(12, 55);
-            this.dgProductos.Name = "dgProductos";
-            this.dgProductos.ReadOnly = true;
-            this.dgProductos.RowHeadersVisible = false;
-            this.dgProductos.RowHeadersWidth = 51;
-            this.dgProductos.RowTemplate.Height = 24;
-            this.dgProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgProductos.Size = new System.Drawing.Size(776, 355);
-            this.dgProductos.TabIndex = 6;
-            this.dgProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellContentClick);
-            this.dgProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellContentDoubleClick);
-            this.dgProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgProductos_KeyDown);
+            this.dgProcedimientos.AllowUserToAddRows = false;
+            this.dgProcedimientos.AllowUserToDeleteRows = false;
+            this.dgProcedimientos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgProcedimientos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgProcedimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgProcedimientos.Location = new System.Drawing.Point(12, 55);
+            this.dgProcedimientos.Name = "dgProcedimientos";
+            this.dgProcedimientos.ReadOnly = true;
+            this.dgProcedimientos.RowHeadersVisible = false;
+            this.dgProcedimientos.RowHeadersWidth = 51;
+            this.dgProcedimientos.RowTemplate.Height = 24;
+            this.dgProcedimientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgProcedimientos.Size = new System.Drawing.Size(776, 355);
+            this.dgProcedimientos.TabIndex = 6;
             // 
             // txtFiltro
             // 
@@ -81,19 +78,19 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Buscar";
             // 
-            // BuscarProductos
+            // BuscarProcedimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgProductos);
+            this.Controls.Add(this.dgProcedimientos);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.label1);
-            this.Name = "BuscarProductos";
-            this.Text = "BuscarProductos";
-            this.Load += new System.EventHandler(this.BuscarProductos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).EndInit();
+            this.Name = "BuscarProcedimientos";
+            this.Text = "Procedimientos";
+            this.Load += new System.EventHandler(this.BuscarProcedimientos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgProcedimientos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,7 +99,7 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dgProductos;
+        private System.Windows.Forms.DataGridView dgProcedimientos;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Label label1;
     }

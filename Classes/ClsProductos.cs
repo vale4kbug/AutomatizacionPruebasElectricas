@@ -12,18 +12,30 @@ namespace AutomatizacionPruebasElectricas.Classes
         public Action<DataTable> sendDatos;
         public async Task<DataTable> GetProductos(string filtro)
         {
-            DataTable usuarios = await GetTable($"select idUsuario as ID, nombre as Nombre, apellido as Apellido, username as Usuario from usuarios " +
-                $"where nombre like '%{filtro}%' or apellido='%{filtro}%' or username='%{filtro}%' or IDUsuario like '%{filtro}%'");
-            return usuarios;
+            DataTable productos = await GetTable($"select NoSerie as ID, Modelo, Descripcion " +
+                            $"from productos " +
+                            $"where NoSerie like '%{filtro}%' or Modelo like '%{filtro}%' or Descripcion like '%{filtro}%'");
+
+            return productos;
         }
 
-        public async Task GetUser(string id)
+        public async Task GetProducto(string id)
         {
-            DataTable datosUsuario = await GetTable("select Nombre, Apellido, FechaContratacion, FotoRuta, Username, Contraseña " +
-                $"from usuarios where IDUsuario = {id}");
+            DataTable datosProductos = await GetTable($"select NoSerie as ID, Modelo, Descripcion " +
+                            $"from productos " +
+                            $"where NoSerie = {id}");
 
-            sendDatos(datosUsuario);
+            sendDatos(datosProductos);
         }
+
+       public async Task <DataTable> GetEspecificacion(string filtro) //Forma BuscarEspecificaciones
+       {
+            DataTable datosEspecificaciones = await GetTable($"select IdEspecificacion as ID, Descripcion " +
+                        $"from especificaciones " +
+                            $"where IdEspecificacion like '%{filtro}%' or Descripcion like '%{filtro}%'");
+            return datosEspecificaciones;
+       }
+
 
     }
 }

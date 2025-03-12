@@ -126,11 +126,11 @@
     <Compile Include="Views\BuscarUsuario.Designer.cs">
       <DependentUpon>BuscarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Especificaciones.cs">
+    <Compile Include="Views\BuscarEspecificaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Especificaciones.Designer.cs">
-      <DependentUpon>Especificaciones.cs</DependentUpon>
+    <Compile Include="Views\BuscarEspecificaciones.Designer.cs">
+      <DependentUpon>BuscarEspecificaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
@@ -146,11 +146,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Procedimientos.cs">
+    <Compile Include="Views\BuscarProcedimientos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Procedimientos.Designer.cs">
-      <DependentUpon>Procedimientos.cs</DependentUpon>
+    <Compile Include="Views\BuscarProcedimientos.Designer.cs">
+      <DependentUpon>BuscarProcedimientos.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Productos.cs">
       <SubType>Form</SubType>
@@ -176,6 +176,12 @@
     <Compile Include="Views\Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\BuscarEspecificaciones.resx">
+      <DependentUpon>BuscarEspecificaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BuscarProcedimientos.resx">
+      <DependentUpon>BuscarProcedimientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\BuscarProductos.resx">
       <DependentUpon>BuscarProductos.cs</DependentUpon>
     </EmbeddedResource>
