@@ -32,7 +32,9 @@
             this.btnRegistroProducto = new System.Windows.Forms.Button();
             this.btnPruebas = new System.Windows.Forms.Button();
             this.BtnUsuarios = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.btnEspecificaciones = new System.Windows.Forms.Button();
+            this.btnProcedimientos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -55,7 +57,7 @@
             this.btnRegistroProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegistroProducto.ForeColor = System.Drawing.Color.MediumTurquoise;
             this.btnRegistroProducto.Location = new System.Drawing.Point(128, 68);
-            this.btnRegistroProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistroProducto.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistroProducto.Name = "btnRegistroProducto";
             this.btnRegistroProducto.Size = new System.Drawing.Size(169, 68);
             this.btnRegistroProducto.TabIndex = 7;
@@ -74,7 +76,7 @@
             this.btnPruebas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnPruebas.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.btnPruebas.Location = new System.Drawing.Point(511, 68);
-            this.btnPruebas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPruebas.Margin = new System.Windows.Forms.Padding(4);
             this.btnPruebas.Name = "btnPruebas";
             this.btnPruebas.Size = new System.Drawing.Size(169, 68);
             this.btnPruebas.TabIndex = 9;
@@ -93,7 +95,7 @@
             this.BtnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.BtnUsuarios.ForeColor = System.Drawing.Color.Purple;
             this.BtnUsuarios.Location = new System.Drawing.Point(325, 68);
-            this.BtnUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.BtnUsuarios.Name = "BtnUsuarios";
             this.BtnUsuarios.Size = new System.Drawing.Size(169, 68);
             this.BtnUsuarios.TabIndex = 10;
@@ -103,24 +105,62 @@
             this.BtnUsuarios.UseWaitCursor = true;
             this.BtnUsuarios.Click += new System.EventHandler(this.BtnUsuarios_Click);
             // 
-            // button1
+            // btnVentas
             // 
-            this.button1.BackColor = System.Drawing.Color.LightCyan;
-            this.button1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button1.Location = new System.Drawing.Point(325, 167);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 68);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Ventas";
-            this.button1.UseMnemonic = false;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.UseWaitCursor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVentas.BackColor = System.Drawing.Color.LightCyan;
+            this.btnVentas.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.btnVentas.FlatAppearance.BorderSize = 2;
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnVentas.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.btnVentas.Location = new System.Drawing.Point(325, 167);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(169, 68);
+            this.btnVentas.TabIndex = 11;
+            this.btnVentas.Text = "Ventas";
+            this.btnVentas.UseMnemonic = false;
+            this.btnVentas.UseVisualStyleBackColor = false;
+            this.btnVentas.UseWaitCursor = true;
+            this.btnVentas.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnEspecificaciones
+            // 
+            this.btnEspecificaciones.BackColor = System.Drawing.Color.PapayaWhip;
+            this.btnEspecificaciones.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.btnEspecificaciones.FlatAppearance.BorderSize = 2;
+            this.btnEspecificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEspecificaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnEspecificaciones.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnEspecificaciones.Location = new System.Drawing.Point(128, 167);
+            this.btnEspecificaciones.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEspecificaciones.Name = "btnEspecificaciones";
+            this.btnEspecificaciones.Size = new System.Drawing.Size(169, 68);
+            this.btnEspecificaciones.TabIndex = 12;
+            this.btnEspecificaciones.Text = "Especificaciones";
+            this.btnEspecificaciones.UseMnemonic = false;
+            this.btnEspecificaciones.UseVisualStyleBackColor = false;
+            this.btnEspecificaciones.UseWaitCursor = true;
+            this.btnEspecificaciones.Click += new System.EventHandler(this.btnEspecificaciones_Click);
+            // 
+            // btnProcedimientos
+            // 
+            this.btnProcedimientos.BackColor = System.Drawing.Color.MistyRose;
+            this.btnProcedimientos.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.btnProcedimientos.FlatAppearance.BorderSize = 2;
+            this.btnProcedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProcedimientos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnProcedimientos.ForeColor = System.Drawing.Color.Coral;
+            this.btnProcedimientos.Location = new System.Drawing.Point(511, 167);
+            this.btnProcedimientos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProcedimientos.Name = "btnProcedimientos";
+            this.btnProcedimientos.Size = new System.Drawing.Size(169, 68);
+            this.btnProcedimientos.TabIndex = 13;
+            this.btnProcedimientos.Text = "Procedimientos";
+            this.btnProcedimientos.UseMnemonic = false;
+            this.btnProcedimientos.UseVisualStyleBackColor = false;
+            this.btnProcedimientos.UseWaitCursor = true;
+            this.btnProcedimientos.Click += new System.EventHandler(this.btnProcedimientos_Click);
             // 
             // Menu
             // 
@@ -128,7 +168,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnProcedimientos);
+            this.Controls.Add(this.btnEspecificaciones);
+            this.Controls.Add(this.btnVentas);
             this.Controls.Add(this.BtnUsuarios);
             this.Controls.Add(this.btnPruebas);
             this.Controls.Add(this.btnRegistroProducto);
@@ -149,6 +191,8 @@
         private System.Windows.Forms.Button btnRegistroProducto;
         private System.Windows.Forms.Button btnPruebas;
 		private System.Windows.Forms.Button BtnUsuarios;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVentas;
+        private System.Windows.Forms.Button btnEspecificaciones;
+        private System.Windows.Forms.Button btnProcedimientos;
     }
 }

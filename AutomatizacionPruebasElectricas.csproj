@@ -134,6 +134,12 @@
     <Compile Include="Views\BuscarEspecificaciones.Designer.cs">
       <DependentUpon>BuscarEspecificaciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Especificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Especificaciones.Designer.cs">
+      <DependentUpon>Especificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,12 @@
     </Compile>
     <Compile Include="Views\BuscarProcedimientos.Designer.cs">
       <DependentUpon>BuscarProcedimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procedimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Procedimientos.Designer.cs">
+      <DependentUpon>Procedimientos.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Productos.cs">
       <SubType>Form</SubType>

@@ -55,5 +55,17 @@ namespace AutomatizacionPruebasElectricas
             Ventas ventas = new Ventas();
 			ventas.Show();
         }
+
+        private void btnEspecificaciones_Click(object sender, EventArgs e)
+        {
+            Especificaciones especificaciones = new Especificaciones();
+            especificaciones.Show();
+        }
+
+        private void btnProcedimientos_Click(object sender, EventArgs e)
+        {
+            Procedimientos procedimientos = new Procedimientos();
+            procedimientos.Show();
+        }
     }
 }
