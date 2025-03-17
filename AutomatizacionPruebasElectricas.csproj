@@ -111,7 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ClsConnection.cs" />
+    <Compile Include="Classes\ClsEspecificaciones.cs" />
     <Compile Include="Classes\ClsLogin.cs" />
+    <Compile Include="Classes\ClsProcedimientos.cs" />
     <Compile Include="Classes\ClsProductos.cs" />
     <Compile Include="Classes\ClsUsuarios.cs" />
     <Compile Include="Views\BuscarProductos.cs">

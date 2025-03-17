@@ -15,25 +15,25 @@ namespace AutomatizacionPruebasElectricas.Views
     {
         public Action<string> sendId;
 
-        ClsProductos especificaciones;
+        ClsEspecificaciones especificacion;
         public BuscarEspecificaciones()
         {
             InitializeComponent();
-            especificaciones = new ClsProductos();
+            especificacion = new ClsEspecificaciones();
         }
         private async void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             txtFiltro.Enabled = false;
-            DataTable tablaespecs = await especificaciones.GetEspecificacion(txtFiltro.Text);
-            dgEspecificaciones.DataSource = tablaespecs;
+            DataTable especificaciones = await especificacion.GetEspecificaciones(txtFiltro.Text);
+            dgEspecificaciones.DataSource = especificaciones;
             txtFiltro.Enabled = true;
             txtFiltro.Focus();
         }
 
         private  async void BuscarEspecificaciones_Load(object sender, EventArgs e)
         {
-            DataTable users = await especificaciones.GetEspecificacion(txtFiltro.Text);
-            dgEspecificaciones.DataSource = users;
+            DataTable especificaciones = await especificacion.GetEspecificaciones(txtFiltro.Text);
+            dgEspecificaciones.DataSource = especificaciones;
         }
 
         private void dgEspecificaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)

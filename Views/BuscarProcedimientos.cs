@@ -15,23 +15,44 @@ namespace AutomatizacionPruebasElectricas.Views
     {
         public Action<string> sendId;
 
-        ClsProductos procedimiento;
+        ClsProcedimientos procedimiento;
         public BuscarProcedimientos()
         {
             InitializeComponent();
-            procedimiento = new ClsProductos();
+            procedimiento = new ClsProcedimientos();
 
         }
 
-        private void BuscarProcedimientos_Load(object sender, EventArgs e)
+        private async void BuscarProcedimientos_Load(object sender, EventArgs e)
         {
-
+            DataTable procedimientos = await procedimiento.GetProcedimientos(txtFiltro.Text);
+            dgProcedimientos.DataSource = procedimientos;
         }
 
-        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        private async void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             txtFiltro.Enabled = false;
-          
+            DataTable procedimientos = await procedimiento.GetProcedimientos(txtFiltro.Text);
+            dgProcedimientos.DataSource = procedimientos;
+            txtFiltro.Enabled = true;
+            txtFiltro.Focus();
+        }
+
+        private void dgProcedimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = dgProcedimientos.Rows[dgProcedimientos.SelectedRows[0].Index].Cells[0].Value.ToString();
+            sendId(id);
+            Close();
+        }
+
+        private void dgProcedimientos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string id = dgProcedimientos.Rows[dgProcedimientos.SelectedRows[0].Index].Cells[0].Value.ToString();
+                sendId(id);
+                Close();
+            }
         }
     }
 }

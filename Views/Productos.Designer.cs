@@ -94,6 +94,7 @@
             this.txtNoSerie.Name = "txtNoSerie";
             this.txtNoSerie.Size = new System.Drawing.Size(257, 39);
             this.txtNoSerie.TabIndex = 28;
+            this.txtNoSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoSerie_KeyDown);
             // 
             // label3
             // 
@@ -221,6 +222,7 @@
             this.listBoxEspecificaciones.Name = "listBoxEspecificaciones";
             this.listBoxEspecificaciones.Size = new System.Drawing.Size(205, 84);
             this.listBoxEspecificaciones.TabIndex = 47;
+            this.listBoxEspecificaciones.DoubleClick += new System.EventHandler(this.listBoxEspecificaciones_DoubleClick);
             // 
             // label4
             // 
@@ -331,6 +333,7 @@
             this.listBoxProcedimientos.Name = "listBoxProcedimientos";
             this.listBoxProcedimientos.Size = new System.Drawing.Size(205, 84);
             this.listBoxProcedimientos.TabIndex = 51;
+            this.listBoxProcedimientos.DoubleClick += new System.EventHandler(this.listBoxProcedimientos_DoubleClick);
             // 
             // Productos
             // 
