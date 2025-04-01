@@ -73,7 +73,7 @@ namespace AutomatizacionPruebasElectricas.Classes
                 {
                     obj = "xd";  // Leave it blank if obj is null or DBNull
                 }
-                value = obj.ToString();
+                //value = obj.ToString();
 				var idDataBase = await cmd.ExecuteScalarAsync();
 				if (idDataBase != null)
 				{
