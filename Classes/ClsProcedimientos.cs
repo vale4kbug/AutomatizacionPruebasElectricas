@@ -49,5 +49,6 @@ namespace AutomatizacionPruebasElectricas.Classes
         {
             return await PutInDatabase($"delete from procedimientos where IdProcedimiento='{id}'");
         }
+
     }
 }

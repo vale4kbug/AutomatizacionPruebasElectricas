@@ -75,7 +75,16 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private async void SettingEspecificacionInForm(DataTable datos)
         {
+            if (datos.Rows.Count > 0)
+            {
+                txtId.Text = datos.Rows[0][0].ToString();
+                richDescripcion.Text = datos.Rows[0][1].ToString();
+                txtId.Enabled = false;
 
+
+
+
+            }
 
         }
         private async void RecibirId(string obj)
