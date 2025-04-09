@@ -34,12 +34,14 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private async void btnRegistrarProductos_Click(object sender, EventArgs e)
         {
-            if (txtNoSerie.Enabled==true)
+            if (txtNoSerie.Enabled == true)
             {
                 int resultado = await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
                 await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
                 txtNoSerie.Text = resultado.ToString();
                 txtNoSerie.Enabled = false;
+               // productos.EspecificacionesPutProducto(txtNoSerie.Text, dataEspecificaciones[1].Value.ToString(),dataEspecificaciones[1].Value.ToString());
+                //productos.ProcedimientosPutProducto();//
                 MessageBox.Show("Producto creado, favor de verificarlo");
             }
             else
@@ -51,43 +53,43 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private void btnAgregasEspecificacion_Click(object sender, EventArgs e)
         {
-            BuscarEspecificaciones especificaciones = new BuscarEspecificaciones();
+            BuscarEspecificaciones especificaciones = new BuscarEspecificaciones() { sendId = SetNewSpecInForm };
             especificaciones.Show();
         }
 
         private async void btnEliminarEspecificaciones_Click(object sender, EventArgs e)
         {
-            if (listBoxEspecificaciones.SelectedItem != null)
-            {
-                string selectedItem = listBoxEspecificaciones.SelectedItem.ToString();
-                string idEspecificacion = selectedItem.Split(':')[0].Trim();
+            //if (listBoxEspecificaciones.SelectedItem != null)
+            //{
+            //    string selectedItem = listBoxEspecificaciones.SelectedItem.ToString();
+            //    string idEspecificacion = selectedItem.Split(':')[0].Trim();
 
-                if (MessageBox.Show("¿Seguro que quieres eliminar esta especificación?", "Confirmar Eliminación",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    ClsEspecificaciones clsEspecificaciones = new ClsEspecificaciones();
-                    int resultado = await clsEspecificaciones.DeleteEspecificacion(idEspecificacion);
+            //    if (MessageBox.Show("¿Seguro que quieres eliminar esta especificación?", "Confirmar Eliminación",
+            //        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            //    {
+            //        ClsEspecificaciones clsEspecificaciones = new ClsEspecificaciones();
+            //        int resultado = await clsEspecificaciones.DeleteEspecificacion(idEspecificacion);
 
-                    if (resultado > 0)
-                    {
-                        MessageBox.Show("Especificación eliminada correctamente.");
-                        listBoxEspecificaciones.Items.Remove(selectedItem);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error al eliminar la especificación.");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecciona una especificación para eliminar.");
-            }
+            //        if (resultado > 0)
+            //        {
+            //            MessageBox.Show("Especificación eliminada correctamente.");
+            //            listBoxEspecificaciones.Items.Remove(selectedItem);
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Hubo un error al eliminar la especificación.");
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Por favor, selecciona una especificación para eliminar.");
+            //}
         }
 
         private void btnAgregarProcedimientos_Click(object sender, EventArgs e)
         {
-            BuscarProcedimientos procedimientos = new BuscarProcedimientos();
+            BuscarProcedimientos procedimientos = new BuscarProcedimientos() { sendId = SetNewProcInForm };
             procedimientos.Show();
         }
 
@@ -148,11 +150,13 @@ namespace AutomatizacionPruebasElectricas.Views
             txtNoSerie.Text = "";
             txtModelo.Text = "";
             richDescripcion.Text = "";
-            listBoxEspecificaciones.Items.Clear();
+            //listBoxEspecificaciones.Items.Clear();
             listBoxProcedimientos.Items.Clear();
             txtNoSerie.Focus();
 
         }
+
+        DataTable procedimientos;
 
         private async void SettingProductoInForm(DataTable datos)
         {
@@ -165,19 +169,17 @@ namespace AutomatizacionPruebasElectricas.Views
 
                 // Cargar especificaciones
                 DataTable especificaciones = await productos.GetEspecificacionesProducto(txtNoSerie.Text);
-                listBoxEspecificaciones.Items.Clear();
+                ////listBoxEspecificaciones.Items.Clear();
                 foreach (DataRow row in especificaciones.Rows)
                 {
-                    listBoxEspecificaciones.Items.Add($"{row["IdEspecificacion"]}: {row["Descripcion"]} - {row["Valor"]}");
+                    dataEspecificaciones.Rows.Add(row[0], row[1], row[2]);
                 }
 
                 // Cargar procedimientos
-                DataTable procedimientos = await productos.GetProcedimientosProducto(txtNoSerie.Text);
-                listBoxProcedimientos.Items.Clear();
-                foreach (DataRow row in procedimientos.Rows)
-                {
-                    listBoxProcedimientos.Items.Add($"{row["IdProcedimiento"]}: {row["Descripcion"]}");
-                }
+                procedimientos = await productos.GetProcedimientosProducto(txtNoSerie.Text);
+                listBoxProcedimientos.DataSource = procedimientos;
+                listBoxProcedimientos.DisplayMember = "Descripcion";
+                listBoxProcedimientos.ValueMember = "IDProcedimiento";
             }
         }
 
@@ -198,6 +200,20 @@ namespace AutomatizacionPruebasElectricas.Views
         private void listBoxProcedimientos_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private async void SetNewSpecInForm(string id)
+        {
+            DataTable datos = await productos.GetEspecificacion(id);
+
+            dataEspecificaciones.Rows.Add(datos.Rows[0][0], datos.Rows[0][1], datos.Rows[0][2]);
+        }
+
+        private async void SetNewProcInForm(string id)
+        {
+            DataTable datos = await productos.GetProcedimiento(id);
+
+            procedimientos.Rows.Add(datos.Rows[0][0], datos.Rows[0][1]);
         }
     }
 }

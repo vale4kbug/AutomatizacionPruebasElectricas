@@ -39,7 +39,6 @@
             this.btnRegistrarProductos = new System.Windows.Forms.Button();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.listBoxEspecificaciones = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAgregasEspecificacion = new System.Windows.Forms.Button();
             this.btnEliminarEspecificaciones = new System.Windows.Forms.Button();
@@ -47,6 +46,11 @@
             this.btnAgregarProcedimientos = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.listBoxProcedimientos = new System.Windows.Forms.ListBox();
+            this.dataEspecificaciones = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataEspecificaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -183,7 +187,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(721, 309);
+            this.btnRegresar.Location = new System.Drawing.Point(677, 324);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(66, 42);
@@ -213,27 +217,16 @@
             this.btnLimpiar.UseWaitCursor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // listBoxEspecificaciones
-            // 
-            this.listBoxEspecificaciones.BackColor = System.Drawing.SystemColors.Info;
-            this.listBoxEspecificaciones.FormattingEnabled = true;
-            this.listBoxEspecificaciones.ItemHeight = 16;
-            this.listBoxEspecificaciones.Location = new System.Drawing.Point(51, 267);
-            this.listBoxEspecificaciones.Name = "listBoxEspecificaciones";
-            this.listBoxEspecificaciones.Size = new System.Drawing.Size(205, 84);
-            this.listBoxEspecificaciones.TabIndex = 47;
-            this.listBoxEspecificaciones.DoubleClick += new System.EventHandler(this.listBoxEspecificaciones_DoubleClick);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(52, 241);
+            this.label4.Location = new System.Drawing.Point(8, 256);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(204, 23);
+            this.label4.Size = new System.Drawing.Size(137, 23);
             this.label4.TabIndex = 48;
-            this.label4.Text = "Lista de Especificaciones";
+            this.label4.Text = "Especificaciones";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnAgregasEspecificacion
@@ -244,7 +237,7 @@
             this.btnAgregasEspecificacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregasEspecificacion.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnAgregasEspecificacion.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAgregasEspecificacion.Location = new System.Drawing.Point(263, 267);
+            this.btnAgregasEspecificacion.Location = new System.Drawing.Point(326, 282);
             this.btnAgregasEspecificacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregasEspecificacion.Name = "btnAgregasEspecificacion";
             this.btnAgregasEspecificacion.Size = new System.Drawing.Size(45, 39);
@@ -263,7 +256,7 @@
             this.btnEliminarEspecificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarEspecificaciones.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEliminarEspecificaciones.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnEliminarEspecificaciones.Location = new System.Drawing.Point(263, 312);
+            this.btnEliminarEspecificaciones.Location = new System.Drawing.Point(326, 327);
             this.btnEliminarEspecificaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarEspecificaciones.Name = "btnEliminarEspecificaciones";
             this.btnEliminarEspecificaciones.Size = new System.Drawing.Size(45, 39);
@@ -282,7 +275,7 @@
             this.btnEliminarProcedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarProcedimientos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEliminarProcedimientos.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnEliminarProcedimientos.Location = new System.Drawing.Point(539, 312);
+            this.btnEliminarProcedimientos.Location = new System.Drawing.Point(602, 327);
             this.btnEliminarProcedimientos.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarProcedimientos.Name = "btnEliminarProcedimientos";
             this.btnEliminarProcedimientos.Size = new System.Drawing.Size(45, 39);
@@ -301,7 +294,7 @@
             this.btnAgregarProcedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregarProcedimientos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnAgregarProcedimientos.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAgregarProcedimientos.Location = new System.Drawing.Point(539, 267);
+            this.btnAgregarProcedimientos.Location = new System.Drawing.Point(602, 282);
             this.btnAgregarProcedimientos.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregarProcedimientos.Name = "btnAgregarProcedimientos";
             this.btnAgregarProcedimientos.Size = new System.Drawing.Size(45, 39);
@@ -316,12 +309,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(328, 241);
+            this.label5.Location = new System.Drawing.Point(391, 256);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 23);
+            this.label5.Size = new System.Drawing.Size(134, 23);
             this.label5.TabIndex = 52;
-            this.label5.Text = "Lista de Procedimientos";
+            this.label5.Text = "Procedimientos";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // listBoxProcedimientos
@@ -329,11 +322,54 @@
             this.listBoxProcedimientos.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxProcedimientos.FormattingEnabled = true;
             this.listBoxProcedimientos.ItemHeight = 16;
-            this.listBoxProcedimientos.Location = new System.Drawing.Point(327, 267);
+            this.listBoxProcedimientos.Location = new System.Drawing.Point(390, 282);
             this.listBoxProcedimientos.Name = "listBoxProcedimientos";
             this.listBoxProcedimientos.Size = new System.Drawing.Size(205, 84);
             this.listBoxProcedimientos.TabIndex = 51;
             this.listBoxProcedimientos.DoubleClick += new System.EventHandler(this.listBoxProcedimientos_DoubleClick);
+            // 
+            // dataEspecificaciones
+            // 
+            this.dataEspecificaciones.AllowUserToAddRows = false;
+            this.dataEspecificaciones.AllowUserToDeleteRows = false;
+            this.dataEspecificaciones.AllowUserToResizeRows = false;
+            this.dataEspecificaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataEspecificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataEspecificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataEspecificaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dataEspecificaciones.Location = new System.Drawing.Point(12, 283);
+            this.dataEspecificaciones.MultiSelect = false;
+            this.dataEspecificaciones.Name = "dataEspecificaciones";
+            this.dataEspecificaciones.RowHeadersVisible = false;
+            this.dataEspecificaciones.RowHeadersWidth = 51;
+            this.dataEspecificaciones.RowTemplate.Height = 24;
+            this.dataEspecificaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataEspecificaciones.Size = new System.Drawing.Size(307, 83);
+            this.dataEspecificaciones.TabIndex = 55;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 49;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Especificacion";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 124;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Valor";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 68;
             // 
             // Productos
             // 
@@ -341,6 +377,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(800, 378);
+            this.Controls.Add(this.dataEspecificaciones);
             this.Controls.Add(this.btnEliminarProcedimientos);
             this.Controls.Add(this.btnAgregarProcedimientos);
             this.Controls.Add(this.label5);
@@ -348,7 +385,6 @@
             this.Controls.Add(this.btnEliminarEspecificaciones);
             this.Controls.Add(this.btnAgregasEspecificacion);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.listBoxEspecificaciones);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.btnBuscarProductos);
@@ -362,6 +398,7 @@
             this.Controls.Add(this.txtNoSerie);
             this.Name = "Productos";
             this.Text = "Productos";
+            ((System.ComponentModel.ISupportInitialize)(this.dataEspecificaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,7 +417,6 @@
         private System.Windows.Forms.Button btnRegistrarProductos;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.ListBox listBoxEspecificaciones;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAgregasEspecificacion;
         private System.Windows.Forms.Button btnEliminarEspecificaciones;
@@ -388,5 +424,9 @@
         private System.Windows.Forms.Button btnAgregarProcedimientos;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBoxProcedimientos;
+        private System.Windows.Forms.DataGridView dataEspecificaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

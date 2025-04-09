@@ -30,7 +30,7 @@ namespace AutomatizacionPruebasElectricas.Views
             txtFiltro.Focus();
         }
 
-        private  async void BuscarEspecificaciones_Load(object sender, EventArgs e)
+        private async void BuscarEspecificaciones_Load(object sender, EventArgs e)
         {
             DataTable especificaciones = await especificacion.GetEspecificaciones(txtFiltro.Text);
             dgEspecificaciones.DataSource = especificaciones;
@@ -39,7 +39,8 @@ namespace AutomatizacionPruebasElectricas.Views
         private void dgEspecificaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = int.Parse(dgEspecificaciones.Rows[dgEspecificaciones.SelectedRows[0].Index].Cells[0].Value.ToString());
-            MessageBox.Show(id.ToString());
+            sendId(id.ToString());
+            Close();
         }
 
         private void dgEspecificaciones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

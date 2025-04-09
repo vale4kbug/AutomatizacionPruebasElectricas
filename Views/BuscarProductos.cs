@@ -42,7 +42,8 @@ namespace AutomatizacionPruebasElectricas.Views
         private void dgProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = int.Parse(dgProductos.Rows[dgProductos.SelectedRows[0].Index].Cells[0].Value.ToString());
-            MessageBox.Show(id.ToString());
+            sendId(id.ToString());
+            Close();
         }
 
         private void dgProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

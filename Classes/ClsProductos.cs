@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
-    public class ClsProductos :ClsConnection
+    public class ClsProductos : ClsConnection
     {
         public Action<DataTable> sendDatos;
         public async Task<DataTable> GetProductos(string filtro)
@@ -42,14 +42,13 @@ namespace AutomatizacionPruebasElectricas.Classes
                 $"SELECT LAST_INSERT_ID();");
         }
 
-        //Metodo para actualizar un usuario, sobrecarga al metodo anterior
-        public async Task PutProducto(string NoSerie, string Model,string descripcion)
+        public async Task PutProducto(string NoSerie, string Model, string descripcion)
         {
             await PutInDatabase($"UPDATE producto SET Modelo='{Model}', Descripcion='{descripcion}'" +
                 $"where NoSerie='{NoSerie}'");
         }
 
-        public async Task<int> EspecificacionesPutProducto(string IDProducto, string IDEspecificacion,string Valor)
+        public async Task<int> EspecificacionesPutProducto(string IDProducto, string IDEspecificacion, string Valor)
         {
             return await PutInDatabase("insert into especificacionesproducto (IDProducto,IDEspecificacion,Valor) " +
                 $"values ('{IDProducto}', '{IDEspecificacion}','{Valor}' );");
@@ -76,6 +75,16 @@ namespace AutomatizacionPruebasElectricas.Classes
             return await GetTable($"SELECT p.IdProcedimiento, p.Descripcion FROM procedimientos p " +
                                  $"JOIN procedimientosproductos pp ON p.IdProcedimiento = pp.IDProcedimiento " +
                                  $"WHERE pp.IDProducto = '{idProducto}'");
+        }
+
+        public async Task<DataTable> GetEspecificacion(string idProcedimiento)
+        {
+            return await GetTable($"SELECT e.IdEspecificacion, e.Descripcion, ep.Valor FROM especificaciones e left join especificacionesproducto ep ON e.IdEspecificacion = ep.IDEspecificacion where e.IdEspecificacion={idProcedimiento}");
+        }
+
+        public async Task<DataTable> GetProcedimiento(string idProcedimiento)
+        {
+            return await GetTable($"SELECT e.IdProcedimiento, e.Descripcion FROM procedimientos e where e.IdProcedimiento={idProcedimiento}");
         }
 
     }

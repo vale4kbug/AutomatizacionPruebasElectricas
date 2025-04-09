@@ -20,7 +20,7 @@ namespace AutomatizacionPruebasElectricas.Views
             InitializeComponent();
             procedimientos = new ClsProcedimientos();
             {
-                sendDatos = SettingProcedimientosInForm
+           //     sendDatos = SettingProcedimientosInForm;
             };
         }
 
