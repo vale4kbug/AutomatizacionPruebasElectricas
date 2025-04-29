@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MySql.Data.MySqlClient;
 
 namespace AutomatizacionPruebasElectricas
 {
@@ -44,29 +45,25 @@ namespace AutomatizacionPruebasElectricas
 
         private void InicializarGrafico()
         {
-            // Configurar el área del gráfico
+            // Clear all existing series
             MedicionGrafica.Series.Clear();
 
+            // Create new series
             var serie = new Series("Voltaje")
             {
                 ChartType = SeriesChartType.Line
             };
             MedicionGrafica.Series.Add(serie);
 
-            // Configurar el eje X
-            MedicionGrafica.ChartAreas[0].AxisX.Title = "Tiempo";
-            MedicionGrafica.ChartAreas[0].AxisX.Interval = 1; // Intervalo fijo
-            MedicionGrafica.ChartAreas[0].AxisX.Minimum = 0; // Comenzar desde 0
-            MedicionGrafica.ChartAreas[0].AxisX.Maximum = MaxPuntos; // Máximo inicial
-            MedicionGrafica.ChartAreas[0].AxisX.ScrollBar.Enabled = true;
-
-            // Configurar el eje Y
-            MedicionGrafica.ChartAreas[0].AxisY.Title = "Voltaje";
-
-            // Habilitar doble buffer para reducir el parpadeo
-            HabilitarDobleBuffer(MedicionGrafica);
+            // Reset chart area settings
+            var chartArea = MedicionGrafica.ChartAreas[0];
+            chartArea.AxisX.Title = "Tiempo";
+            chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.Minimum = 0;
+            chartArea.AxisX.Maximum = MaxPuntos;
+            chartArea.AxisX.ScrollBar.Enabled = true;
+            chartArea.AxisY.Title = "Voltaje";
         }
-
         private void HabilitarDobleBuffer(Chart chart)
         {
             // Usar reflexión para habilitar el doble buffer
@@ -100,24 +97,35 @@ namespace AutomatizacionPruebasElectricas
             BtnStop.Enabled = true;
             bucle = true;
 
-            // Reiniciar el contador de mediciones
+            // 1. Clear the Chart
+            if (MedicionGrafica.Series.Count > 0)
+            {
+                MedicionGrafica.Series[0].Points.Clear();
+            }
+
+            // 2. Clear the DataGridView
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh(); // Optional: Ensures immediate UI update
+
+            // 3. Reset counters
+            contadorTiempo = 0;
             contadorMediciones = 0;
 
-            // Inicializar el gráfico
+            // 4. Re-initialize the chart (optional, if needed)
             InicializarGrafico();
 
-            // Iniciar el BackgroundWorker
-            dataWorker.RunWorkerAsync();
+            // 5. Add initial values (if required)
+            AgregarNumerosIniciales();
 
-            // Iniciar el Timer
+            // 6. Start the BackgroundWorker and Timer
+            dataWorker.RunWorkerAsync();
             timer.Start();
         }
-
         private void DataWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // Simular la generación de datos en segundo plano
             Random rand = new Random();
-            while (!dataWorker.CancellationPending && contadorMediciones < 30)
+            while (!dataWorker.CancellationPending && contadorMediciones < 10)
             {
                 // Generar un valor de voltaje aleatorio
                 double voltaje = rand.Next(3, 7);
@@ -203,6 +211,25 @@ namespace AutomatizacionPruebasElectricas
             timer.Stop();
         }
 
+        private void AgregarNumerosIniciales()
+        {
+            Random rand = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                double voltaje = rand.Next(1, 11); // Genera un número entre 1 y 10
+                MedicionGrafica.Series[0].Points.AddXY(i, voltaje);
+            }
+            contadorTiempo = 10; // Ajustar el contador para continuar desde este punto
+        }
+
+        public bool SubirABaseDeDatos()
+        {
+
+            //Aqui hacer codigo de subir las mediciones a la base de datos
+            //base de datos luce asi:
+
+            return true;
+        }
         private void Pruebas_Load(object sender, EventArgs e)
         {
             // Inicializar el BackgroundWorker
