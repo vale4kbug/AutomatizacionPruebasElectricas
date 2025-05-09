@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,15 +42,23 @@
             this.BtnStop = new System.Windows.Forms.Button();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.MedicionGrafica = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.buttonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MedicionGrafica)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -59,14 +67,14 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(30, 77);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1229, 652);
+            this.dataGridView1.Size = new System.Drawing.Size(689, 331);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column1
             // 
@@ -113,7 +121,7 @@
             // BtnIniciar
             // 
             this.BtnIniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnIniciar.Location = new System.Drawing.Point(1003, 10);
+            this.BtnIniciar.Location = new System.Drawing.Point(1063, 10);
             this.BtnIniciar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnIniciar.Name = "BtnIniciar";
             this.BtnIniciar.Size = new System.Drawing.Size(213, 62);
@@ -126,7 +134,7 @@
             // 
             this.BtnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnStop.Enabled = false;
-            this.BtnStop.Location = new System.Drawing.Point(783, 10);
+            this.BtnStop.Location = new System.Drawing.Point(843, 10);
             this.BtnStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnStop.Name = "BtnStop";
             this.BtnStop.Size = new System.Drawing.Size(213, 62);
@@ -142,7 +150,7 @@
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonPanel.Location = new System.Drawing.Point(0, 652);
             this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(1229, 80);
+            this.buttonPanel.Size = new System.Drawing.Size(1289, 80);
             this.buttonPanel.TabIndex = 3;
             // 
             // MedicionGrafica
@@ -151,33 +159,110 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MedicionGrafica.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY.ScaleBreakStyle.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.LightGray;
-            chartArea1.Name = "ChartArea1";
-            this.MedicionGrafica.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.MedicionGrafica.Legends.Add(legend1);
-            this.MedicionGrafica.Location = new System.Drawing.Point(745, 12);
+            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.ScaleBreakStyle.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.LightGray;
+            chartArea2.Name = "ChartArea1";
+            this.MedicionGrafica.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.MedicionGrafica.Legends.Add(legend2);
+            this.MedicionGrafica.Location = new System.Drawing.Point(725, 77);
             this.MedicionGrafica.Name = "MedicionGrafica";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = " ";
-            this.MedicionGrafica.Series.Add(series1);
-            this.MedicionGrafica.Size = new System.Drawing.Size(471, 420);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = " ";
+            this.MedicionGrafica.Series.Add(series2);
+            this.MedicionGrafica.Size = new System.Drawing.Size(465, 331);
             this.MedicionGrafica.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(13, 21);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 25);
+            this.label2.TabIndex = 56;
+            this.label2.Text = "Producto";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cmbProducto
+            // 
+            this.cmbProducto.DropDownHeight = 200;
+            this.cmbProducto.FormattingEnabled = true;
+            this.cmbProducto.IntegralHeight = false;
+            this.cmbProducto.Items.AddRange(new object[] {
+            "asda",
+            "eqw",
+            "eqwe",
+            "qe",
+            "qw",
+            "e",
+            "q",
+            "eq"});
+            this.cmbProducto.Location = new System.Drawing.Point(126, 22);
+            this.cmbProducto.Name = "cmbProducto";
+            this.cmbProducto.Size = new System.Drawing.Size(201, 28);
+            this.cmbProducto.TabIndex = 57;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblResult);
+            this.groupBox1.Controls.Add(this.lblProductName);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.MedicionGrafica);
+            this.groupBox1.Location = new System.Drawing.Point(-11, 70);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1220, 576);
+            this.groupBox1.TabIndex = 58;
+            this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(728, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 29);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Lectura";
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResult.Location = new System.Drawing.Point(46, 448);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(108, 47);
+            this.lblResult.TabIndex = 6;
+            this.lblResult.Text = "TEST";
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(30, 26);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(81, 29);
+            this.lblProductName.TabIndex = 5;
+            this.lblProductName.Text = "TEST";
             // 
             // Pruebas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1229, 732);
-            this.Controls.Add(this.MedicionGrafica);
-            this.Controls.Add(this.dataGridView1);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1289, 732);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cmbProducto);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonPanel);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Pruebas";
@@ -186,7 +271,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MedicionGrafica)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -203,5 +291,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.DataVisualization.Charting.Chart MedicionGrafica;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbProducto;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.Label label1;
     }
 }

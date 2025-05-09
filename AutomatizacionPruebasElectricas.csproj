@@ -58,7 +58,7 @@
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="MULTIMETRO DLL">
-      <HintPath>..\MULTIMETRO DLL\bin\Debug\MULTIMETRO DLL.dll</HintPath>
+      <HintPath>..\..\..\Downloads\MULTIMETRO DLL.exe</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.2.0\lib\net462\MySql.Data.dll</HintPath>
@@ -116,6 +116,7 @@
     <Compile Include="Classes\ClsConnection.cs" />
     <Compile Include="Classes\ClsEspecificaciones.cs" />
     <Compile Include="Classes\ClsLogin.cs" />
+    <Compile Include="Classes\ClsMedicion.cs" />
     <Compile Include="Classes\ClsProcedimientos.cs" />
     <Compile Include="Classes\ClsProductos.cs" />
     <Compile Include="Classes\ClsUsuarios.cs" />
