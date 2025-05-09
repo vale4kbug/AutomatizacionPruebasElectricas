@@ -67,5 +67,5 @@ namespace AutomatizacionPruebasElectricas.Views
 				Close();
 			}
 		}
-	}
+    }
 }

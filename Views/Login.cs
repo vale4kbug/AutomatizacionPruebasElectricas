@@ -8,15 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MULTIMETRO_DLL;
 
 namespace AutomatizacionPruebasElectricas
 {
 	public partial class Login : Form
 	{
+
+        ClsMultiConnection cls = new ClsMultiConnection("USB0::0x05E6::0x2100::1242285::INSTR");
+        
 		public Login()
 		{
 			InitializeComponent();
-		}
+            cls.sendValue = metodo;
+        }
 
 		private void btnAbout_Click(object sender, EventArgs e)
 		{
@@ -79,5 +84,21 @@ namespace AutomatizacionPruebasElectricas
 				Ingresar();
 			}
 		}
-	}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			
+			cls.MedirVoltaje();
+        }
+
+        private void metodo(string obj)
+        {
+			MessageBox.Show(obj);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+			cls.MedirResistencia();
+        }
+    }
 }

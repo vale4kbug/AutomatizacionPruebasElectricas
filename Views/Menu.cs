@@ -21,14 +21,11 @@ namespace AutomatizacionPruebasElectricas
 
 		private void btnRegistroProducto_Click(object sender, EventArgs e)
 		{
+            Productos productos = new Productos();
+            productos.Show();
+        }
 
-		}
-
-		private void btnRegistroPersonal_Click(object sender, EventArgs e)
-		{
-			RegistroPersonal registroPersonal = new RegistroPersonal();
-			registroPersonal.ShowDialog();
-		}
+	
 
 		private void btnPruebas_Click(object sender, EventArgs e)
 		{
@@ -57,6 +54,18 @@ namespace AutomatizacionPruebasElectricas
         {
             Ventas ventas = new Ventas();
 			ventas.Show();
+        }
+
+        private void btnEspecificaciones_Click(object sender, EventArgs e)
+        {
+            Especificaciones especificaciones = new Especificaciones();
+            especificaciones.Show();
+        }
+
+        private void btnProcedimientos_Click(object sender, EventArgs e)
+        {
+            Procedimientos procedimientos = new Procedimientos();
+            procedimientos.Show();
         }
     }
 }
