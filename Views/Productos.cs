@@ -40,13 +40,32 @@ namespace AutomatizacionPruebasElectricas.Views
                 await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
                 txtNoSerie.Text = resultado.ToString();
                 txtNoSerie.Enabled = false;
-               // productos.EspecificacionesPutProducto(txtNoSerie.Text, dataEspecificaciones[1].Value.ToString(),dataEspecificaciones[1].Value.ToString());
-                //productos.ProcedimientosPutProducto();//
+                foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                {
+                    string idEspecificacion = row.Cells[0].Value.ToString();
+                    string valor = row.Cells[2].Value.ToString();
+
+                    await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                }
+                foreach (DataRow proc in procedimientos.Rows)
+                {
+                    string idProcedimiento = proc["IDProcedimiento"].ToString();
+                    string descripcion = proc["Descripcion"].ToString();
+
+                    await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
+                }
                 MessageBox.Show("Producto creado, favor de verificarlo");
             }
             else
             {
                 await productos.PutProducto(txtNoSerie.Text, txtModelo.Text, richDescripcion.Text);
+                foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                {
+                    string idEspecificacion = row.Cells[0].Value.ToString();
+                    string valor = row.Cells[2].Value.ToString();
+
+                    await productos.EspecificacionesActualizarProducto(txtNoSerie.Text, idEspecificacion, valor);
+                }
                 MessageBox.Show("Producto actualizado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -59,32 +78,34 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private async void btnEliminarEspecificaciones_Click(object sender, EventArgs e)
         {
-            //if (listBoxEspecificaciones.SelectedItem != null)
-            //{
-            //    string selectedItem = listBoxEspecificaciones.SelectedItem.ToString();
-            //    string idEspecificacion = selectedItem.Split(':')[0].Trim();
+            if (dataEspecificaciones.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataEspecificaciones.SelectedRows[0];
 
-            //    if (MessageBox.Show("¿Seguro que quieres eliminar esta especificación?", "Confirmar Eliminación",
-            //        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            //    {
-            //        ClsEspecificaciones clsEspecificaciones = new ClsEspecificaciones();
-            //        int resultado = await clsEspecificaciones.DeleteEspecificacion(idEspecificacion);
+                string idEspecificacion = selectedRow.Cells[0].Value.ToString();
+                string idProducto = txtNoSerie.Text;
 
-            //        if (resultado > 0)
-            //        {
-            //            MessageBox.Show("Especificación eliminada correctamente.");
-            //            listBoxEspecificaciones.Items.Remove(selectedItem);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Hubo un error al eliminar la especificación.");
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Por favor, selecciona una especificación para eliminar.");
-            //}
+                if (MessageBox.Show("¿Seguro que quieres eliminar esta especificación?", "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    int resultado = await productos.DeleteEspecificacionProducto(idProducto, idEspecificacion);
+
+                    if (resultado > 0)
+                    {
+                        MessageBox.Show("Especificación eliminada correctamente.");
+                        dataEspecificaciones.Rows.Remove(selectedRow);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un error al eliminar la especificación.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una fila de especificación para eliminar.");
+            }
+
         }
 
         private void btnAgregarProcedimientos_Click(object sender, EventArgs e)
@@ -103,8 +124,7 @@ namespace AutomatizacionPruebasElectricas.Views
                 if (MessageBox.Show("¿Seguro que quieres eliminar este procedimiento?", "Confirmar Eliminación",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    ClsProcedimientos clsProcedimientos = new ClsProcedimientos();
-                    int resultado = await clsProcedimientos.DeleteProcedimiento(idProcedimiento);
+                    int resultado = await productos.DeleteProcedimientoProducto(idProcedimiento);
 
                     if (resultado > 0)
                     {

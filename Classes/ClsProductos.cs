@@ -9,6 +9,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 {
     public class ClsProductos : ClsConnection
     {
+        int hola;
         public Action<DataTable> sendDatos;
         public async Task<DataTable> GetProductos(string filtro)
         {
@@ -34,7 +35,16 @@ namespace AutomatizacionPruebasElectricas.Classes
             await PutInDatabase($"delete from procedimientosproductos where IdProducto='{id}'");
             return await PutInDatabase($"delete from producto where NoSerie='{id}'");
         }
+        public async Task<int> DeleteEspecificacionProducto(string idproducto, string idespecificacion)
+        {
+            return await PutInDatabase($"delete from especificacionesproductos where IDProducto='{idproducto}' and IDEspecificacion='{idespecificacion}'");
+        }
+        public async Task<int> DeleteProcedimientoProducto(string idprocedimientoproducto)
+        {
+            return await PutInDatabase($"delete from procedimientosproducto where idprocedimientosproductos='{idprocedimientoproducto}'");
+        }
 
+        
         public async Task<int> PutProducto(string Modelo, string descripcion)
         {
             return await PutInDatabase("insert into producto (Modelo,Descripcion) " +
@@ -53,16 +63,22 @@ namespace AutomatizacionPruebasElectricas.Classes
             return await PutInDatabase("insert into especificacionesproducto (IDProducto,IDEspecificacion,Valor) " +
                 $"values ('{IDProducto}', '{IDEspecificacion}','{Valor}' );");
         }
-
-        public async Task<int> ProcedimientosPutProducto(string IDProducto, string IDProcedimiento, string Desc)
+        public async Task <int>EspecificacionesActualizarProducto(string IDProducto, string IDEspecificacion, string Valor)
         {
-            return await PutInDatabase("insert into procedimientosproductos (IDProducto, IDProcedimiento, Desc) " +
-                $"values ('{IDProducto}', '{IDProcedimiento}', '{Desc}');");
+            return await PutInDatabase($"UPDATE especificacionesproducto SET Valor = '{Valor}' WHERE IDProducto = '{IDProducto}' AND IDEspecificacion = '{IDEspecificacion}';");
         }
 
+        public async Task<int> ProcedimientosPutProducto(string IDProducto, string IDProcedimiento)
+        {
+            {
+                return await PutInDatabase("insert into procedimientosproducto (idproducto,idprocedimiento) " +
+                    $"values ('{IDProducto}', '{IDProcedimiento}' );" +
+                    $"SELECT LAST_INSERT_ID();");
+            }
+        }
+    
 
 
-        //Metodo para eliminar un usuario
         public async Task<DataTable> GetEspecificacionesProducto(string idProducto)
         {
             return await GetTable($"SELECT e.IdEspecificacion, e.Descripcion, ep.Valor FROM especificaciones e " +
@@ -86,6 +102,7 @@ namespace AutomatizacionPruebasElectricas.Classes
         {
             return await GetTable($"SELECT e.IdProcedimiento, e.Descripcion FROM procedimientos e where e.IdProcedimiento={idProcedimiento}");
         }
+        
 
     }
 }

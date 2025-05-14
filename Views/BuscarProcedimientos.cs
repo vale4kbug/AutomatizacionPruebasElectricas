@@ -54,5 +54,10 @@ namespace AutomatizacionPruebasElectricas.Views
                 Close();
             }
         }
+
+        private void dgProcedimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

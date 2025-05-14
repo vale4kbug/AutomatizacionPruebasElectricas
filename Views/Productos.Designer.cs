@@ -335,6 +335,7 @@
             this.dataEspecificaciones.AllowUserToResizeRows = false;
             this.dataEspecificaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataEspecificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataEspecificaciones.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dataEspecificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataEspecificaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
