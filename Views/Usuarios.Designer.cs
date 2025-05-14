@@ -234,6 +234,7 @@
 			this.BtnModulos.TabIndex = 18;
 			this.BtnModulos.Text = "Modulos";
 			this.BtnModulos.UseVisualStyleBackColor = true;
+			this.BtnModulos.Click += new System.EventHandler(this.BtnModulos_Click);
 			// 
 			// BtnClear
 			// 
