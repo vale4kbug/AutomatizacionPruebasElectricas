@@ -82,15 +82,12 @@ namespace AutomatizacionPruebasElectricas
                 listaNoSerieProductos.Clear(); // Limpiar la lista anterior
                 cmbProducto.Items.Clear();     // Limpiar los items del ComboBox
 
-                foreach (DataRow fila in tablaProductos.Rows)
-                {
-                    string noSerie = fila["NoSerie"].ToString();
-                    listaNoSerieProductos.Add(noSerie);
-                    cmbProducto.Items.Add(noSerie); // Agregar el NoSerie al ComboBox
-                }
+                cmbProducto.DataSource = tablaProductos;
+                cmbProducto.ValueMember = "NoSerie";
+                cmbProducto.DisplayMember = "Descripcion";
 
-                // Opcional: Seleccionar el primer producto por defecto
-                if (cmbProducto.Items.Count > 0)
+				// Opcional: Seleccionar el primer producto por defecto
+				if (cmbProducto.Items.Count > 0)
                 {
                     cmbProducto.SelectedIndex = 0;
                 }
@@ -221,7 +218,7 @@ namespace AutomatizacionPruebasElectricas
             // Obtener el producto seleccionado del ComboBox
             if (cmbProducto.SelectedItem != null)
             {
-                productoID = cmbProducto.SelectedItem.ToString();
+                productoID = cmbProducto.SelectedValue.ToString();
             }
             else if (listaNoSerieProductos.Count > 0)
             {

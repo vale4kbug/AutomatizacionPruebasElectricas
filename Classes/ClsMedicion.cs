@@ -40,7 +40,7 @@ namespace AutomatizacionPruebasElectricas.Classes
         // Método para obtener todos los NoSerie de la tabla 'producto'
         public async Task<DataTable> ObtenerNoSerieProductos()
         {
-            string query = "SELECT NoSerie FROM producto";
+            string query = "SELECT NoSerie, Descripcion FROM producto";
             return await GetTable(query);
         }
     }

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MULTIMETRO_DLL;
 
 namespace AutomatizacionPruebasElectricas
 {
@@ -50,12 +49,6 @@ namespace AutomatizacionPruebasElectricas
 			lblMensaje.Visible = true;
 
 			bool acceso = await login.Log(txtUsuarioLogin.Text, txtUsuarioContrasena.Text);
-			if (true)
-			{
-                Menu menu = new Menu("XD");
-                menu.Show();
-                Hide();
-            }
 			if (acceso)
 			{
 				string nombre = await login.GetUserFullName();
@@ -88,7 +81,7 @@ namespace AutomatizacionPruebasElectricas
         private void button1_Click(object sender, EventArgs e)
         {
 			
-			cls.MedirVoltaje();
+			//cls.MedirVoltaje();
         }
 
         private void metodo(string obj)
@@ -98,7 +91,7 @@ namespace AutomatizacionPruebasElectricas
 
         private void button2_Click(object sender, EventArgs e)
         {
-			cls.MedirResistencia();
+			//cls.MedirResistencia();
         }
     }
 }
