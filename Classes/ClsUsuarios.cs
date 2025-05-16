@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Documents;
+using MySql.Data.MySqlClient;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
@@ -50,6 +52,78 @@ namespace AutomatizacionPruebasElectricas.Classes
 		{
 			return await PutInDatabase($"delete from usuarios where IDUsuario='{id}'");
 		}
+
+		public async Task<DataTable> GetModulosDeUsuario(string id)
+		{
+			return await GetTable($@"select Descripcion
+													from modulos m
+													inner join accesoamodulos a on a.idmodulo=m.idModulo
+													where a.idusuario={id};");
+		}
+
+		public async Task<List<string>> GetModulos()
+		{
+			var result = await GetTable("SELECT Descripcion FROM proyecto.modulos; ");
+
+			return result.AsEnumerable()
+				 .Select(row => row["Descripcion"].ToString())
+				 .ToList();
+		}
+
+		public async Task<List<string>> GetModulosActivos(string id)
+		{
+			var result = await GetTable($@"select Descripcion
+											from modulos m
+											inner join accesoamodulos a on a.idmodulo=m.idModulo
+											where a.idusuario={id};");
+
+			return result.AsEnumerable()
+				 .Select(row => row["Descripcion"].ToString())
+				 .ToList();
+		}
+
+		public async Task<bool> ActualizarModulosDelUsuario(string idUsuario, List<string> modulosSeleccionados)
+		{
+			try
+			{
+				await OpenConnection();
+
+				using (var transaction = await con.BeginTransactionAsync())
+				{
+					cmd.Transaction = (MySqlTransaction)transaction;
+
+					// 1. Eliminar accesos anteriores
+					cmd.CommandText = "DELETE FROM accesoamodulos WHERE idUsuario = @id";
+					cmd.Parameters.Clear();
+					cmd.Parameters.AddWithValue("@id", idUsuario);
+					await cmd.ExecuteNonQueryAsync();
+
+					// 2. Insertar nuevos accesos
+					foreach (string modulo in modulosSeleccionados)
+					{
+						cmd.CommandText = "INSERT INTO accesoamodulos (idUsuario, idModulo) " +
+										  "SELECT @id, idModulo FROM modulos WHERE Descripcion = @desc";
+						cmd.Parameters.Clear();
+						cmd.Parameters.AddWithValue("@id", idUsuario);
+						cmd.Parameters.AddWithValue("@desc", modulo);
+						await cmd.ExecuteNonQueryAsync();
+					}
+
+					await transaction.CommitAsync();
+					return true;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error al actualizar accesos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			finally
+			{
+				await CloseConnection();
+			}
+		}
+
 
 		public async Task<string> GenerarCredencial(string userID)
 		{

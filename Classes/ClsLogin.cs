@@ -12,6 +12,8 @@ namespace AutomatizacionPruebasElectricas.Classes
 	{
 		string idUsuario;
 
+		public string UsuarioId { get { return idUsuario; } }
+
 		//Metodo para verificar el login
 		//Regresa un true si el usuario es correcto, y regresa falso si no coincide el usuario y la contraseña
 		public async Task<bool> Log(string username, string password)

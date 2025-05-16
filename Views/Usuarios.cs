@@ -148,5 +148,11 @@ namespace AutomatizacionPruebasElectricas.Views
 				System.Diagnostics.Process.Start(pdfPath); // Abre el PDF automáticamente
 			}
 		}
+
+		private void BtnModulos_Click(object sender, EventArgs e)
+		{
+			ModulosParaUsuarios frm = new ModulosParaUsuarios(txtUserID.Text);
+			frm.ShowDialog();
+		}
 	}
 }
