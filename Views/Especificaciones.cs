@@ -27,11 +27,9 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private async void btnRegistrarProductos_Click(object sender, EventArgs e)
         {
-            if (txtId.Enabled == true)
+            if (txtId.Enabled == true && txtId.Text!="" && richDescripcion.Text!="")
             {
-                int resultado = await especificaciones.PutEspecificacion(richDescripcion.Text);
-                await especificaciones.PutEspecificacion(txtId.Text, richDescripcion.Text);
-                txtId.Text = resultado.ToString();
+                await especificaciones.PutEspecificacion(txtId.Text,richDescripcion.Text,txtId.Text);
                 txtId.Enabled = false;
                 MessageBox.Show("Especificaciones creada, favor de verificarlo");
             }
@@ -47,8 +45,8 @@ namespace AutomatizacionPruebasElectricas.Views
             if (MessageBox.Show("¿Estas seguro de eliminar este producto?", "Eliminar producto",
            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                int resultado = await especificaciones.DeleteEspecificacion(txtId.Text);
-                MessageBox.Show($"Se elimino {resultado} de la base de datos", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await especificaciones.DeleteEspecificacion(txtId.Text);
+                MessageBox.Show($"Se elimino {richDescripcion.Text} de la base de datos", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -63,7 +61,6 @@ namespace AutomatizacionPruebasElectricas.Views
         {
             txtId.Text = "";
             richDescripcion.Text = "";
-            txtId.Focus();
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

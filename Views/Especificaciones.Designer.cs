@@ -100,7 +100,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(80, 122);
+            this.label2.Location = new System.Drawing.Point(118, 115);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 23);
@@ -112,7 +112,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(124, 75);
+            this.label1.Location = new System.Drawing.Point(162, 68);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 23);
@@ -125,7 +125,7 @@
             this.txtId.BackColor = System.Drawing.SystemColors.Info;
             this.txtId.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.txtId.ForeColor = System.Drawing.Color.Teal;
-            this.txtId.Location = new System.Drawing.Point(206, 72);
+            this.txtId.Location = new System.Drawing.Point(244, 65);
             this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(257, 39);
@@ -158,7 +158,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(498, 226);
+            this.btnRegresar.Location = new System.Drawing.Point(13, 226);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(66, 42);
@@ -173,7 +173,7 @@
             // 
             this.richDescripcion.BackColor = System.Drawing.SystemColors.Info;
             this.richDescripcion.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.richDescripcion.Location = new System.Drawing.Point(206, 131);
+            this.richDescripcion.Location = new System.Drawing.Point(244, 124);
             this.richDescripcion.Name = "richDescripcion";
             this.richDescripcion.Size = new System.Drawing.Size(257, 96);
             this.richDescripcion.TabIndex = 52;

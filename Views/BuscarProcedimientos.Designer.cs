@@ -52,6 +52,7 @@
             this.dgProcedimientos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgProcedimientos.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dgProcedimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgProcedimientos.GridColor = System.Drawing.Color.DarkMagenta;
             this.dgProcedimientos.Location = new System.Drawing.Point(12, 55);
             this.dgProcedimientos.Name = "dgProcedimientos";
             this.dgProcedimientos.ReadOnly = true;
