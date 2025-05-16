@@ -37,27 +37,37 @@ namespace AutomatizacionPruebasElectricas.Views
 
             if (txtNoSerie.Enabled == true)
             {
-                int resultado = await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
-                txtNoSerie.Text = resultado.ToString();
+                await productos.PutProducto(
+                    txtNoSerie.Text,         // NoSerie
+                    txtModelo.Text,          // Modelo
+                    richDescripcion.Text,    // Descripción
+                    txtNoSerie.Text        // IDUsuario (si aplica)
+                );
+
                 txtNoSerie.Enabled = false;              
                 
                 await productos.DeleteTodosEspecificacionesProducto(txtNoSerie.Text);
                 await productos.DeleteTodosProcedimientosProducto(txtNoSerie.Text);
 
-                foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                if (dataEspecificaciones.Rows.Count > 0)
                 {
-                    string idEspecificacion = row.Cells[0].Value.ToString();
-                    string valor = row.Cells[2].Value.ToString();
+                    foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                    {
+                        string idEspecificacion = row.Cells[0].Value.ToString();
+                        string valor = row.Cells[2].Value.ToString();
 
-                    await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                        await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                    }
                 }
-
-                foreach (DataRow proc in procedimientos.Rows)
+                if (procedimientos.Rows.Count > 0)
                 {
-                    string idProcedimiento = proc["IDProcedimiento"].ToString();
-                    string descripcion = proc["Descripcion"].ToString();
+                    foreach (DataRow proc in procedimientos.Rows)
+                    {
+                        string idProcedimiento = proc["IDProcedimiento"].ToString();
+                        string descripcion = proc["Descripcion"].ToString();
 
-                    await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
+                        await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
+                    }
                 }
               
                 MessageBox.Show("Producto creado, favor de verificarlo");
@@ -70,20 +80,26 @@ namespace AutomatizacionPruebasElectricas.Views
                 await productos.DeleteTodosEspecificacionesProducto(txtNoSerie.Text);
                 await productos.DeleteTodosProcedimientosProducto(txtNoSerie.Text);
 
-                foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                if (dataEspecificaciones.Rows.Count > 0)
                 {
-                    string idEspecificacion = row.Cells[0].Value.ToString();
-                    string valor = row.Cells[2].Value.ToString();
+                    foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+                    {
+                        string idEspecificacion = row.Cells[0].Value.ToString();
+                        string valor = row.Cells[2].Value.ToString();
 
-                    await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                        await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                    }
                 }
 
-                foreach (DataRow proc in procedimientos.Rows)
+                if (procedimientos.Rows.Count > 0)
                 {
-                    string idProcedimiento = proc["IDProcedimiento"].ToString();
-                    string descripcion = proc["Descripcion"].ToString();
+                    foreach (DataRow proc in procedimientos.Rows)
+                    {
+                        string idProcedimiento = proc["IDProcedimiento"].ToString();
+                        string descripcion = proc["Descripcion"].ToString();
 
-                    await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
+                        await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
+                    }
                 }
                 MessageBox.Show("Producto actualizado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -148,8 +164,13 @@ namespace AutomatizacionPruebasElectricas.Views
             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 int resultado = await productos.DeleteProductoDomino(txtNoSerie.Text);
-                MessageBox.Show($"Se elimino {resultado} producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Se elimino el producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            txtNoSerie.Text = "";
+            txtModelo.Text = "";
+            richDescripcion.Text = "";
+            dataEspecificaciones.Rows.Clear();
+            procedimientos.Rows.Clear();
         }
 
         private void btnBuscarProductos_Click(object sender, EventArgs e)
@@ -169,8 +190,8 @@ namespace AutomatizacionPruebasElectricas.Views
             txtNoSerie.Text = "";
             txtModelo.Text = "";
             richDescripcion.Text = "";
-            //listBoxEspecificaciones.Items.Clear();
-          //  listBoxProcedimientos.Items.Clear();
+            dataEspecificaciones.Rows.Clear();
+            procedimientos.Rows.Clear();
             txtNoSerie.Focus();
 
         }
