@@ -81,10 +81,7 @@ namespace AutomatizacionPruebasElectricas.Views
                 txtId.Text = datos.Rows[0][0].ToString();
                 richDescripcion.Text = datos.Rows[0][1].ToString();
                 txtId.Enabled = false;
-
-        
-
-                
+ 
             }
         }
 

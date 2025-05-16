@@ -34,12 +34,16 @@ namespace AutomatizacionPruebasElectricas.Views
 
         private async void btnRegistrarProductos_Click(object sender, EventArgs e)
         {
+
             if (txtNoSerie.Enabled == true)
             {
                 int resultado = await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
-                await productos.PutProducto(txtModelo.Text, richDescripcion.Text);
                 txtNoSerie.Text = resultado.ToString();
-                txtNoSerie.Enabled = false;
+                txtNoSerie.Enabled = false;              
+                
+                await productos.DeleteTodosEspecificacionesProducto(txtNoSerie.Text);
+                await productos.DeleteTodosProcedimientosProducto(txtNoSerie.Text);
+
                 foreach (DataGridViewRow row in dataEspecificaciones.Rows)
                 {
                     string idEspecificacion = row.Cells[0].Value.ToString();
@@ -47,6 +51,7 @@ namespace AutomatizacionPruebasElectricas.Views
 
                     await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
                 }
+
                 foreach (DataRow proc in procedimientos.Rows)
                 {
                     string idProcedimiento = proc["IDProcedimiento"].ToString();
@@ -54,17 +59,31 @@ namespace AutomatizacionPruebasElectricas.Views
 
                     await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
                 }
+              
                 MessageBox.Show("Producto creado, favor de verificarlo");
             }
             else
             {
                 await productos.PutProducto(txtNoSerie.Text, txtModelo.Text, richDescripcion.Text);
                 foreach (DataGridViewRow row in dataEspecificaciones.Rows)
+
+                await productos.DeleteTodosEspecificacionesProducto(txtNoSerie.Text);
+                await productos.DeleteTodosProcedimientosProducto(txtNoSerie.Text);
+
+                foreach (DataGridViewRow row in dataEspecificaciones.Rows)
                 {
                     string idEspecificacion = row.Cells[0].Value.ToString();
                     string valor = row.Cells[2].Value.ToString();
 
-                    await productos.EspecificacionesActualizarProducto(txtNoSerie.Text, idEspecificacion, valor);
+                    await productos.EspecificacionesPutProducto(txtNoSerie.Text, idEspecificacion, valor);
+                }
+
+                foreach (DataRow proc in procedimientos.Rows)
+                {
+                    string idProcedimiento = proc["IDProcedimiento"].ToString();
+                    string descripcion = proc["Descripcion"].ToString();
+
+                    await productos.ProcedimientosPutProducto(txtNoSerie.Text, idProcedimiento);
                 }
                 MessageBox.Show("Producto actualizado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -88,17 +107,8 @@ namespace AutomatizacionPruebasElectricas.Views
                 if (MessageBox.Show("¿Seguro que quieres eliminar esta especificación?", "Confirmar Eliminación",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    int resultado = await productos.DeleteEspecificacionProducto(idProducto, idEspecificacion);
-
-                    if (resultado > 0)
-                    {
-                        MessageBox.Show("Especificación eliminada correctamente.");
-                        dataEspecificaciones.Rows.Remove(selectedRow);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error al eliminar la especificación.");
-                    }
+                      dataEspecificaciones.Rows.Remove(selectedRow);
+                     MessageBox.Show("Especificación eliminada correctamente.");
                 }
             }
             else
@@ -114,27 +124,16 @@ namespace AutomatizacionPruebasElectricas.Views
             procedimientos.Show();
         }
 
-        private async void btnEliminarProcedimientos_Click(object sender, EventArgs e)
+        private  void btnEliminarProcedimientos_Click(object sender, EventArgs e)
         {
             if (listBoxProcedimientos.SelectedItem != null)
             {
-                string selectedItem = listBoxProcedimientos.SelectedItem.ToString();
-                string idProcedimiento = selectedItem.Split(':')[0].Trim(); // Extraer el ID del procedimiento
-
                 if (MessageBox.Show("¿Seguro que quieres eliminar este procedimiento?", "Confirmar Eliminación",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    int resultado = await productos.DeleteProcedimientoProducto(idProcedimiento);
+                    procedimientos.Rows.RemoveAt(listBoxProcedimientos.SelectedIndex);
 
-                    if (resultado > 0)
-                    {
                         MessageBox.Show("Procedimiento eliminado correctamente.");
-                        listBoxProcedimientos.Items.Remove(selectedItem);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error al eliminar el procedimiento.");
-                    }
                 }
             }
             else
@@ -171,7 +170,7 @@ namespace AutomatizacionPruebasElectricas.Views
             txtModelo.Text = "";
             richDescripcion.Text = "";
             //listBoxEspecificaciones.Items.Clear();
-            listBoxProcedimientos.Items.Clear();
+          //  listBoxProcedimientos.Items.Clear();
             txtNoSerie.Focus();
 
         }
@@ -233,7 +232,35 @@ namespace AutomatizacionPruebasElectricas.Views
         {
             DataTable datos = await productos.GetProcedimiento(id);
 
-            procedimientos.Rows.Add(datos.Rows[0][0], datos.Rows[0][1]);
+            if (datos != null && datos.Rows.Count > 0)
+            {
+                // Asegurarse de que procedimientos esté inicializado
+                if (procedimientos == null)
+                {
+                    procedimientos = new DataTable();
+                    procedimientos.Columns.Add("IDProcedimiento");
+                    procedimientos.Columns.Add("Descripcion");
+                    procedimientos.Rows.Add(datos.Rows[0][0], datos.Rows[0][1]);
+                    ActualizarListBoxProcedimientos();
+
+                }
+
+                procedimientos.Rows.Add(datos.Rows[0][0], datos.Rows[0][1]);
+            }
+            else
+            {
+                MessageBox.Show("No se encontró el procedimiento con ese ID.");
+            }
         }
+
+        private void ActualizarListBoxProcedimientos()
+        {
+            listBoxProcedimientos.DataSource = null;
+            listBoxProcedimientos.DisplayMember = "Descripcion"; // o el campo que quieras mostrar
+            listBoxProcedimientos.ValueMember = "IDProcedimiento";
+            listBoxProcedimientos.DataSource = procedimientos;
+        }
+
+
     }
 }
