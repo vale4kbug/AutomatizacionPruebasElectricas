@@ -18,10 +18,11 @@ namespace AutomatizacionPruebasElectricas.Views
         public Procedimientos()
         {
             InitializeComponent();
-            procedimientos = new ClsProcedimientos();
+            procedimientos = new ClsProcedimientos
             {
-           //     sendDatos = SettingProcedimientosInForm;
+                sendDatos = SettingProcedimientosInForm
             };
+
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -35,9 +36,7 @@ namespace AutomatizacionPruebasElectricas.Views
         {
             if (txtId.Enabled == true)
             {
-                int resultado = await procedimientos.PutProcedimiento( richDescripcion.Text);
-                await procedimientos.PutProcedimiento(richDescripcion.Text);
-                txtId.Text = resultado.ToString();
+                await procedimientos.PutProcedimiento(txtId.Text,richDescripcion.Text,txtId.Text);
                 txtId.Enabled = false;
                 MessageBox.Show("Procedimientos creado, favor de verificarlo");
             }
@@ -53,8 +52,11 @@ namespace AutomatizacionPruebasElectricas.Views
             if (MessageBox.Show("¿Estas seguro de eliminar este procedimiento?", "Eliminar producto",
             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                int resultado = await procedimientos.DeleteProcedimiento(txtId.Text);
-                MessageBox.Show($"Se elimino {resultado} producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 await procedimientos.DeleteProcedimiento(txtId.Text);
+                MessageBox.Show($"Se elimino {richDescripcion.Text} producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtId.Text = "";
+                richDescripcion.Text = "";
+
             }
         }
 
@@ -69,7 +71,6 @@ namespace AutomatizacionPruebasElectricas.Views
         {
             txtId.Text = "";
             richDescripcion.Text = "";
-            txtId.Focus();
 
         }
 
@@ -80,7 +81,6 @@ namespace AutomatizacionPruebasElectricas.Views
             {
                 txtId.Text = datos.Rows[0][0].ToString();
                 richDescripcion.Text = datos.Rows[0][1].ToString();
-                txtId.Enabled = false;
  
             }
         }

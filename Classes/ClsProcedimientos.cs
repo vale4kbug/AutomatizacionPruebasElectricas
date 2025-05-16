@@ -11,10 +11,7 @@ namespace AutomatizacionPruebasElectricas.Classes
     {
         public Action<DataTable> sendDatos;
 
-        //metodo para agregar
-        //modificar
-        //eliminar
-        //buscar
+
         public async Task<DataTable> GetProcedimientos(string filtro)
         {
             DataTable procedimientos = await GetTable($"select IdProcedimiento as ID, Descripcion as Nombre from procedimientos " +
@@ -24,18 +21,17 @@ namespace AutomatizacionPruebasElectricas.Classes
 
         public async Task GetProcedimiento(string id)
         {
-            DataTable datosProcedimiento = await GetTable("select IdProcedimiento, Descripcion" +
+            DataTable datosProcedimiento = await GetTable("select IdProcedimiento, Descripcion " +
                 $"from procedimientos where IdProcedimiento = {id}");
 
             sendDatos(datosProcedimiento);
         }
 
         //Metodo para insertar
-        public async Task<int> PutProcedimiento( string desc)
+        public async Task<int> PutProcedimiento( string id,string desc,string idapoyo)
         {
-            return await PutInDatabase("insert into procedimientos (descripcion) " +
-                $"values ('{desc}');" +
-                $"SELECT LAST_INSERT_ID();");
+            return await PutInDatabase("insert into procedimientos (IdProcedimiento,descripcion) " +
+                $"values ('{id}','{desc}');" );
         }
 
         //Metodo para actualizar, sobrecarga al metodo anterior
