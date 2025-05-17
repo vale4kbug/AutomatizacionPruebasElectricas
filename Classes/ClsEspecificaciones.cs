@@ -32,8 +32,8 @@ namespace AutomatizacionPruebasElectricas.Classes
         //Metodo para insertar
         public async Task<int> PutEspecificacion(string id,string desc,string back)
         {
-            return await PutInDatabase("insert into especificaciones (IdEspecificacion,Descripcion) " +
-                $"values ('{id}','{desc}');");
+            return await PutInDatabase("insert into especificaciones (Descripcion) " +
+                $"values ('{desc}');");
         }
 
         //Metodo para actualizar, sobrecarga al metodo anterior
