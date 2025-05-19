@@ -117,13 +117,15 @@
 			// 
 			// BtnRuta
 			// 
-			this.BtnRuta.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BtnRuta.BackColor = System.Drawing.Color.LightCyan;
+			this.BtnRuta.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
+			this.BtnRuta.ForeColor = System.Drawing.Color.DarkCyan;
 			this.BtnRuta.Location = new System.Drawing.Point(434, 305);
 			this.BtnRuta.Name = "BtnRuta";
 			this.BtnRuta.Size = new System.Drawing.Size(186, 35);
 			this.BtnRuta.TabIndex = 6;
 			this.BtnRuta.Text = "Seleccionar foto";
-			this.BtnRuta.UseVisualStyleBackColor = true;
+			this.BtnRuta.UseVisualStyleBackColor = false;
 			this.BtnRuta.Click += new System.EventHandler(this.BtnRuta_Click);
 			// 
 			// txtUserID
@@ -248,13 +250,15 @@
 			// 
 			// BtnModulos
 			// 
-			this.BtnModulos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BtnModulos.BackColor = System.Drawing.Color.LightCyan;
+			this.BtnModulos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BtnModulos.ForeColor = System.Drawing.Color.DarkCyan;
 			this.BtnModulos.Location = new System.Drawing.Point(331, 68);
 			this.BtnModulos.Name = "BtnModulos";
 			this.BtnModulos.Size = new System.Drawing.Size(90, 33);
 			this.BtnModulos.TabIndex = 18;
 			this.BtnModulos.Text = "Modulos";
-			this.BtnModulos.UseVisualStyleBackColor = true;
+			this.BtnModulos.UseVisualStyleBackColor = false;
 			this.BtnModulos.Click += new System.EventHandler(this.BtnModulos_Click);
 			// 
 			// BtnClear
