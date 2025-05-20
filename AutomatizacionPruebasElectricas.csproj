@@ -150,6 +150,18 @@
     <Compile Include="Views\Especificaciones.Designer.cs">
       <DependentUpon>Especificaciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Estacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Estacion.Designer.cs">
+      <DependentUpon>Estacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Linea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Linea.Designer.cs">
+      <DependentUpon>Linea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Especificaciones.resx">
       <DependentUpon>Especificaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Estacion.resx">
+      <DependentUpon>Estacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Linea.resx">
+      <DependentUpon>Linea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

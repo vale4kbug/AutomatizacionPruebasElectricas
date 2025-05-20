@@ -34,14 +34,7 @@ namespace AutomatizacionPruebasElectricas.Classes
             await PutInDatabase($"delete from procedimientosproductos where IdProducto='{id}'");
             return await PutInDatabase($"delete from producto where NoSerie='{id}'");
         }
-        public async Task<int> DeleteEspecificacionProducto(string idproducto, string idespecificacion)
-        {
-            return await PutInDatabase($"delete from especificacionesproducto where IDProducto='{idproducto}' and IDEspecificacion='{idespecificacion}'");
-        }
-        public async Task<int> DeleteProcedimientoProducto(string idprocedimiento,string idproducto)
-        {
-            return await PutInDatabase($"delete from procedimientosproductos where idprocedimiento='{idprocedimiento}' and idproducto='{idproducto}'");
-        }
+        
     
 
         public async Task<int> DeleteTodosProcedimientosProducto(string idproducto)

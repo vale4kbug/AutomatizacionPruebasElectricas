@@ -48,6 +48,7 @@ namespace AutomatizacionPruebasElectricas.Views
 		   MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
 			{
 				await especificaciones.DeleteEspecificacion(txtId.Text);
+				await especificaciones.DeleteEspecificacionenOtros(txtId.Text);
 				MessageBox.Show($"Se elimino {richDescripcion.Text} de la base de datos", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				txtId.Text = "";
 				txtId.Enabled = true;

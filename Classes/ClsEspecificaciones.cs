@@ -48,5 +48,11 @@ namespace AutomatizacionPruebasElectricas.Classes
             return await PutInDatabase($"delete from especificaciones where IdEspecificacion='{id}'");
 
         }
+        public async Task<int> DeleteEspecificacionenOtros(string id)
+        {
+            return await PutInDatabase($"delete from especificacionesproducto where IDEspecificacion='{id}'");
+
+        }
+
     }
 }

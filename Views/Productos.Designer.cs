@@ -187,7 +187,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(677, 324);
+            this.btnRegresar.Location = new System.Drawing.Point(655, 306);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(66, 42);

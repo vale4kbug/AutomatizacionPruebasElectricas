@@ -54,7 +54,9 @@ namespace AutomatizacionPruebasElectricas.Views
 			MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
 			{
 				await procedimientos.DeleteProcedimiento(txtId.Text);
-				MessageBox.Show($"Se elimino {richDescripcion.Text} producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await procedimientos.DeleteProcedimientoenOtros(txtId.Text);
+
+                MessageBox.Show($"Se elimino {richDescripcion.Text} producto y todo lo relacionado con el mismo", "Operacion completada correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				txtId.Text = "";
 				richDescripcion.Text = "";
 

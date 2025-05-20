@@ -120,5 +120,17 @@ namespace AutomatizacionPruebasElectricas
 			}
 
 		}
-	}
+
+        private void btnLinea_Click(object sender, EventArgs e)
+        {
+            Linea linea = new Linea();
+            linea.Show();
+        }
+
+        private void btnEstacion_Click(object sender, EventArgs e)
+        {
+            Estacion estacion = new Estacion();
+            estacion.Show();
+        }
+    }
 }
