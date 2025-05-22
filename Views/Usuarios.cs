@@ -158,6 +158,13 @@ namespace AutomatizacionPruebasElectricas.Views
 			frm.ShowDialog();
 		}
 
+		private void BtnProductos_Click(object sender, EventArgs e)
+		{
+			PermisosProductos frm = new PermisosProductos(txtUserID.Text);
+			frm.ShowDialog();
+		}
+	}
+
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             Menu menuforma = new Menu("");

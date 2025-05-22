@@ -192,6 +192,12 @@
     <Compile Include="Views\ModulosParaUsuarios.Designer.cs">
       <DependentUpon>ModulosParaUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PermisosProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PermisosProductos.Designer.cs">
+      <DependentUpon>PermisosProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Procedimientos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </Compile>
     <EmbeddedResource Include="Views\ModulosParaUsuarios.resx">
       <DependentUpon>ModulosParaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PermisosProductos.resx">
+      <DependentUpon>PermisosProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Procedimientos.resx">
       <DependentUpon>Procedimientos.cs</DependentUpon>
