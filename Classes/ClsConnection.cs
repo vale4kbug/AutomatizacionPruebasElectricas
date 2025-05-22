@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
-    public abstract class ClsConnection
+    public class ClsConnection
     {
         readonly protected MySqlConnection con;
         readonly protected MySqlCommand cmd;
@@ -62,10 +62,22 @@ namespace AutomatizacionPruebasElectricas.Classes
         //y opcionalmente puede regresar el ID del último registro insertado
         protected async Task<int> PutInDatabase(string query, params MySqlParameter[] parameters)
         {
+            if (con == null || cmd == null)
+            {
+                MessageBox.Show("Database connection is not properly initialized", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
             int lastId = -1;
             cmd.CommandText = query;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddRange(parameters);
+
+            if (parameters != null)  // Add null check for parameters
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
+           
+      
 
             try
             {
@@ -118,6 +130,8 @@ namespace AutomatizacionPruebasElectricas.Classes
 
             return result;
         }
+
+      
 
         //Esta funcion devuelve un unico valor de la base de datos, segun el query que mandes
         protected async Task<string> GetUniqueValue(string query, params MySqlParameter[] parameters)

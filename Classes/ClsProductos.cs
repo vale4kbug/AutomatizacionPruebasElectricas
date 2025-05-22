@@ -86,6 +86,7 @@ namespace AutomatizacionPruebasElectricas.Classes
                                  $"WHERE ep.IDProducto = '{idProducto}'");
         }
 
+
         public async Task<DataTable> GetProcedimientosProducto(string idProducto)
         {
             return await GetTable($"SELECT p.IdProcedimiento, p.Descripcion FROM procedimientos p " +
@@ -102,7 +103,6 @@ namespace AutomatizacionPruebasElectricas.Classes
         {
             return await GetTable($"SELECT e.IdProcedimiento, e.Descripcion FROM procedimientos e where e.IdProcedimiento={idProcedimiento}");
         }
-        
 
     }
 }

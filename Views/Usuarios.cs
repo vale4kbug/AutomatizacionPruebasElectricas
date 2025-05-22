@@ -37,8 +37,11 @@ namespace AutomatizacionPruebasElectricas.Views
 				}
 				catch (Exception)
 				{
+					
 					picFoto.Image = Image.FromFile(Path.Combine(documentosPath, "default.png"));
+
 				}
+				
 				txtUsername.Text = datos.Rows[0][4].ToString();
 				txtPassword.Text = datos.Rows[0][5].ToString();
 

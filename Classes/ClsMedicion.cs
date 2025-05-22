@@ -2,6 +2,8 @@
 using System;
 using System.Threading.Tasks;
 using System.Data;
+using Google.Protobuf.WellKnownTypes;
+using System.Collections.Generic;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
@@ -11,7 +13,7 @@ namespace AutomatizacionPruebasElectricas.Classes
         {
             string query = "INSERT INTO mediciones (ProductoID, EstacionID, Fecha, Valor, Unidad, Estado) " +
                            "VALUES (@ProductoID, @EstacionID, @Fecha, @Valor, @Unidad, @Estado); " +
-                           "SELECT LAST_INSERT_ID();"; // Para obtener el ID del último registro insertado
+                           "SELECT LAST_INSERT_ID();";
 
             var parameters = new MySqlParameter[]
             {
@@ -25,23 +27,68 @@ namespace AutomatizacionPruebasElectricas.Classes
 
             try
             {
-                // Utiliza el método PutInDatabase de la clase base para ejecutar la inserción
                 return await PutInDatabase(query, parameters);
             }
             catch (MySqlException ex)
             {
-                // Aquí puedes implementar un manejo de errores más robusto,
-                // como registrar el error en un archivo de registro.
-                Console.WriteLine($"Error al insertar medición en la base de datos: {ex.Message}");
-                return -1; // Indica que la inserción falló
+                Console.WriteLine($"Error al insertar medición: {ex.Message}");
+                return -1;
             }
         }
 
-        // Método para obtener todos los NoSerie de la tabla 'producto'
         public async Task<DataTable> ObtenerNoSerieProductos()
         {
             string query = "SELECT NoSerie, Descripcion FROM producto";
             return await GetTable(query);
+        }
+
+        public async Task<DataTable> GetLineasProduccion()
+        {
+            string query = "SELECT LineaID, Nombre, Descripcion FROM lineasproduccion";
+            return await GetTable(query);
+        }
+        public async Task<(string Descripcion, int Valor)> GetValorDePrueba(int productoID)
+        {
+            string query = $"SELECT e.Descripcion, ep.Valor " +
+                           $"FROM especificacionesproducto ep " +
+                           $"INNER JOIN especificaciones e ON e.IdEspecificacion = ep.IDEspecificacion " +
+                           $"WHERE ep.IDProducto = {productoID}";
+
+            DataTable result = await GetTable(query);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+                return (row["Descripcion"].ToString(), Convert.ToInt32(row["Valor"]));
+            }
+
+            return (null, 0); // Return default values if no data found
+        }
+        public async Task<DataTable> GetEstacionesPrueba(int lineaID)
+        {
+            string query = $"SELECT EstacionID, LineaID, Nombre, Descripcion FROM estacionesprueba WHERE LineaID = {lineaID}";
+            return await GetTable(query);
+        }
+
+        public async Task<Dictionary<string, int>> GetEspecificacionesProducto(int productoID)
+        {
+            var especificaciones = new Dictionary<string, int>();
+
+            string query = $"SELECT e.Descripcion, ep.Valor " +
+                           $"FROM especificacionesproducto ep " +
+                           $"INNER JOIN especificaciones e ON e.IdEspecificacion = ep.IDEspecificacion " +
+                           $"WHERE ep.IDProducto = {productoID}";
+
+            DataTable result = await GetTable(query);
+
+            foreach (DataRow row in result.Rows)
+            {
+                string descripcion = row["Descripcion"].ToString();
+                int valor = Convert.ToInt32(row["Valor"]);
+                especificaciones[descripcion] = valor;
+            }
+
+            return especificaciones;
         }
     }
 }
