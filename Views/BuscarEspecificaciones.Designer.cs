@@ -50,7 +50,9 @@
             this.dgEspecificaciones.AllowUserToDeleteRows = false;
             this.dgEspecificaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgEspecificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgEspecificaciones.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dgEspecificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEspecificaciones.GridColor = System.Drawing.Color.DarkMagenta;
             this.dgEspecificaciones.Location = new System.Drawing.Point(12, 58);
             this.dgEspecificaciones.Name = "dgEspecificaciones";
             this.dgEspecificaciones.ReadOnly = true;
@@ -66,6 +68,7 @@
             // 
             // txtFiltro
             // 
+            this.txtFiltro.BackColor = System.Drawing.Color.MistyRose;
             this.txtFiltro.Location = new System.Drawing.Point(83, 18);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(661, 22);
@@ -85,6 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgEspecificaciones);

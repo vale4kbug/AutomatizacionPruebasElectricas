@@ -130,7 +130,7 @@
             this.btnBuscarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscarProductos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnBuscarProductos.ForeColor = System.Drawing.Color.DarkCyan;
-            this.btnBuscarProductos.Location = new System.Drawing.Point(594, 121);
+            this.btnBuscarProductos.Location = new System.Drawing.Point(550, 132);
             this.btnBuscarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscarProductos.Name = "btnBuscarProductos";
             this.btnBuscarProductos.Size = new System.Drawing.Size(193, 54);
@@ -149,7 +149,7 @@
             this.btnEliminarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarProductos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEliminarProductos.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnEliminarProductos.Location = new System.Drawing.Point(594, 62);
+            this.btnEliminarProductos.Location = new System.Drawing.Point(550, 73);
             this.btnEliminarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarProductos.Name = "btnEliminarProductos";
             this.btnEliminarProductos.Size = new System.Drawing.Size(193, 54);
@@ -168,7 +168,7 @@
             this.btnRegistrarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistrarProductos.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegistrarProductos.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnRegistrarProductos.Location = new System.Drawing.Point(594, 2);
+            this.btnRegistrarProductos.Location = new System.Drawing.Point(550, 13);
             this.btnRegistrarProductos.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrarProductos.Name = "btnRegistrarProductos";
             this.btnRegistrarProductos.Size = new System.Drawing.Size(193, 54);
@@ -187,7 +187,7 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegresar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnRegresar.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.btnRegresar.Location = new System.Drawing.Point(677, 324);
+            this.btnRegresar.Location = new System.Drawing.Point(655, 306);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(66, 42);
@@ -206,7 +206,7 @@
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Nirmala Text", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLimpiar.ForeColor = System.Drawing.Color.DarkViolet;
-            this.btnLimpiar.Location = new System.Drawing.Point(594, 183);
+            this.btnLimpiar.Location = new System.Drawing.Point(550, 194);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(193, 54);
@@ -377,7 +377,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.ClientSize = new System.Drawing.Size(800, 378);
+            this.ClientSize = new System.Drawing.Size(760, 378);
             this.Controls.Add(this.dataEspecificaciones);
             this.Controls.Add(this.btnEliminarProcedimientos);
             this.Controls.Add(this.btnAgregarProcedimientos);

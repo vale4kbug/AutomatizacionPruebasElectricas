@@ -157,5 +157,12 @@ namespace AutomatizacionPruebasElectricas.Views
 			ModulosParaUsuarios frm = new ModulosParaUsuarios(txtUserID.Text);
 			frm.ShowDialog();
 		}
-	}
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Menu menuforma = new Menu("");
+            this.Hide();
+            menuforma.Show();
+        }
+    }
 }
