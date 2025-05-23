@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
-    public class ClsProcedimientos:ClsConnection
+    public class ClsProcedimientos : ClsConnection
     {
         public Action<DataTable> sendDatos;
 
-
+        //metodo para agregar
+        //modificar
+        //eliminar
+        //buscar
         public async Task<DataTable> GetProcedimientos(string filtro)
         {
             DataTable procedimientos = await GetTable($"select IdProcedimiento as ID, Descripcion as Nombre from procedimientos " +
@@ -21,17 +24,23 @@ namespace AutomatizacionPruebasElectricas.Classes
 
         public async Task GetProcedimiento(string id)
         {
-            DataTable datosProcedimiento = await GetTable("select IdProcedimiento, Descripcion " +
+            DataTable datosProcedimiento = await GetTable("select IdProcedimiento, Descripcion" +
                 $"from procedimientos where IdProcedimiento = {id}");
 
             sendDatos(datosProcedimiento);
         }
+		public async Task<int> PutProcedimiento(string id, string desc, string idapoyo)
+		{
+			return await PutInDatabase("insert into procedimientos (IdProcedimiento,descripcion) " +
+				$"values ('{id}','{desc}');");
+		}
 
-        //Metodo para insertar
-        public async Task<int> PutProcedimiento( string id,string desc,string idapoyo)
+		//Metodo para insertar
+		public async Task<int> PutProcedimiento(string desc)
         {
-            return await PutInDatabase("insert into procedimientos (IdProcedimiento,descripcion) " +
-                $"values ('{id}','{desc}');" );
+            return await PutInDatabase("insert into procedimientos (descripcion) " +
+                $"values ('{desc}');" +
+                $"SELECT LAST_INSERT_ID();");
         }
 
         //Metodo para actualizar, sobrecarga al metodo anterior
@@ -40,15 +49,18 @@ namespace AutomatizacionPruebasElectricas.Classes
             await PutInDatabase($"UPDATE procedimientos SET descripcion='{desc}' where IdProcedimiento='{id}'");
         }
 
-        //Metodo para eliminar u
+
+        //Metodo para eliminar 
         public async Task<int> DeleteProcedimiento(string id)
         {
             return await PutInDatabase($"delete from procedimientos where IdProcedimiento='{id}'");
         }
-        public async Task<int> DeleteProcedimientoenOtros(string id)
-        {
-            return await PutInDatabase($"delete from procedimientosproductos where idprocedimiento='{id}'");
-        }
 
-    }
+
+		public async Task<int> DeleteProcedimientoenOtros(string id)
+		{
+			return await PutInDatabase($"delete from procedimientos where IdProcedimiento='{id}'");
+		}
+
+	}
 }

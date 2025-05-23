@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,8 +17,10 @@ namespace AutomatizacionPruebasElectricas.Classes
         readonly protected MySqlCommand cmd;
         protected MySqlDataAdapter adapter;
         readonly protected MySqlDataReader reader;
+		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); // Add this line
 
-        public ClsConnection()
+
+		public ClsConnection()
         {
             try
             {
@@ -58,59 +61,56 @@ namespace AutomatizacionPruebasElectricas.Classes
             }
         }
 
-        //Esta funcion es para ejecutar querys que no regresan nada directamente, por ejemplo Inserts, Deletes, Updates
-        //y opcionalmente puede regresar el ID del último registro insertado
-        protected async Task<int> PutInDatabase(string query, params MySqlParameter[] parameters)
-        {
-            if (con == null || cmd == null)
-            {
-                MessageBox.Show("Database connection is not properly initialized", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
-            }
+		//Esta funcion es para ejecutar querys que no regresan nada directamente, por ejemplo Inserts, Deletes, Updates
+		//y opcionalmente puede regresar el ID del último registro insertado
+		protected async Task<int> PutInDatabase(string query, params MySqlParameter[] parameters)
+		{
+			if (con == null || cmd == null)
+			{
+				MessageBox.Show("Database connection is not properly initialized", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return -1;
+			}
 
-            int lastId = -1;
-            cmd.CommandText = query;
-            cmd.Parameters.Clear();
+			int lastId = -1;
+			await _semaphore.WaitAsync(); // Acquire the semaphore
 
-            if (parameters != null)  // Add null check for parameters
-            {
-                cmd.Parameters.AddRange(parameters);
-            }
-           
-      
+			try
+			{
+				cmd.CommandText = query;
+				cmd.Parameters.Clear();
+				cmd.Parameters.AddRange(parameters);
 
-            try
-            {
-                await OpenConnection();
-                var result = await cmd.ExecuteScalarAsync();
+				await OpenConnection();
+				var result = await cmd.ExecuteScalarAsync();
 
-                if (result != null && result != DBNull.Value)
-                {
-                    lastId = Convert.ToInt32(result);
-                }
-                else if (query.ToLower().Contains("insert")) // Si es una inserción y ExecuteScalar devuelve null, intentamos obtener el last insert ID de otra manera
-                {
-                    cmd.CommandText = "SELECT LAST_INSERT_ID();";
-                    var idResult = await cmd.ExecuteScalarAsync();
-                    if (idResult != null && idResult != DBNull.Value)
-                    {
-                        lastId = Convert.ToInt32(idResult);
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                await CloseConnection();
-            }
-            return lastId;
-        }
+				if (result != null && result != DBNull.Value)
+				{
+					lastId = Convert.ToInt32(result);
+				}
+				else if (query.ToLower().Contains("insert"))
+				{
+					cmd.CommandText = "SELECT LAST_INSERT_ID();";
+					var idResult = await cmd.ExecuteScalarAsync();
+					if (idResult != null && idResult != DBNull.Value)
+					{
+						lastId = Convert.ToInt32(idResult);
+					}
+				}
+			}
+			catch (MySqlException ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			finally
+			{
+				await CloseConnection();
+				_semaphore.Release(); // Release the semaphore
+			}
+			return lastId;
+		}
 
-        //Esta funcion regresa un datatable de acuerdo al query
-        protected async Task<DataTable> GetTable(string query)
+		//Esta funcion regresa un datatable de acuerdo al query
+		protected async Task<DataTable> GetTable(string query)
         {
             DataTable result = new DataTable();
             try
@@ -131,32 +131,35 @@ namespace AutomatizacionPruebasElectricas.Classes
             return result;
         }
 
-      
 
-        //Esta funcion devuelve un unico valor de la base de datos, segun el query que mandes
-        protected async Task<string> GetUniqueValue(string query, params MySqlParameter[] parameters)
-        {
-            string value = null;
-            cmd.CommandText = query;
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddRange(parameters);
 
-            try
-            {
-                if (!await OpenConnection()) return null;
+		//Esta funcion devuelve un unico valor de la base de datos, segun el query que mandes
+		protected async Task<string> GetUniqueValue(string query, params MySqlParameter[] parameters)
+		{
+			string value = null;
+			await _semaphore.WaitAsync(); // Acquire the semaphore
 
-                var obj = await cmd.ExecuteScalarAsync();
-                value = obj?.ToString();  // Si obj es null, value se mantiene en null
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error al obtener datos de la base de datos.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                await CloseConnection();
-            }
-            return value;
-        }
-    }
+			try
+			{
+				if (!await OpenConnection()) return null;
+
+				cmd.CommandText = query;
+				cmd.Parameters.Clear();
+				cmd.Parameters.AddRange(parameters);
+
+				var obj = await cmd.ExecuteScalarAsync();
+				value = obj?.ToString();
+			}
+			catch (MySqlException ex)
+			{
+				MessageBox.Show("Error al obtener datos de la base de datos.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			finally
+			{
+				await CloseConnection();
+				_semaphore.Release(); // Release the semaphore
+			}
+			return value;
+		}
+	}
 }

@@ -29,6 +29,8 @@ namespace AutomatizacionPruebasElectricas.Views
             dgProcedimientos.DataSource = procedimientos;
         }
 
+
+
         private async void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             txtFiltro.Enabled = false;
@@ -54,6 +56,7 @@ namespace AutomatizacionPruebasElectricas.Views
                 Close();
             }
         }
+
 
         private void dgProcedimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
