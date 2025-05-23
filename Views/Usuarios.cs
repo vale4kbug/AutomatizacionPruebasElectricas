@@ -163,7 +163,7 @@ namespace AutomatizacionPruebasElectricas.Views
 			PermisosProductos frm = new PermisosProductos(txtUserID.Text);
 			frm.ShowDialog();
 		}
-	}
+	
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {

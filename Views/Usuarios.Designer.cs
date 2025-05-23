@@ -350,7 +350,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -706,5 +706,7 @@
 		private System.Windows.Forms.Button BtnClear;
 		private System.Windows.Forms.Button BtnSearch;
 		private System.Windows.Forms.Button BtnCredencial;
+		private System.Windows.Forms.Button BtnProductos;
+		private System.Windows.Forms.Button btnRegresar;
 	}
 }
