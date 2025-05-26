@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -17,6 +18,18 @@ namespace AutomatizacionPruebasElectricas
 {
     public partial class Pruebas : Form
     {
+        // Aquí va la zona de declaraciones de campos
+        private SerialPort _relayPort;
+        private CancellationTokenSource _relayCts;
+        private string _selectedPort;
+        private readonly IList<(int A, int B)> _relaySequences = new List<(int, int)>
+    {
+        (1, 2),
+        (3, 4),
+        (5, 6),
+        // … agrega aquí tantos pares como relés tengas
+    };
+
 
         private int goalValue = 0; // Add the global goal value variable
         public string ResistenciaOVoltaje = "";
@@ -191,7 +204,18 @@ namespace AutomatizacionPruebasElectricas
 
 			InicializarGraficos();
 			dataWorker.RunWorkerAsync();
-		}
+
+            // Abre el puerto y lanza la secuencia de relés
+            if (string.IsNullOrEmpty(_selectedPort))
+            {
+                MessageBox.Show("Selecciona un puerto COM primero.", "Error");
+                return;
+            }
+            _relayPort.PortName = _selectedPort;
+            if (!_relayPort.IsOpen) _relayPort.Open();
+            _relayCts = new CancellationTokenSource();
+            _ = StartRelaySequenceAsync(_relayCts.Token);
+        }
 
 
 		// Update the DataWorker_DoWork calls
@@ -215,7 +239,7 @@ namespace AutomatizacionPruebasElectricas
 					GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica);
 				}));
 
-				Thread.Sleep(500);
+				Thread.Sleep(MeasurementInterval);
 			}
 
 			Thread.Sleep(1000); // Pause between phases
@@ -236,7 +260,7 @@ namespace AutomatizacionPruebasElectricas
 					GenerarMedicion("Voltaje", voltaje, dataGridView2, graficaVoltaje);
 				}));
 
-				Thread.Sleep(500);
+				Thread.Sleep(MeasurementInterval);
 			}
 		}
 
@@ -288,19 +312,31 @@ namespace AutomatizacionPruebasElectricas
             // Habilitar el botón "Iniciar" y deshabilitar el botón "Stop"
             BtnIniciar.Enabled = true;
             BtnStop.Enabled = false;
+
+            _relayCts?.Cancel();
+            if (_relayPort.IsOpen)
+                _relayPort.Close();
+
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
         {
-            bucle = false;
+            // — Detiene medición —
+            dataWorker.CancelAsync();
+            timer.Stop();
+
+            // — Detiene relés —
+            if (_relayCts != null)
+            {
+                _relayCts.Cancel();
+                _relayCts.Dispose();
+                _relayCts = null;
+            }
+            if (_relayPort.IsOpen)
+                _relayPort.Close();
+
             BtnStop.Enabled = false;
             BtnIniciar.Enabled = true;
-
-            // Detener el BackgroundWorker
-            dataWorker.CancelAsync();
-
-            // Detener el Timer
-            timer.Stop();
         }
 
         private void AgregarNumerosIniciales()
@@ -339,6 +375,31 @@ namespace AutomatizacionPruebasElectricas
             }
         }
 
+        
+        private void RefreshPorts(ToolStripMenuItem puertosItem)
+        {
+            puertosItem.DropDownItems.Clear();
+            var ports = SerialPort.GetPortNames();
+            if (ports.Length == 0)
+            {
+                puertosItem.DropDownItems.Add("— No se encontraron —").Enabled = false;
+                _selectedPort = null;
+                return;
+            }
+            foreach (var p in ports)
+            {
+                var it = new ToolStripMenuItem(p);
+                it.Click += (_, __) =>
+                {
+                    foreach (ToolStripMenuItem mi in puertosItem.DropDownItems)
+                        mi.Checked = false;
+                    it.Checked = true;
+                    _selectedPort = p;
+                };
+                puertosItem.DropDownItems.Add(it);
+            }
+        }
+
         private async void Pruebas_Load(object sender, EventArgs e)
         {
             await CargarProductosParaPrueba();
@@ -356,6 +417,20 @@ namespace AutomatizacionPruebasElectricas
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
+
+            // Prepara el puerto (sin abrirlo aún)
+            _relayPort = new SerialPort
+            {
+                BaudRate = 9600,
+                ReadTimeout = 500,
+                WriteTimeout = 500
+            };
+
+            // Crea el menú de Puertos COM en tu menuStrip1
+            var puertosItem = new ToolStripMenuItem("Puertos COM");
+            menuStrip1.Items.Add(puertosItem);
+            puertosItem.DropDownOpening += (_, __) => RefreshPorts(puertosItem);
+            RefreshPorts(puertosItem);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -445,5 +520,55 @@ namespace AutomatizacionPruebasElectricas
 			axis.Minimum = Math.Min(goal - buffer, axis.Minimum);
 			axis.Maximum = Math.Max(goal + buffer, axis.Maximum);
 		}
-	}
+
+        /// <summary>
+        /// Ejecuta en bucle la secuencia de pares de relés,
+        /// enviando A y B y esperando 1 s entre cada paso.
+        /// </summary>
+        private async Task StartRelaySequenceAsync(CancellationToken ct)
+        {
+            int idx = 0;
+            while (!ct.IsCancellationRequested)
+            {
+                var (A, B) = _relaySequences[idx];
+
+                TrySendRelay(A);
+                TrySendRelay(B);
+
+                idx = (idx + 1) % _relaySequences.Count;
+
+                try
+                {
+                    await Task.Delay(1000, ct);
+                }
+                catch (TaskCanceledException)
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Envía por el puerto serie el número de relé n.
+        /// </summary>
+        private void TrySendRelay(int n)
+        {
+            if (_relayPort.IsOpen)
+            {
+                try
+                {
+                    _relayPort.WriteLine(n.ToString());
+                }
+                catch
+                {
+                    // opcional: registrar/loguear el error
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
