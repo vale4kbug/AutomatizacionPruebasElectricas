@@ -14,7 +14,7 @@ namespace AutomatizacionPruebasElectricas
 	public partial class Login : Form
 	{
 
-        ClsMultiConnection cls = new ClsMultiConnection("USB0::0x05E6::0x2100::1242285::INSTR");
+        ClsMultiConnection cls = new ClsMultiConnection("USB0::0x05E6::0x2110::8015105::INSTR");
         
 		public Login()
 		{

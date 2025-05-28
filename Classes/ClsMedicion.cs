@@ -9,7 +9,7 @@ namespace AutomatizacionPruebasElectricas.Classes
 {
     public class ClsMedicion : ClsConnection
     {
-        public async Task<int> InsertarMedicion(string productoID, int estacionID, DateTime fecha, decimal valor, string unidad, string estado)
+        public async Task<int> InsertarMedicion(string productoID, int estacionID, DateTime fecha, double valor, string unidad, string estado)
         {
             string query = "INSERT INTO mediciones (ProductoID, EstacionID, Fecha, Valor, Unidad, Estado) " +
                            "VALUES (@ProductoID, @EstacionID, @Fecha, @Valor, @Unidad, @Estado); " +
