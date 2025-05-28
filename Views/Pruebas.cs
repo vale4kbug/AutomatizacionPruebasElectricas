@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using AutomatizacionPruebasElectricas.Classes;
 using iTextSharp.text.pdf.security;
-using MySql.Data.MySqlClient;
+
 
 namespace AutomatizacionPruebasElectricas
 {
