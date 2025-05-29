@@ -86,6 +86,7 @@
 			this.Controls.Add(this.BtnRegistrarPermisos);
 			this.Controls.Add(this.dataGridView1);
 			this.Name = "ModulosParaUsuarios";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ModulosParaUsuarios";
 			this.Load += new System.EventHandler(this.ModulosParaUsuarios_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

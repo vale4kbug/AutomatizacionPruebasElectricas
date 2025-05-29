@@ -61,10 +61,6 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="MULTIMETRO DLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Downloads\MULTIMETRO DLL.exe</HintPath>
-    </Reference>
     <Reference Include="MySql.Data, Version=9.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.3.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
@@ -124,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Classes\ClsConnection.cs" />
     <Compile Include="Classes\ClsEspecificaciones.cs" />
+    <Compile Include="Classes\ClsLineas.cs" />
     <Compile Include="Classes\ClsLogin.cs" />
     <Compile Include="Classes\ClsMedicion.cs" />
     <Compile Include="Classes\ClsMultiConnection.cs" />
@@ -165,6 +162,12 @@
     </Compile>
     <Compile Include="Views\Linea.Designer.cs">
       <DependentUpon>Linea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lineas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Lineas.Designer.cs">
+      <DependentUpon>Lineas.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
@@ -248,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Linea.resx">
       <DependentUpon>Linea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Lineas.resx">
+      <DependentUpon>Lineas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
