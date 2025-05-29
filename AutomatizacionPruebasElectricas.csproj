@@ -160,6 +160,12 @@
     <Compile Include="Views\Estacion.Designer.cs">
       <DependentUpon>Estacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PruebaManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PruebaManual.Designer.cs">
+      <DependentUpon>PruebaManual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Linea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productos.resx">
       <DependentUpon>Productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PruebaManual.resx">
+      <DependentUpon>PruebaManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Pruebas.resx">
       <DependentUpon>Pruebas.cs</DependentUpon>

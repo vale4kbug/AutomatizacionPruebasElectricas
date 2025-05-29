@@ -118,8 +118,9 @@ namespace AutomatizacionPruebasElectricas
 					botonEncontrado.Visible = true;
 				}
 			}
+			button1.Visible = true;	
 
-		}
+        }
 
         private void btnLinea_Click(object sender, EventArgs e)
         {
@@ -131,6 +132,12 @@ namespace AutomatizacionPruebasElectricas
         {
             Estacion estacion = new Estacion();
             estacion.Show();
+        }
+		
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+			PruebaManual pruebaManual = new PruebaManual();
+			pruebaManual.Show();
         }
     }
 }
