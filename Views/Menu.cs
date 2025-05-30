@@ -132,5 +132,12 @@ namespace AutomatizacionPruebasElectricas
             Estacion estacion = new Estacion();
             estacion.Show();
         }
+
+        private void Manual_Click(object sender, EventArgs e)
+        {
+			PruebaManual frm = new PruebaManual();
+			frm.ShowDialog
+				();
+        }
     }
 }
