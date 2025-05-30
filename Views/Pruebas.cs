@@ -29,7 +29,9 @@ namespace AutomatizacionPruebasElectricas
         (5, 6),
         // … agrega aquí tantos pares como relés tengas
     };
-
+        private readonly double[] _resistanceGoals = { 13, 13, 72, 220 };
+        private readonly double[] _voltageGoals = { 3.3, 5, 12, -12 };
+        private int _currentMeasurementIndex = 0;
 
         private int goalValue = 0; // Add the global goal value variable
         public string ResistenciaOVoltaje = "";
@@ -53,7 +55,7 @@ namespace AutomatizacionPruebasElectricas
         public Pruebas()
         {
             InitializeComponent();
-            cls = new ClsMultiConnection("USB0::0x05E6::0x2110::8015107::INSTR");
+            cls = new ClsMultiConnection("USB0::0x05E6::0x2110::8015105::INSTR");
             cls.sendValue = RecibirValor;
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -104,7 +106,7 @@ namespace AutomatizacionPruebasElectricas
         private System.Windows.Forms.Timer timer;
 
         // Número máximo de puntos a mostrar antes de hacer scroll
-        private const int MaxPuntos = 30;
+        private const int MaxPuntos = 5;
 
         // Contador para el eje X (tiempo)
         private int contadorTiempo = 0;
@@ -137,32 +139,27 @@ namespace AutomatizacionPruebasElectricas
             }
         }
 
-        // Modified Initialize Charts
         private void InicializarGraficos()
         {
-            // Resistance Chart
+            // Resistencia Chart
             MedicionGrafica.Series.Clear();
-            var serieResistencia = new Series("Resistencia")
+            MedicionGrafica.Series.Add(new Series("Resistencia")
             {
                 ChartType = SeriesChartType.Line,
                 Color = Color.Green
-            };
-            MedicionGrafica.Series.Add(serieResistencia);
+            });
 
-            // Voltage Chart
+            // Voltaje Chart
             graficaVoltaje.Series.Clear();
-            var serieVoltaje = new Series("Voltaje")
+            graficaVoltaje.Series.Add(new Series("Voltaje")
             {
                 ChartType = SeriesChartType.Line,
                 Color = Color.Blue
-            };
-            graficaVoltaje.Series.Add(serieVoltaje);
+            });
 
-            // Configure chart areas
+            // Configurar áreas
             ConfigureChartArea(MedicionGrafica.ChartAreas[0], "Ω");
             ConfigureChartArea(graficaVoltaje.ChartAreas[0], "V");
-
-            UpdateGoalLines();  // Add this line
         }
         private void ConfigureChartArea(ChartArea area, string unit)
         {
@@ -201,8 +198,8 @@ namespace AutomatizacionPruebasElectricas
             contadorTiempoVoltaje = 0;
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
-            MedicionGrafica.Series[0].Points.Clear();
-            graficaVoltaje.Series[0].Points.Clear();
+            MedicionGrafica.Series.Clear();
+            graficaVoltaje.Series.Clear();
 
             InicializarGraficos();
             dataWorker.RunWorkerAsync();
@@ -247,189 +244,189 @@ namespace AutomatizacionPruebasElectricas
         }
 
         // Update the DataWorker_DoWork calls
-        private void DataWorker_DoWork(object sender, DoWorkEventArgs e)
+        private async void DataWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Random rand = new Random();
+            // Obtener el productId en el hilo UI antes de empezar
+            string productId = string.Empty;
+            if (cmbProducto.InvokeRequired)
+            {
+                cmbProducto.Invoke(new Action(() => {
+                    productId = cmbProducto.SelectedValue?.ToString() ?? string.Empty;
+                }));
+            }
+            else
+            {
+                productId = cmbProducto.SelectedValue?.ToString() ?? string.Empty;
+            }
+
             _relayPort.Close();
 
-            if(_voltageGoal == 5)
+            if (dataWorker.CancellationPending)
             {
-                _relayPort.Open();
-                TrySendRelay(1);
-                _relayPort.Close();
+                e.Cancel = true;
+                return;
             }
 
-            if (_voltageGoal == 12)
-            {
-                _relayPort.Open();
-                TrySendRelay(1);
-                _relayPort.Close();
-                TrySendRelay(2);
-
-                _relayPort.Open();
-                TrySendRelay(2);
-                _relayPort.Close();
-            }
-
-            if (_voltageGoal == -12)
-            {
-                _relayPort.Open();
-                TrySendRelay(3);
-                _relayPort.Close();
-            }
-
-            // Resistance Phase (10 measurements)
-            for (int i = 0; i < 10; i++)
-            {
+            // Reiniciar índice al comenzar nueva secuencia
+            _currentMeasurementIndex = 0;
 
 
-                if (dataWorker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return;
-                }
+            // PRIMERA MEDICION, RESISTENCIA CON 3.3V (meta 13)
+            cls.SetModoResistencia();
+            cls.LeerMedicion();
+            double resistencia = cls.value;
+            await GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica, productId);
+            Thread.Sleep(MeasurementInterval);
 
-                cls.SetModoResistencia();
-                cls.LeerMedicion();
+            // SEGUNDA MEDICION, CON 5V (meta 13)
+            _relayPort.Open();
+            TrySendRelay(1);
+            _relayPort.Close();
+            cls.SetModoResistencia();
+            cls.LeerMedicion();
+            resistencia = cls.value;
+            await GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica, productId);
+            Thread.Sleep(MeasurementInterval);
 
-                string x = "10";
+            // TERCERA MEDICION, CON 12V (meta 72)
+            _relayPort.Open();
+            TrySendRelay(2);
+            _relayPort.Close();
+            cls.SetModoResistencia();
+            cls.LeerMedicion();
+            resistencia = cls.value;
+            await GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica, productId);
+            Thread.Sleep(MeasurementInterval);
 
-                if (double.TryParse(x, out double resistencia))
-                {
-                    resistencia = cls.value;
-                }
-                else
-                {
-                    resistencia = 0;
-                }
+            // CUARTA MEDICION, CON -12V (meta 220)
+            _relayPort.Open();
+            TrySendRelay(1);
+            _relayPort.Close();
+            _relayPort.Open();
+            TrySendRelay(2);
+            _relayPort.Close();
+            _relayPort.Open();
+            TrySendRelay(3);
+            _relayPort.Close();
+            cls.SetModoResistencia();
+            cls.LeerMedicion();
+            resistencia = cls.value;
+            await GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica, productId);
+            Thread.Sleep(MeasurementInterval);
 
-                if (resistencia > 9000000)
-                {
-                    dataGridView1.Invoke(new Action(() =>
-                    {
-                        GenerarMedicion("Resistencia", 0, dataGridView1, MedicionGrafica);
-                    }));
-                    continue;
-                }
-
-                dataGridView1.Invoke(new Action(() =>
-                {
-                    GenerarMedicion("Resistencia", resistencia, dataGridView1, MedicionGrafica);
-                }));
-
-                Thread.Sleep(MeasurementInterval);
-
-            }
+            // Apagamos relays y comenzamos mediciones de voltaje
+            _relayPort.Open();
+            TrySendRelay(3);
+            _relayPort.Close();
             _relayPort.Open();
             TrySendRelay(4);
             _relayPort.Close();
-
-            Thread.Sleep(1000); // Pause between phases
-
-            // Voltage Phase (10 measurements)
-            for (int i = 0; i < 10; i++)
-            {
-                if (dataWorker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-
-                cls.SetModoVoltaje();
-                cls.LeerMedicion();
-
-                string x = "10";
-
-                if (double.TryParse(x, out double voltaje))
-                {
-                    voltaje = cls.value;
-                }
-                else
-                {
-                    voltaje = 0;
-                }
-
-                dataGridView2.Invoke(new Action(() =>
-                {
-                    GenerarMedicion("Voltaje", voltaje, dataGridView2, graficaVoltaje);
-                }));
-
-                Thread.Sleep(MeasurementInterval);
-            }
+            _currentMeasurementIndex = 0; // Reiniciar índice para voltajes
 
 
+            // PRIMERA MEDICION, RESISTENCIA CON 3.3V (meta 13)
+            cls.SetModoVoltaje();
+            cls.LeerMedicion();
+            double vl = cls.value;
+            await GenerarMedicion("Voltaje", vl, dataGridView2, graficaVoltaje, productId);
+            Thread.Sleep(MeasurementInterval);
 
-            if (_voltageGoal == 5)
-            {
-                _relayPort.Open();
-                TrySendRelay(1);
-                _relayPort.Close();
-            }
+            // SEGUNDA MEDICION, CON 5V (meta 13)
+            _relayPort.Open();
+            TrySendRelay(1);
+            _relayPort.Close();
+            cls.SetModoVoltaje();
+            cls.LeerMedicion();
+            vl = cls.value;
+            await GenerarMedicion("Voltaje", vl, dataGridView2, graficaVoltaje, productId);
+            Thread.Sleep(MeasurementInterval);
 
+            // TERCERA MEDICION, CON 12V (meta 72)
+            _relayPort.Open();
+            TrySendRelay(2);
+            _relayPort.Close();
+            cls.SetModoVoltaje();
+            cls.LeerMedicion();
+            vl = cls.value;
+            await GenerarMedicion("Voltaje", vl, dataGridView2, graficaVoltaje, productId);
+            Thread.Sleep(MeasurementInterval);
 
-            if (_voltageGoal == 12)
-            {
-                _relayPort.Open();
-                TrySendRelay(1);
-                _relayPort.Close();
-                TrySendRelay(2);
+            // CUARTA MEDICION, CON -12V (meta 220)
+            _relayPort.Open();
+            TrySendRelay(1);
+            _relayPort.Close();
+            _relayPort.Open();
+            TrySendRelay(2);
+            _relayPort.Close();
+            _relayPort.Open();
+            TrySendRelay(3);
+            _relayPort.Close();
+            cls.SetModoVoltaje();
+            cls.LeerMedicion();
+            vl = cls.value;
+            await GenerarMedicion("Voltaje", vl, dataGridView2, graficaVoltaje, productId);
+            Thread.Sleep(MeasurementInterval);
 
-                _relayPort.Open();
-                TrySendRelay(2);
-                _relayPort.Close(); 
-            }
-
-            if (_voltageGoal == -12)
-            {
-                _relayPort.Open();
-                TrySendRelay(3);
-                _relayPort.Close();
-            }
-
+            // Apagamos relays y comenzamos mediciones de voltaje
+            _relayPort.Open();
+            TrySendRelay(3);
+            _relayPort.Close();
             _relayPort.Open();
             TrySendRelay(4);
             _relayPort.Close();
+            _currentMeasurementIndex = 0; // Reiniciar índice para voltajes
+
+
         }
 
-
-        // Change the method signature to remove the ref parameter
-        private async void GenerarMedicion(string tipo, double valor, DataGridView grid, Chart chart)
+        private async Task GenerarMedicion(string tipo, double valor, DataGridView grid, Chart chart, string productId)
         {
-            // Determine goal and unit based on measurement type
-            double goal = tipo == "Resistencia" ? _resistanceGoal : _voltageGoal;
+            // Obtener el valor meta actual basado en el índice
+            double goal = tipo == "Resistencia" ? _resistanceGoals[_currentMeasurementIndex]
+                                               : _voltageGoals[_currentMeasurementIndex];
+
             string unidad = tipo == "Resistencia" ? "Ω" : "V";
 
-            // Calculate status
-            string estado = (valor >= goal - (tipo == "Resistencia" ? 5 : 2) &&
-                           valor <= goal + (tipo == "Resistencia" ? 5 : 2))
+            // Calcular estado (con márgenes diferentes para resistencia y voltaje)
+            double margin = tipo == "Resistencia" ? goal * 0.1 : 0.2; // 10% para resistencia, 0.2V para voltaje
+            string estado = (valor >= goal - margin && valor <= goal + margin)
                            ? "Aprobado" : "Reprobado";
 
-            // Add to DataGridView with explicit goal value
-            grid.Rows.Add(tipo, valor, goal, estado);
-
-            // Get and update appropriate counter
-            int counter = tipo == "Resistencia" ? contadorTiempoResistencia++ : contadorTiempoVoltaje++;
-
-            // Chart update
-            var series = chart.Series[0];
-            series.Points.AddXY(counter, valor);
-
-            // Handle chart scrolling
-            if (counter > MaxPuntos)
+            // Agregar a DataGridView (usar Invoke si es necesario)
+            if (grid.InvokeRequired)
             {
-                chart.ChartAreas[0].AxisX.Minimum = counter - MaxPuntos;
-                chart.ChartAreas[0].AxisX.Maximum = counter;
+                grid.Invoke(new Action(() =>
+                {
+                    grid.Rows.Add(tipo, $"{valor:F2}", $"{goal:F2}", estado);
+                }));
+            }
+            else
+            {
+                grid.Rows.Add(tipo, $"{valor:F2}", $"{goal:F2}", estado);
             }
 
-            // Database insertion
+            // Actualizar gráfica (siempre debe ejecutarse en el hilo UI)
+            if (chart.InvokeRequired)
+            {
+                chart.Invoke(new Action(() => UpdateChart(tipo, valor, goal, chart)));
+            }
+            else
+            {
+                UpdateChart(tipo, valor, goal, chart);
+            }
+
+            // Insertar en base de datos
             await gestorMediciones.InsertarMedicion(
-                cmbProducto.SelectedValue.ToString(),
+                productId,
                 1, // Station ID
                 DateTime.Now,
-                Convert.ToDouble(valor),
+                valor,
                 unidad,
                 estado
             );
+
+            // Incrementar índice para la próxima medición
+            _currentMeasurementIndex = (_currentMeasurementIndex + 1) % _resistanceGoals.Length;
         }
         private void DataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -606,19 +603,19 @@ namespace AutomatizacionPruebasElectricas
 
                 foreach (var v in _productSpecs)
                 {
-                    if(v.Key == "Resistencia")
+                    if (v.Key == "Resistencia")
                     {
                         double.TryParse(v.Value.ToString(), out _resistanceGoal);
                     }
-                    if(v.Key == "Voltaje")
+                    if (v.Key == "Voltaje")
                     {
                         double.TryParse(v.Value.ToString(), out _voltageGoal);
                     }
                 }
 
-                UpdateGoalLines();
+               // UpdateGoalLines();
                 lblProductName.Text = $"Meta Resistencia: {_resistanceGoal}Ω | Meta Voltaje: {_voltageGoal}V";
-                UpdateGoalLines();  // Add this line
+               // UpdateGoalLines();  // Add this line
 
                 //if (_productSpecs.TryGetValue("Resistencia", out _resistanceGoal) ||
                 //    _productSpecs.TryGetValue("Voltaje", out _voltageGoal))
@@ -630,39 +627,41 @@ namespace AutomatizacionPruebasElectricas
             }
         }
 
-        private void UpdateGoalLines()
+        private void UpdateChart(string tipo, double valor, double goal, Chart chart)
         {
-            // Update both charts
-            UpdateChartGoalLine(MedicionGrafica, _resistanceGoal, Color.Green, "Resistencia");
-            UpdateChartGoalLine(graficaVoltaje, _voltageGoal, Color.Blue, "Voltaje");
+            var series = chart.Series[0];
+            int counter = tipo == "Resistencia" ? contadorTiempoResistencia++ : contadorTiempoVoltaje++;
 
-            // Refresh charts
-            MedicionGrafica.Invalidate();
-            graficaVoltaje.Invalidate();
-        }
-        private void UpdateChartGoalLine(Chart chart, double goal, Color color, string measurementType)
-        {
-            chart.ChartAreas[0].AxisY.StripLines.Clear();
+            // Agregar punto de medición
+            series.Points.AddXY(counter, valor);
 
-            StripLine goalLine = new StripLine
+            // Agregar punto de meta (en una serie diferente)
+            if (chart.Series.Count < 2)
             {
-                IntervalOffset = goal,
-                StripWidth = 0.1,  // Thin line width
-                BackColor = Color.Transparent,  // No fill
-                BorderColor = color,
-                BorderWidth = 2,
-                BorderDashStyle = ChartDashStyle.Solid,  // Solid line
-                ToolTip = $"Meta {measurementType}: {goal}{(measurementType == "Resistencia" ? "Ω" : "V")}"
-            };
+                var goalSeries = new Series(tipo + " Meta")
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = tipo == "Resistencia" ? Color.DarkGreen : Color.DarkBlue,
+                    BorderWidth = 2,
+                    BorderDashStyle = ChartDashStyle.Dash
+                };
+                chart.Series.Add(goalSeries);
+            }
 
-            chart.ChartAreas[0].AxisY.StripLines.Add(goalLine);
+            chart.Series[1].Points.AddXY(counter, goal);
 
-            // Ensure the goal line remains visible in the chart
-            double buffer = measurementType == "Resistencia" ? 10 : 5;
-            var axis = chart.ChartAreas[0].AxisY;
-            axis.Minimum = Math.Min(goal - buffer, axis.Minimum);
-            axis.Maximum = Math.Max(goal + buffer, axis.Maximum);
+            // Ajustar vista
+            if (counter > MaxPuntos)
+            {
+                chart.ChartAreas[0].AxisX.Minimum = counter - MaxPuntos;
+                chart.ChartAreas[0].AxisX.Maximum = counter;
+            }
+
+            // Ajustar eje Y automáticamente
+            chart.ChartAreas[0].AxisY.Minimum = double.NaN;
+            chart.ChartAreas[0].AxisY.Maximum = double.NaN;
         }
+
 
         /// <summary>
         /// Ejecuta en bucle la secuencia de pares de relés,
