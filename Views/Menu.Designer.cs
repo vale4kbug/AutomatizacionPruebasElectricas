@@ -37,17 +37,16 @@
             this.Procedimientos = new System.Windows.Forms.Button();
             this.btnLinea = new System.Windows.Forms.Button();
             this.btnEstacion = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(156, 11);
+            this.label3.Location = new System.Drawing.Point(139, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(689, 32);
+            this.label3.Size = new System.Drawing.Size(590, 29);
             this.label3.TabIndex = 6;
             this.label3.Text = "Sistema de Automatizacion de Pruebas Electricas";
             // 
@@ -59,10 +58,10 @@
             this.Productos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Productos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Productos.ForeColor = System.Drawing.Color.MediumTurquoise;
-            this.Productos.Location = new System.Drawing.Point(144, 85);
-            this.Productos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Productos.Location = new System.Drawing.Point(128, 68);
+            this.Productos.Margin = new System.Windows.Forms.Padding(4);
             this.Productos.Name = "Productos";
-            this.Productos.Size = new System.Drawing.Size(190, 85);
+            this.Productos.Size = new System.Drawing.Size(169, 68);
             this.Productos.TabIndex = 7;
             this.Productos.Text = "Productos";
             this.Productos.UseMnemonic = false;
@@ -79,10 +78,10 @@
             this.Pruebas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Pruebas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Pruebas.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.Pruebas.Location = new System.Drawing.Point(575, 85);
-            this.Pruebas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Pruebas.Location = new System.Drawing.Point(511, 68);
+            this.Pruebas.Margin = new System.Windows.Forms.Padding(4);
             this.Pruebas.Name = "Pruebas";
-            this.Pruebas.Size = new System.Drawing.Size(190, 85);
+            this.Pruebas.Size = new System.Drawing.Size(169, 68);
             this.Pruebas.TabIndex = 9;
             this.Pruebas.Text = "Pruebas";
             this.Pruebas.UseMnemonic = false;
@@ -99,10 +98,10 @@
             this.Usuarios.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Usuarios.ForeColor = System.Drawing.Color.Purple;
-            this.Usuarios.Location = new System.Drawing.Point(366, 85);
-            this.Usuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Usuarios.Location = new System.Drawing.Point(325, 68);
+            this.Usuarios.Margin = new System.Windows.Forms.Padding(4);
             this.Usuarios.Name = "Usuarios";
-            this.Usuarios.Size = new System.Drawing.Size(190, 85);
+            this.Usuarios.Size = new System.Drawing.Size(169, 68);
             this.Usuarios.TabIndex = 10;
             this.Usuarios.Text = "Usuarios";
             this.Usuarios.UseMnemonic = false;
@@ -119,10 +118,10 @@
             this.Ventas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Ventas.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Ventas.Location = new System.Drawing.Point(366, 209);
-            this.Ventas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Ventas.Location = new System.Drawing.Point(325, 167);
+            this.Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Ventas.Name = "Ventas";
-            this.Ventas.Size = new System.Drawing.Size(190, 85);
+            this.Ventas.Size = new System.Drawing.Size(169, 68);
             this.Ventas.TabIndex = 11;
             this.Ventas.Text = "Ventas";
             this.Ventas.UseMnemonic = false;
@@ -139,10 +138,10 @@
             this.Especificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Especificaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Especificaciones.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.Especificaciones.Location = new System.Drawing.Point(144, 209);
-            this.Especificaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Especificaciones.Location = new System.Drawing.Point(128, 167);
+            this.Especificaciones.Margin = new System.Windows.Forms.Padding(4);
             this.Especificaciones.Name = "Especificaciones";
-            this.Especificaciones.Size = new System.Drawing.Size(190, 85);
+            this.Especificaciones.Size = new System.Drawing.Size(169, 68);
             this.Especificaciones.TabIndex = 12;
             this.Especificaciones.Text = "Especificaciones";
             this.Especificaciones.UseMnemonic = false;
@@ -159,10 +158,10 @@
             this.Procedimientos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Procedimientos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.Procedimientos.ForeColor = System.Drawing.Color.Coral;
-            this.Procedimientos.Location = new System.Drawing.Point(575, 209);
-            this.Procedimientos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Procedimientos.Location = new System.Drawing.Point(511, 167);
+            this.Procedimientos.Margin = new System.Windows.Forms.Padding(4);
             this.Procedimientos.Name = "Procedimientos";
-            this.Procedimientos.Size = new System.Drawing.Size(190, 85);
+            this.Procedimientos.Size = new System.Drawing.Size(169, 68);
             this.Procedimientos.TabIndex = 13;
             this.Procedimientos.Text = "Procedimientos";
             this.Procedimientos.UseMnemonic = false;
@@ -179,10 +178,10 @@
             this.btnLinea.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLinea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLinea.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnLinea.Location = new System.Drawing.Point(218, 330);
-            this.btnLinea.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLinea.Location = new System.Drawing.Point(194, 264);
+            this.btnLinea.Margin = new System.Windows.Forms.Padding(4);
             this.btnLinea.Name = "btnLinea";
-            this.btnLinea.Size = new System.Drawing.Size(190, 85);
+            this.btnLinea.Size = new System.Drawing.Size(169, 68);
             this.btnLinea.TabIndex = 14;
             this.btnLinea.Text = "Linea ";
             this.btnLinea.UseMnemonic = false;
@@ -199,10 +198,10 @@
             this.btnEstacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEstacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnEstacion.ForeColor = System.Drawing.Color.Tan;
-            this.btnEstacion.Location = new System.Drawing.Point(497, 330);
-            this.btnEstacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEstacion.Location = new System.Drawing.Point(442, 264);
+            this.btnEstacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnEstacion.Name = "btnEstacion";
-            this.btnEstacion.Size = new System.Drawing.Size(190, 85);
+            this.btnEstacion.Size = new System.Drawing.Size(169, 68);
             this.btnEstacion.TabIndex = 15;
             this.btnEstacion.Text = "Estacion";
             this.btnEstacion.UseMnemonic = false;
@@ -211,33 +210,12 @@
             this.btnEstacion.Visible = false;
             this.btnEstacion.Click += new System.EventHandler(this.btnEstacion_Click);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Honeydew;
-            this.button1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.ForestGreen;
-            this.button1.Location = new System.Drawing.Point(697, 330);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 85);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Manual";
-            this.button1.UseMnemonic = false;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.UseWaitCursor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(900, 562);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnEstacion);
             this.Controls.Add(this.btnLinea);
             this.Controls.Add(this.Procedimientos);
@@ -267,7 +245,7 @@
         private System.Windows.Forms.Button Ventas;
         private System.Windows.Forms.Button Especificaciones;
         private System.Windows.Forms.Button Procedimientos;
-        private System.Windows.Forms.Button btnLinea;
+        private System.Windows.Forms.Button Lineas;
         private System.Windows.Forms.Button btnEstacion;
         private System.Windows.Forms.Button button1;
     }

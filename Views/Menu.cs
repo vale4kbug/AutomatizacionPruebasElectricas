@@ -124,8 +124,8 @@ namespace AutomatizacionPruebasElectricas
 
         private void btnLinea_Click(object sender, EventArgs e)
         {
-            Linea linea = new Linea();
-            linea.Show();
+            Lineas linea = new Lineas();
+            linea.ShowDialog();
         }
 
         private void btnEstacion_Click(object sender, EventArgs e)

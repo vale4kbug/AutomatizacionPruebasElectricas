@@ -196,6 +196,7 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtId);
 			this.Name = "Especificaciones";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Especificaciones";
 			this.Load += new System.EventHandler(this.Especificaciones_Load);
 			this.ResumeLayout(false);

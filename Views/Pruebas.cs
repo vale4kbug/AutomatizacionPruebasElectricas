@@ -23,12 +23,12 @@ namespace AutomatizacionPruebasElectricas
         private CancellationTokenSource _relayCts;
         private string _selectedPort;
         private readonly IList<(int A, int B)> _relaySequences = new List<(int, int)>
-    {
-        (1, 2),
-        (3, 4),
-        (5, 6),
-        // … agrega aquí tantos pares como relés tengas
-    };
+        {
+            (1, 2),
+            (3, 4),
+            (5, 6),
+            // … agrega aquí tantos pares como relés tengas
+        };
 
 
         private int goalValue = 0; // Add the global goal value variable
@@ -214,10 +214,10 @@ namespace AutomatizacionPruebasElectricas
                 MessageBox.Show("Selecciona un puerto COM primero.", "Error");
                 return;
             }
-            _relayPort.PortName = _selectedPort;
-            if (!_relayPort.IsOpen) _relayPort.Open();
-            _relayCts = new CancellationTokenSource();
-            _ = StartRelaySequenceAsync(_relayCts.Token);
+            //_relayPort.PortName = _selectedPort;
+            //if (!_relayPort.IsOpen) _relayPort.Open();
+            //_relayCts = new CancellationTokenSource();
+            //_ = StartRelaySequenceAsync(_relayCts.Token);
         }
 
         ClsMultiConnection cls;
@@ -230,21 +230,6 @@ namespace AutomatizacionPruebasElectricas
                 this.value = value.Trim();
         }
 
-        private async Task<string> WaitForValueAsync(int timeoutMs)
-        {
-            DateTime start = DateTime.Now;
-            while ((DateTime.Now - start).TotalMilliseconds < timeoutMs)
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    string capturedValue = value;
-                    value = ""; // Reset after capturing to avoid old values
-                    return capturedValue;
-                }
-                await Task.Delay(100);
-            }
-            return "0"; // Timeout, handle as needed
-        }
 
         // Update the DataWorker_DoWork calls
         private void DataWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -290,6 +275,7 @@ namespace AutomatizacionPruebasElectricas
 
                 Thread.Sleep(MeasurementInterval);
 
+            
             }
 
             Thread.Sleep(1000); // Pause between phases
@@ -493,6 +479,8 @@ namespace AutomatizacionPruebasElectricas
             menuStrip1.Items.Add(puertosItem);
             puertosItem.DropDownOpening += (_, __) => RefreshPorts(puertosItem);
             RefreshPorts(puertosItem);
+
+            cmbProducto_SelectedIndexChanged(sender, e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -539,7 +527,7 @@ namespace AutomatizacionPruebasElectricas
             {
                 _productSpecs = await gestorMediciones.GetEspecificacionesProducto(productId);
 
-                if (_productSpecs.TryGetValue("Resistencia", out _resistanceGoal) &&
+                if (_productSpecs.TryGetValue("Resistencia", out _resistanceGoal) ||
                     _productSpecs.TryGetValue("Voltaje", out _voltageGoal))
                 {
                     UpdateGoalLines();
