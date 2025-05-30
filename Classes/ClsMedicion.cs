@@ -70,9 +70,9 @@ namespace AutomatizacionPruebasElectricas.Classes
             return await GetTable(query);
         }
 
-        public async Task<Dictionary<string, int>> GetEspecificacionesProducto(int productoID)
+        public async Task<Dictionary<string, double>> GetEspecificacionesProducto(int productoID)
         {
-            var especificaciones = new Dictionary<string, int>();
+            var especificaciones = new Dictionary<string, double>();
 
             string query = $"SELECT e.Descripcion, ep.Valor " +
                            $"FROM especificacionesproducto ep " +
@@ -84,7 +84,7 @@ namespace AutomatizacionPruebasElectricas.Classes
             foreach (DataRow row in result.Rows)
             {
                 string descripcion = row["Descripcion"].ToString();
-                int valor = Convert.ToInt32(row["Valor"]);
+                double valor = Convert.ToDouble(row["Valor"]);
                 especificaciones[descripcion] = valor;
             }
 

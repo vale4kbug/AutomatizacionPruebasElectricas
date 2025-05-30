@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using AutomatizacionPruebasElectricas.Classes;
 using iTextSharp.text.pdf.security;
-
+using MySql.Data.MySqlClient;
 
 namespace AutomatizacionPruebasElectricas
 {
@@ -38,12 +38,12 @@ namespace AutomatizacionPruebasElectricas
 
         public int contadorTiempoResistencia = 0;
         public int contadorTiempoVoltaje = 0;
-        public int _voltageGoal;
+        public double _voltageGoal;
 
         private bool _isCurrentMeasurement = true;
-        private Dictionary<string, int> _productSpecs;
+        private Dictionary<string, double> _productSpecs;
         private int _currentGoal;
-        private int _resistanceGoal;
+        private double _resistanceGoal;
         private const int MeasurementInterval = 2000; // 1 second between types
 
         // Add these to your form class variables
@@ -53,7 +53,7 @@ namespace AutomatizacionPruebasElectricas
         public Pruebas()
         {
             InitializeComponent();
-            cls = new ClsMultiConnection("USB0::0x05E6::0x2110::8015105::INSTR");
+            cls = new ClsMultiConnection("USB0::0x05E6::0x2110::8015107::INSTR");
             cls.sendValue = RecibirValor;
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -209,13 +209,13 @@ namespace AutomatizacionPruebasElectricas
 
 
             // Abre el puerto y lanza la secuencia de relés
-            if (string.IsNullOrEmpty(_selectedPort))
-            {
-                MessageBox.Show("Selecciona un puerto COM primero.", "Error");
-                return;
-            }
-            //_relayPort.PortName = _selectedPort;
-            //if (!_relayPort.IsOpen) _relayPort.Open();
+            //if (string.IsNullOrEmpty(_selectedPort))
+            //{
+            //    MessageBox.Show("Selecciona un puerto COM primero.", "Error");
+            //    dataWorker.CancelAsync();
+            //    return;
+            //}
+            _relayPort.PortName = "COM3";
             //_relayCts = new CancellationTokenSource();
             //_ = StartRelaySequenceAsync(_relayCts.Token);
         }
@@ -235,10 +235,39 @@ namespace AutomatizacionPruebasElectricas
         private void DataWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Random rand = new Random();
+            _relayPort.Close();
+
+            if(_voltageGoal == 5)
+            {
+                _relayPort.Open();
+                TrySendRelay(1);
+                _relayPort.Close();
+            }
+
+            if (_voltageGoal == 12)
+            {
+                _relayPort.Open();
+                TrySendRelay(1);
+                _relayPort.Close();
+                TrySendRelay(2);
+
+                _relayPort.Open();
+                TrySendRelay(2);
+                _relayPort.Close();
+            }
+
+            if (_voltageGoal == -12)
+            {
+                _relayPort.Open();
+                TrySendRelay(3);
+                _relayPort.Close();
+            }
 
             // Resistance Phase (10 measurements)
             for (int i = 0; i < 10; i++)
             {
+
+
                 if (dataWorker.CancellationPending)
                 {
                     e.Cancel = true;
@@ -277,6 +306,9 @@ namespace AutomatizacionPruebasElectricas
 
             
             }
+            _relayPort.Open();
+            TrySendRelay(4);
+            _relayPort.Close();
 
             Thread.Sleep(1000); // Pause between phases
 
@@ -310,6 +342,39 @@ namespace AutomatizacionPruebasElectricas
 
                 Thread.Sleep(MeasurementInterval);
             }
+
+
+
+            if (_voltageGoal == 5)
+            {
+                _relayPort.Open();
+                TrySendRelay(1);
+                _relayPort.Close();
+            }
+
+
+            if (_voltageGoal == 12)
+            {
+                _relayPort.Open();
+                TrySendRelay(1);
+                _relayPort.Close();
+                TrySendRelay(2);
+
+                _relayPort.Open();
+                TrySendRelay(2);
+                _relayPort.Close(); 
+            }
+
+            if (_voltageGoal == -12)
+            {
+                _relayPort.Open();
+                TrySendRelay(3);
+                _relayPort.Close();
+            }
+
+            _relayPort.Open();
+            TrySendRelay(4);
+            _relayPort.Close();
         }
 
 
@@ -317,7 +382,7 @@ namespace AutomatizacionPruebasElectricas
         private async void GenerarMedicion(string tipo, double valor, DataGridView grid, Chart chart)
         {
             // Determine goal and unit based on measurement type
-            int goal = tipo == "Resistencia" ? _resistanceGoal : _voltageGoal;
+            double goal = tipo == "Resistencia" ? _resistanceGoal : _voltageGoal;
             string unidad = tipo == "Resistencia" ? "Ω" : "V";
 
             // Calculate status
@@ -387,19 +452,19 @@ namespace AutomatizacionPruebasElectricas
             BtnIniciar.Enabled = true;
         }
 
-        private void AgregarNumerosIniciales()
-        {
-            Random rand = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                double corriente = rand.Next(_currentGoal - 2, _currentGoal + 2);
-                double resistencia = rand.Next(_resistanceGoal - 5, _resistanceGoal + 5);
+        //private void AgregarNumerosIniciales()
+        //{
+        //    Random rand = new Random();
+        //    for (int i = 0; i < 20; i++)
+        //    {
+        //        double corriente = rand.Next(_currentGoal - 2, _currentGoal + 2);
+        //        double resistencia = rand.Next(_resistanceGoal - 5, _resistanceGoal + 5);
 
-                MedicionGrafica.Series["Corriente"].Points.AddXY(i, corriente);
-                MedicionGrafica.Series["Resistencia"].Points.AddXY(i, resistencia);
-            }
-            contadorTiempo = 20; // Ajustar el contador para continuar desde este punto
-        }
+        //        MedicionGrafica.Series["Corriente"].Points.AddXY(i, corriente);
+        //        MedicionGrafica.Series["Resistencia"].Points.AddXY(i, resistencia);
+        //    }
+        //    contadorTiempo = 20; // Ajustar el contador para continuar desde este punto
+        //}
 
         private async void CargarComboboxLineas()
         {
@@ -527,13 +592,29 @@ namespace AutomatizacionPruebasElectricas
             {
                 _productSpecs = await gestorMediciones.GetEspecificacionesProducto(productId);
 
-                if (_productSpecs.TryGetValue("Resistencia", out _resistanceGoal) ||
-                    _productSpecs.TryGetValue("Voltaje", out _voltageGoal))
+                foreach (var v in _productSpecs)
                 {
-                    UpdateGoalLines();
-                    lblProductName.Text = $"Meta Resistencia: {_resistanceGoal}Ω | Meta Voltaje: {_voltageGoal}V";
-                    UpdateGoalLines();  // Add this line
+                    if(v.Key == "Resistencia")
+                    {
+                        double.TryParse(v.Value.ToString(), out _resistanceGoal);
+                    }
+                    if(v.Key == "Voltaje")
+                    {
+                        double.TryParse(v.Value.ToString(), out _voltageGoal);
+                    }
                 }
+
+                UpdateGoalLines();
+                lblProductName.Text = $"Meta Resistencia: {_resistanceGoal}Ω | Meta Voltaje: {_voltageGoal}V";
+                UpdateGoalLines();  // Add this line
+
+                //if (_productSpecs.TryGetValue("Resistencia", out _resistanceGoal) ||
+                //    _productSpecs.TryGetValue("Voltaje", out _voltageGoal))
+                //{
+                //    UpdateGoalLines();
+                //    lblProductName.Text = $"Meta Resistencia: {_resistanceGoal}Ω | Meta Voltaje: {_voltageGoal}V";
+                //    UpdateGoalLines();  // Add this line
+                //}
             }
         }
 
@@ -547,7 +628,7 @@ namespace AutomatizacionPruebasElectricas
             MedicionGrafica.Invalidate();
             graficaVoltaje.Invalidate();
         }
-        private void UpdateChartGoalLine(Chart chart, int goal, Color color, string measurementType)
+        private void UpdateChartGoalLine(Chart chart, double goal, Color color, string measurementType)
         {
             chart.ChartAreas[0].AxisY.StripLines.Clear();
 
