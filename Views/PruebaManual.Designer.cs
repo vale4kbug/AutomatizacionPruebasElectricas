@@ -183,6 +183,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PruebaManual";
             this.Text = "Prueba Manual";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PruebaManual_FormClosed);
             this.Load += new System.EventHandler(this.PruebaManual_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -271,5 +271,13 @@ namespace AutomatizacionPruebasElectricas.Views
             richTextBox1.Text = "";
             _relayPort.Close();
         }
+
+        private void PruebaManual_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _relayPort.Open();
+            TrySendRelay(4);
+            TrySendRelay(5);
+            _relayPort.Close();
+        }
     }
 }

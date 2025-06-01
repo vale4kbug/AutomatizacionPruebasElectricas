@@ -193,12 +193,12 @@
             // 
             // btnEstacion
             // 
-            this.btnEstacion.BackColor = System.Drawing.Color.Beige;
+            this.btnEstacion.BackColor = System.Drawing.Color.AntiqueWhite;
             this.btnEstacion.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.btnEstacion.FlatAppearance.BorderSize = 2;
             this.btnEstacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEstacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnEstacion.ForeColor = System.Drawing.Color.Tan;
+            this.btnEstacion.ForeColor = System.Drawing.Color.Peru;
             this.btnEstacion.Location = new System.Drawing.Point(442, 264);
             this.btnEstacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnEstacion.Name = "btnEstacion";
