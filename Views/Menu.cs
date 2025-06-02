@@ -12,18 +12,18 @@ using System.Windows.Forms;
 
 namespace AutomatizacionPruebasElectricas
 {
-	public partial class Menu : Form
+	public partial class Estacion : Form
 	{
 		private string id;
 
-		public Menu(string nombre, string id)
+		public Estacion(string nombre, string id)
 		{
 			InitializeComponent();
 			Text = "Bienvenid@, " + nombre;
 			this.id = id;
 		}
 
-		public Menu(string nombre)
+		public Estacion(string nombre)
 		{
 			InitializeComponent();
 		}
@@ -129,15 +129,18 @@ namespace AutomatizacionPruebasElectricas
 
         private void btnEstacion_Click(object sender, EventArgs e)
         {
-            Estacion estacion = new Estacion();
-            estacion.Show();
         }
 
         private void Manual_Click(object sender, EventArgs e)
         {
 			PruebaManual frm = new PruebaManual();
-			frm.ShowDialog
-				();
+			frm.ShowDialog();
         }
-    }
+
+		private void Reportes_Click(object sender, EventArgs e)
+		{
+			Reportes re = new Reportes();
+			re.ShowDialog();
+		}
+	}
 }

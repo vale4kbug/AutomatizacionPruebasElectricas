@@ -52,7 +52,7 @@ namespace AutomatizacionPruebasElectricas
 			if (acceso)
 			{
 				string nombre = await login.GetUserFullName();
-				Menu menu = new Menu(nombre, login.UsuarioId);
+				Estacion menu = new Estacion(nombre, login.UsuarioId);
 				menu.Show();
 				Hide();
 			}

@@ -11,55 +11,88 @@ using System.Windows.Forms;
 
 namespace AutomatizacionPruebasElectricas.Classes
 {
-    public class ClsConnection
-    {
-        readonly protected MySqlConnection con;
-        readonly protected MySqlCommand cmd;
-        protected MySqlDataAdapter adapter;
-        readonly protected MySqlDataReader reader;
+	public class ClsConnection
+	{
+		readonly protected MySqlConnection con;
+		readonly protected MySqlCommand cmd;
+		protected MySqlDataAdapter adapter;
+		readonly protected MySqlDataReader reader;
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); // Add this line
 
 
 		public ClsConnection()
-        {
-            try
-            {
-                con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString());
-                cmd = con.CreateCommand();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar la configuración de la base de datos.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+		{
+			try
+			{
+				con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString());
+				cmd = con.CreateCommand();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error al cargar la configuración de la base de datos.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        //Metodo para abrir conexion a base de datos
-        protected async Task<bool> OpenConnection()
-        {
-            try
-            {
-                if (con.State == ConnectionState.Closed)
-                {
-                    await con.OpenAsync();
-                }
-                return true;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("No se pudo conectar con el servidor de base de datos.\nVerifica tu conexión a internet o el estado del servidor.\n\n" + ex.Message,
-                                "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+		//Metodo para realizar y regresar el resultado de un procedimiento almacenado
+		public async Task<DataTable> GetProcedure(string procedure, string NoSerie, DateTime fechaA, DateTime fechaB)
+		{
+			DataTable result = new DataTable();
+			try
+			{
+				await OpenConnection();
 
-        //Metodo para cerrar conexion a base de datos
-        protected async Task CloseConnection()
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                await con.CloseAsync();
-            }
-        }
+				cmd.CommandType = CommandType.StoredProcedure;
+
+				cmd.Parameters.AddWithValue("NoSerieProducto", NoSerie);
+				cmd.Parameters.AddWithValue("fechaA", fechaA);
+				cmd.Parameters.AddWithValue("fechaB", fechaB);
+				cmd.CommandText = procedure;
+
+				adapter = new MySqlDataAdapter(cmd);
+
+				await adapter.FillAsync(result);
+
+				cmd.CommandType = CommandType.Text;
+			}
+			catch (MySqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				await CloseConnection();
+			}
+
+			return result;
+		}
+
+		//Metodo para abrir conexion a base de datos
+		protected async Task<bool> OpenConnection()
+		{
+			try
+			{
+				if (con.State == ConnectionState.Closed)
+				{
+					await con.OpenAsync();
+				}
+				return true;
+			}
+			catch (MySqlException ex)
+			{
+				MessageBox.Show("No se pudo conectar con el servidor de base de datos.\nVerifica tu conexión a internet o el estado del servidor.\n\n" + ex.Message,
+								"Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+		}
+
+		//Metodo para cerrar conexion a base de datos
+		protected async Task CloseConnection()
+		{
+			if (con.State == ConnectionState.Open)
+			{
+				await con.CloseAsync();
+			}
+		}
 
 		//Esta funcion es para ejecutar querys que no regresan nada directamente, por ejemplo Inserts, Deletes, Updates
 		//y opcionalmente puede regresar el ID del último registro insertado
@@ -111,25 +144,25 @@ namespace AutomatizacionPruebasElectricas.Classes
 
 		//Esta funcion regresa un datatable de acuerdo al query
 		protected async Task<DataTable> GetTable(string query)
-        {
-            DataTable result = new DataTable();
-            try
-            {
-                await OpenConnection();
-                adapter = new MySqlDataAdapter(query, con);
-                await adapter.FillAsync(result);
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                await CloseConnection();
-            }
+		{
+			DataTable result = new DataTable();
+			try
+			{
+				await OpenConnection();
+				adapter = new MySqlDataAdapter(query, con);
+				await adapter.FillAsync(result);
+			}
+			catch (MySqlException ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			finally
+			{
+				await CloseConnection();
+			}
 
-            return result;
-        }
+			return result;
+		}
 
 
 
